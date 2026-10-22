@@ -38,7 +38,8 @@ public class MainApp extends Application {
     private AuditLogDao auditLogDao;
     private BudgetDao budgetDao;
     private SavingsGoalDao savingsGoalDao;
-    private com.financeanalyzer.dao.FixedCategoryDao fixedCategoryDao;
+    private UserFixedCategoryDao userFixedCategoryDao;
+    private CategoryService categoryService;
 
     // Services
     private AuthService authService;
@@ -80,18 +81,20 @@ public class MainApp extends Application {
         auditLogDao = new JdbcAuditLogDao();
         budgetDao = new JdbcBudgetDao();
         savingsGoalDao = new JdbcSavingsGoalDao();
-        fixedCategoryDao = new JdbcFixedCategoryDao();
+        userFixedCategoryDao = new JdbcUserFixedCategoryDao();
+        categoryService = new CategoryService(categoryDao, userFixedCategoryDao);
 
         // 3. Instantiate Services
-        authService = new AuthService(userDao);
+        authService = new AuthService(userDao, userFixedCategoryDao);
         transactionService = new TransactionService(transactionDao, categoryDao);
         recurringScheduler = new RecurringScheduler(recurringDao, transactionDao, auditLogDao);
         budgetService = new BudgetService(budgetDao, transactionDao, categoryDao);
         goalService = new GoalService(savingsGoalDao);
         ratioAllocationService = new RatioAllocationService(savingsGoalDao);
         inModalAnalyticsService = new DefaultInModalAnalyticsService(budgetDao, transactionDao, savingsGoalDao);
-        heuristicEngine = new HeuristicEngine();
-        reportService = new ReportService(transactionDao, budgetDao, savingsGoalDao, heuristicEngine, fixedCategoryDao);
+        heuristicEngine = new HeuristicEngine(categoryService);
+        reportService = new ReportService(
+                transactionDao, budgetDao, savingsGoalDao, heuristicEngine, categoryService);
 
         // 4. Instantiate File I/O Managers
         backupManager = new BackupManager(categoryDao, transactionDao, budgetDao, savingsGoalDao, recurringDao);
@@ -151,12 +154,12 @@ public class MainApp extends Application {
 
         // Controllers for active modules
         DashboardController dashController = new DashboardController(
-                transactionDao, budgetDao, savingsGoalDao, transactionService, heuristicEngine, fixedCategoryDao, user
+                transactionDao, budgetDao, savingsGoalDao, transactionService, heuristicEngine, user
         );
         Node dashView = dashController.getView();
 
         TransactionsController txnController = new TransactionsController(
-                transactionService, inModalAnalyticsService, user.getId(), primaryStage
+                transactionService, categoryService, inModalAnalyticsService, user.getId(), primaryStage
         );
         Node txnView = txnController.getView();
 
@@ -176,8 +179,9 @@ public class MainApp extends Application {
         Node recView = recController.getView();
 
         ReportsSettingsController reportsController = new ReportsSettingsController(
-                reportService, authService, categoryDao, fixedCategoryDao, user, primaryStage
+                reportService, authService, categoryService, user, primaryStage
         );
+        reportsController.setDashboardInsightsRefreshHandler(dashController::refreshInsights);
 
         // Wire File Operation Handlers in Settings
         reportsController.setFileOperationHandlers(

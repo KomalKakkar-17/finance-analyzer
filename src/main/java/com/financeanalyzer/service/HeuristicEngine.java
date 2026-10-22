@@ -1,6 +1,7 @@
 package com.financeanalyzer.service;
 
 import com.financeanalyzer.model.User;
+import com.financeanalyzer.model.Category;
 import com.financeanalyzer.rules.*;
 import com.financeanalyzer.util.AppLogger;
 
@@ -20,19 +21,31 @@ public class HeuristicEngine {
     private static final Logger LOGGER = AppLogger.getLogger(HeuristicEngine.class);
 
     private final List<Recommendation> rules;
+    private final CategoryService categoryService;
 
     public HeuristicEngine() {
-        this.rules = new ArrayList<>();
-        // Register the 5 syllabus heuristic rules
-        rules.add(new HighCategorySpendRule());
-        rules.add(new HighExpenseToIncomeRule());
-        rules.add(new CategorySpikeRule());
-        rules.add(new LowSavingsRateRule());
-        rules.add(new FrequentMicroTransactionsRule());
+        this.categoryService = null;
+        this.rules = defaultRules();
     }
 
     public HeuristicEngine(List<Recommendation> customRules) {
+        this.categoryService = null;
         this.rules = Objects.requireNonNullElseGet(customRules, ArrayList::new);
+    }
+
+    public HeuristicEngine(CategoryService categoryService) {
+        this.categoryService = Objects.requireNonNull(categoryService, "CategoryService must not be null.");
+        this.rules = defaultRules();
+    }
+
+    private static List<Recommendation> defaultRules() {
+        return new ArrayList<>(List.of(
+                new HighCategorySpendRule(),
+                new HighExpenseToIncomeRule(),
+                new CategorySpikeRule(),
+                new LowSavingsRateRule(),
+                new FrequentMicroTransactionsRule()
+        ));
     }
 
     /**
@@ -51,6 +64,19 @@ public class HeuristicEngine {
 
         if (ctx == null) {
             return List.of();
+        }
+
+        if (categoryService != null) {
+            List<Category> expenseCategories = categoryService.findExpenseCategories(user.getId());
+            java.util.Map<Long, String> categoryNamesById = new java.util.HashMap<>();
+            for (Category category : expenseCategories) {
+                categoryNamesById.put(category.getId(), category.getName());
+            }
+            ctx = ctx.withFixedCategoryData(
+                    categoryService.findFixedCategoryIds(user.getId()),
+                    ctx.getCurrentMonthCategoryExpensesById(),
+                    ctx.getLastMonthCategoryExpensesById(),
+                    categoryNamesById);
         }
 
         List<String> recommendations = new ArrayList<>();

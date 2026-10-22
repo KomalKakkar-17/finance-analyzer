@@ -184,6 +184,13 @@ public final class DatabaseManager {
                     );
                 """);
 
+                stmt.execute("""
+                    CREATE TABLE IF NOT EXISTS user_fixed_category_initializations (
+                        user_id INTEGER PRIMARY KEY,
+                        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+                    );
+                """);
+
                 // Indexes
                 stmt.execute("CREATE INDEX IF NOT EXISTS idx_txn_user_date ON transactions(user_id, txn_date);");
                 stmt.execute("CREATE INDEX IF NOT EXISTS idx_txn_category ON transactions(category_id);");
@@ -392,7 +399,7 @@ public final class DatabaseManager {
             }
 
             // 6. Seed default fixed categories (Rent, Utilities) for demo user
-            seedDefaultFixedCategories(conn, demoUserId);
+            JdbcUserFixedCategoryDao.initializeDefaultsIfNeeded(conn, demoUserId);
 
             conn.commit();
             LOGGER.info("Demo user 'demo' and sample data seeded successfully.");
@@ -400,35 +407,6 @@ public final class DatabaseManager {
             conn.rollback();
             LOGGER.log(Level.SEVERE, "Failed to seed demo user data.", e);
             throw e;
-        }
-    }
-
-    /**
-     * Seeds the default fixed expense categories (e.g. Rent, Utilities) for a newly registered user.
-     * Called both from seedDemoDataIfEmpty and from JdbcUserDao at registration time.
-     *
-     * @param conn   active JDBC connection (autoCommit must be controlled by caller)
-     * @param userId the newly created user's ID
-     */
-    public static void seedDefaultFixedCategories(Connection conn, long userId) throws SQLException {
-        String defaultFixed = ConfigLoader.getProperty("default.fixed.categories", "Rent,Utilities");
-        if (defaultFixed == null || defaultFixed.isBlank()) return;
-
-        String[] names = defaultFixed.split(",");
-        String insertSql = """
-            INSERT OR IGNORE INTO user_fixed_categories (user_id, category_id)
-            SELECT ?, id FROM categories
-            WHERE name = ? AND type = 'EXPENSE'
-            LIMIT 1
-        """;
-        try (PreparedStatement ps = conn.prepareStatement(insertSql)) {
-            for (String name : names) {
-                ps.setLong(1, userId);
-                ps.setString(2, name.trim());
-                ps.addBatch();
-            }
-            ps.executeBatch();
-            LOGGER.info("Seeded default fixed categories for userId=" + userId);
         }
     }
 

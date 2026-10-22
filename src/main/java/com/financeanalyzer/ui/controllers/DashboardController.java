@@ -2,7 +2,6 @@ package com.financeanalyzer.ui.controllers;
 
 import com.financeanalyzer.dao.BudgetDao;
 import com.financeanalyzer.dao.CategoryDao;
-import com.financeanalyzer.dao.FixedCategoryDao;
 import com.financeanalyzer.dao.SavingsGoalDao;
 import com.financeanalyzer.dao.TransactionDao;
 import com.financeanalyzer.model.Budget;
@@ -51,22 +50,20 @@ public class DashboardController {
     private final SavingsGoalDao savingsGoalDao;
     private final TransactionService transactionService;
     private final HeuristicEngine heuristicEngine;
-    private final FixedCategoryDao fixedCategoryDao;
     private final User currentUser;
+    private final VBox insightsContainer = new VBox();
 
     public DashboardController(TransactionDao transactionDao,
                                BudgetDao budgetDao,
                                SavingsGoalDao savingsGoalDao,
                                TransactionService transactionService,
                                HeuristicEngine heuristicEngine,
-                               FixedCategoryDao fixedCategoryDao,
                                User currentUser) {
         this.transactionDao = Objects.requireNonNull(transactionDao, "TransactionDao must not be null.");
         this.budgetDao = Objects.requireNonNull(budgetDao, "BudgetDao must not be null.");
         this.savingsGoalDao = Objects.requireNonNull(savingsGoalDao, "SavingsGoalDao must not be null.");
         this.transactionService = Objects.requireNonNull(transactionService, "TransactionService must not be null.");
         this.heuristicEngine = Objects.requireNonNull(heuristicEngine, "HeuristicEngine must not be null.");
-        this.fixedCategoryDao = Objects.requireNonNull(fixedCategoryDao, "FixedCategoryDao must not be null.");
         this.currentUser = Objects.requireNonNull(currentUser, "currentUser must not be null.");
     }
 
@@ -90,7 +87,7 @@ public class DashboardController {
         header.getChildren().addAll(title, monthBadge);
 
         // 2. Recommendations Banner (if triggered and enabled)
-        VBox recsBanner = createRecommendationsBanner(currentMonth);
+        refreshInsights();
 
         // 3. Four KPI Stat Cards
         HBox kpiRow = createKpiRow(currentMonth);
@@ -102,15 +99,21 @@ public class DashboardController {
         HBox bottomRow = createBottomRow(currentMonth);
 
         content.getChildren().addAll(header);
-        if (recsBanner != null) {
-            content.getChildren().add(recsBanner);
-        }
+        content.getChildren().add(insightsContainer);
         content.getChildren().addAll(kpiRow, chartsRow, bottomRow);
 
         ScrollPane scrollPane = new ScrollPane(content);
         scrollPane.setFitToWidth(true);
         scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
         return scrollPane;
+    }
+
+    public void refreshInsights() {
+        insightsContainer.getChildren().clear();
+        VBox recommendations = createRecommendationsBanner(YearMonth.now());
+        if (recommendations != null) {
+            insightsContainer.getChildren().add(recommendations);
+        }
     }
 
     private VBox createRecommendationsBanner(YearMonth currentMonth) {
@@ -121,12 +124,11 @@ public class DashboardController {
         BigDecimal expense = transactionDao.getTotalExpenseInMonth(userId, currentMonth);
         Map<String, BigDecimal> currentCats = transactionDao.getCategoryExpenseBreakdown(userId, currentMonth);
         Map<String, BigDecimal> lastCats = transactionDao.getCategoryExpenseBreakdown(userId, currentMonth.minusMonths(1));
-        // Fetch user-defined fixed category names so rules can skip them
-        java.util.Set<String> fixedNames = fixedCategoryDao.getFixedCategoryNames(userId);
-
         AnalysisContext ctx = new AnalysisContext(
                 userId, currentMonth, income, expense, currentCats, lastCats,
-                transactionDao.findRecent(userId, 30), fixedNames
+                transactionDao.findRecent(userId, 30),
+                transactionDao.getCategoryExpenseBreakdownById(userId, currentMonth),
+                transactionDao.getCategoryExpenseBreakdownById(userId, currentMonth.minusMonths(1))
         );
 
         List<String> recs = heuristicEngine.generateRecommendations(currentUser, ctx);

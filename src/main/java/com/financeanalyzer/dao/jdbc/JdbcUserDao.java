@@ -100,8 +100,7 @@ public class JdbcUserDao implements UserDao {
                     }
                 }
             }
-            // Seed default fixed categories (Rent, Utilities) for every new user
-            DatabaseManager.seedDefaultFixedCategories(conn, user.getId());
+            JdbcUserFixedCategoryDao.initializeDefaultsIfNeeded(conn, user.getId());
             conn.commit();
             return user;
         } catch (SQLException e) {

@@ -4,7 +4,10 @@ import com.financeanalyzer.model.Category;
 import com.financeanalyzer.model.Transaction;
 import com.financeanalyzer.model.enums.TransactionType;
 import com.financeanalyzer.service.InModalAnalyticsService;
+import com.financeanalyzer.service.CategoryService;
 import com.financeanalyzer.service.TransactionService;
+import com.financeanalyzer.exception.DataAccessException;
+import com.financeanalyzer.exception.InvalidFixedCategoryException;
 import com.financeanalyzer.ui.AlertHelper;
 import com.financeanalyzer.ui.components.SpendPreviewCard;
 import com.financeanalyzer.util.AppLogger;
@@ -41,6 +44,7 @@ public class TransactionsController {
     private static final Logger LOGGER = AppLogger.getLogger(TransactionsController.class);
 
     private final TransactionService transactionService;
+    private final CategoryService categoryService;
     private final InModalAnalyticsService inModalAnalyticsService; // can be null in Sprint 1, passed in Sprint 3
     private final Long userId;
     private final Stage primaryStage;
@@ -58,10 +62,12 @@ public class TransactionsController {
     private TextField keywordField;
 
     public TransactionsController(TransactionService transactionService,
+                                  CategoryService categoryService,
                                   InModalAnalyticsService inModalAnalyticsService,
                                   Long userId,
                                   Stage primaryStage) {
         this.transactionService = Objects.requireNonNull(transactionService, "TransactionService must not be null.");
+        this.categoryService = Objects.requireNonNull(categoryService, "CategoryService must not be null.");
         this.inModalAnalyticsService = inModalAnalyticsService;
         this.userId = Objects.requireNonNull(userId, "userId must not be null.");
         this.primaryStage = primaryStage;
@@ -397,22 +403,58 @@ public class TransactionsController {
     }
 
     private void handleAddCategory() {
-        Optional<String> nameOpt = AlertHelper.showTextInput("New Category", "Add Custom Category", "Category Name:");
-        if (nameOpt.isPresent() && !nameOpt.get().trim().isEmpty()) {
-            ChoiceDialog<String> typeDialog = new ChoiceDialog<>("EXPENSE", "EXPENSE", "INCOME");
-            typeDialog.setTitle("Category Type");
-            typeDialog.setHeaderText(null);
-            typeDialog.setContentText("Select Category Type:");
-            Optional<String> typeOpt = typeDialog.showAndWait();
-            if (typeOpt.isPresent()) {
-                try {
-                    TransactionType type = TransactionType.valueOf(typeOpt.get());
-                    transactionService.addCustomCategory(userId, nameOpt.get().trim(), type);
-                    populateCategoryFilter();
-                    AlertHelper.showToast(primaryStage, "Category '" + nameOpt.get().trim() + "' created.");
-                } catch (Exception ex) {
-                    AlertHelper.showError("Error", "Could not create category", ex.getMessage());
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(primaryStage);
+        dialog.setTitle("Add Category");
+        dialog.setHeaderText("Create a custom category");
+
+        TextField nameField = new TextField();
+        nameField.setPromptText("Category name");
+        ComboBox<TransactionType> typeBox = new ComboBox<>(
+                FXCollections.observableArrayList(TransactionType.EXPENSE, TransactionType.INCOME));
+        typeBox.setValue(TransactionType.EXPENSE);
+        CheckBox fixedExpense = new CheckBox("Fixed expense");
+        typeBox.valueProperty().addListener((observable, oldType, newType) -> {
+            boolean expense = newType == TransactionType.EXPENSE;
+            fixedExpense.setVisible(expense);
+            fixedExpense.setManaged(expense);
+            if (!expense) {
+                fixedExpense.setSelected(false);
+            }
+        });
+
+        GridPane form = new GridPane();
+        form.setHgap(10);
+        form.setVgap(10);
+        form.addRow(0, new Label("Category name:"), nameField);
+        form.addRow(1, new Label("Type:"), typeBox);
+        form.add(fixedExpense, 1, 2);
+        dialog.getDialogPane().setContent(form);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            String name = nameField.getText().trim();
+            if (name.isEmpty()) {
+                AlertHelper.showWarning("Category Required", null, "Enter a category name.");
+                return;
+            }
+            try {
+                Category created = transactionService.addCustomCategory(userId, name, typeBox.getValue());
+                if (fixedExpense.isSelected()) {
+                    categoryService.setFixed(userId, created.getId(), true);
                 }
+                populateCategoryFilter();
+                AlertHelper.showToast(primaryStage, "Category '" + name + "' created.");
+            } catch (InvalidFixedCategoryException ex) {
+                AlertHelper.showError("Invalid Fixed Expense", null, ex.getMessage());
+            } catch (DataAccessException ex) {
+                LOGGER.log(java.util.logging.Level.WARNING,
+                        "Could not create category for userId={0}", userId);
+                AlertHelper.showError("Save Failed", null,
+                        "The category could not be created. Please try again.");
+            } catch (Exception ex) {
+                AlertHelper.showError("Error", "Could not create category", ex.getMessage());
             }
         }
     }

@@ -2,7 +2,6 @@ package com.financeanalyzer.service;
 
 import com.financeanalyzer.dao.BudgetDao;
 import com.financeanalyzer.dao.CategoryDao;
-import com.financeanalyzer.dao.FixedCategoryDao;
 import com.financeanalyzer.dao.SavingsGoalDao;
 import com.financeanalyzer.dao.TransactionDao;
 import com.financeanalyzer.model.Budget;
@@ -35,18 +34,18 @@ public class ReportService {
     private final BudgetDao budgetDao;
     private final SavingsGoalDao savingsGoalDao;
     private final HeuristicEngine heuristicEngine;
-    private final FixedCategoryDao fixedCategoryDao;
+    private final CategoryService categoryService;
 
     public ReportService(TransactionDao transactionDao,
                          BudgetDao budgetDao,
                          SavingsGoalDao savingsGoalDao,
                          HeuristicEngine heuristicEngine,
-                         FixedCategoryDao fixedCategoryDao) {
+                         CategoryService categoryService) {
         this.transactionDao = Objects.requireNonNull(transactionDao, "TransactionDao must not be null.");
         this.budgetDao = Objects.requireNonNull(budgetDao, "BudgetDao must not be null.");
         this.savingsGoalDao = Objects.requireNonNull(savingsGoalDao, "SavingsGoalDao must not be null.");
         this.heuristicEngine = Objects.requireNonNull(heuristicEngine, "HeuristicEngine must not be null.");
-        this.fixedCategoryDao = Objects.requireNonNull(fixedCategoryDao, "FixedCategoryDao must not be null.");
+        this.categoryService = Objects.requireNonNull(categoryService, "CategoryService must not be null.");
     }
 
     /**
@@ -72,10 +71,14 @@ public class ReportService {
         // Run Heuristics for the report month
         YearMonth lastMonth = yearMonth.minusMonths(1);
         Map<String, BigDecimal> lastBreakdown = transactionDao.getCategoryExpenseBreakdown(userId, lastMonth);
-        Set<String> fixedNames = fixedCategoryDao.getFixedCategoryNames(userId);
+        Map<Long, BigDecimal> currentBreakdownById =
+                transactionDao.getCategoryExpenseBreakdownById(userId, yearMonth);
+        Map<Long, BigDecimal> lastBreakdownById =
+                transactionDao.getCategoryExpenseBreakdownById(userId, lastMonth);
         AnalysisContext ctx = new AnalysisContext(
                 userId, yearMonth, totalIncome, totalExpense,
-                sortedBreakdown, lastBreakdown, transactionDao.findRecent(userId, 50), fixedNames
+                sortedBreakdown, lastBreakdown, transactionDao.findRecent(userId, 50),
+                currentBreakdownById, lastBreakdownById
         );
         List<String> recommendations = heuristicEngine.generateRecommendations(user, ctx);
 
@@ -121,8 +124,40 @@ public class ReportService {
         }
         sb.append(System.lineSeparator());
 
-        // 3. BUDGET PERFORMANCE VS ACTUAL
-        sb.append("3. BUDGET PERFORMANCE VS ACTUAL").append(System.lineSeparator());
+        // 3. FIXED VS FLEXIBLE EXPENSES
+        Set<Long> fixedCategoryIds = categoryService.findFixedCategoryIds(userId);
+        BigDecimal fixedTotal = BigDecimal.ZERO;
+        BigDecimal flexibleTotal = BigDecimal.ZERO;
+        List<Category> expenseCategories = categoryService.findExpenseCategories(userId);
+        for (Category category : expenseCategories) {
+            BigDecimal amount = currentBreakdownById.getOrDefault(category.getId(), BigDecimal.ZERO);
+            if (fixedCategoryIds.contains(category.getId())) {
+                fixedTotal = fixedTotal.add(amount);
+            } else {
+                flexibleTotal = flexibleTotal.add(amount);
+            }
+        }
+
+        sb.append("3. FIXED VS FLEXIBLE EXPENSES").append(System.lineSeparator());
+        sb.append(line).append(System.lineSeparator());
+        sb.append(String.format("  Fixed Total:             %20s%n", MoneyUtil.formatCurrency(fixedTotal)));
+        sb.append(String.format("  Flexible Total:          %20s%n", MoneyUtil.formatCurrency(flexibleTotal)));
+        sb.append(String.format("  %-28s %18s %12s%n", "Category", "Amount Spent", "Classification"));
+        sb.append(String.format("  %-28s %18s %12s%n", "--------", "------------", "--------------"));
+        if (expenseCategories.isEmpty()) {
+            sb.append("  No expense categories available.").append(System.lineSeparator());
+        } else {
+            for (Category category : expenseCategories) {
+                boolean fixed = fixedCategoryIds.contains(category.getId());
+                BigDecimal amount = currentBreakdownById.getOrDefault(category.getId(), BigDecimal.ZERO);
+                sb.append(String.format("  %-28s %18s %12s%n",
+                        category.getName(), MoneyUtil.formatCurrency(amount), fixed ? "Fixed" : "Flexible"));
+            }
+        }
+        sb.append(System.lineSeparator());
+
+        // 4. BUDGET PERFORMANCE VS ACTUAL
+        sb.append("4. BUDGET PERFORMANCE VS ACTUAL").append(System.lineSeparator());
         sb.append(line).append(System.lineSeparator());
         sb.append(String.format("  %-22s %14s %14s %14s %10s%n", "Category", "Budget Limit", "Actual Spend", "Remaining", "Util %"));
         sb.append(String.format("  %-22s %14s %14s %14s %10s%n", "--------", "------------", "------------", "---------", "------"));
@@ -149,8 +184,8 @@ public class ReportService {
         }
         sb.append(System.lineSeparator());
 
-        // 4. SAVINGS GOALS STATUS
-        sb.append("4. SAVINGS GOALS STATUS").append(System.lineSeparator());
+        // 5. SAVINGS GOALS STATUS
+        sb.append("5. SAVINGS GOALS STATUS").append(System.lineSeparator());
         sb.append(line).append(System.lineSeparator());
         sb.append(String.format("  %-24s %14s %14s %12s %8s%n", "Goal Title", "Target", "Saved So Far", "Deadline", "Progress"));
         sb.append(String.format("  %-24s %14s %14s %12s %8s%n", "----------", "------", "------------", "--------", "--------"));
@@ -169,8 +204,8 @@ public class ReportService {
         }
         sb.append(System.lineSeparator());
 
-        // 5. SMART HEURISTIC RECOMMENDATIONS (FR-13)
-        sb.append("5. SMART FINANCIAL RECOMMENDATIONS").append(System.lineSeparator());
+        // 6. SMART HEURISTIC RECOMMENDATIONS (FR-13)
+        sb.append("6. SMART FINANCIAL RECOMMENDATIONS").append(System.lineSeparator());
         sb.append(line).append(System.lineSeparator());
         if (!user.isRecommendationsEnabled()) {
             sb.append("  (Smart recommendations are currently disabled in user settings.)").append(System.lineSeparator());

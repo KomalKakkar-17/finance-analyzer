@@ -1,6 +1,7 @@
 package com.financeanalyzer.service;
 
 import com.financeanalyzer.dao.UserDao;
+import com.financeanalyzer.dao.UserFixedCategoryDao;
 import com.financeanalyzer.exception.AuthenticationException;
 import com.financeanalyzer.model.User;
 import com.financeanalyzer.util.AppLogger;
@@ -20,13 +21,16 @@ public class AuthService {
 
     private static final Logger LOGGER = AppLogger.getLogger(AuthService.class);
     private final UserDao userDao;
+    private final UserFixedCategoryDao userFixedCategoryDao;
     private User currentUser;
 
     /**
-     * Constructor injection of UserDao dependency.
+     * Constructor injection of authentication and fixed-category data access dependencies.
      */
-    public AuthService(UserDao userDao) {
+    public AuthService(UserDao userDao, UserFixedCategoryDao userFixedCategoryDao) {
         this.userDao = Objects.requireNonNull(userDao, "UserDao must not be null.");
+        this.userFixedCategoryDao = Objects.requireNonNull(
+                userFixedCategoryDao, "UserFixedCategoryDao must not be null.");
     }
 
     /**
@@ -89,6 +93,7 @@ public class AuthService {
             throw new AuthenticationException("Invalid username or password.");
         }
 
+        userFixedCategoryDao.initializeDefaultsIfNeeded(user.getId());
         this.currentUser = user;
         LOGGER.log(Level.INFO, "User successfully logged in: {0} (ID: {1})",
                 new Object[]{user.getUsername(), user.getId()});

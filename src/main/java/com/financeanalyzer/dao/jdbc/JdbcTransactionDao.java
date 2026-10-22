@@ -309,6 +309,34 @@ public class JdbcTransactionDao implements TransactionDao {
     }
 
     @Override
+    public Map<Long, BigDecimal> getCategoryExpenseBreakdownById(Long userId, YearMonth yearMonth) {
+        String prefix = yearMonth.toString() + "%";
+        String sql = """
+            SELECT c.id, COALESCE(SUM(t.amount_paise), 0) AS total_paise
+            FROM transactions t
+            JOIN categories c ON t.category_id = c.id
+            WHERE t.user_id = ? AND t.type = 'EXPENSE' AND t.txn_date LIKE ?
+            GROUP BY c.id
+            ORDER BY total_paise DESC
+        """;
+        Map<Long, BigDecimal> map = new LinkedHashMap<>();
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, userId);
+            ps.setString(2, prefix);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    map.put(rs.getLong("id"), MoneyUtil.toRupees(rs.getLong("total_paise")));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error getting category expense breakdown by ID.", e);
+            throw new DataAccessException("Failed to retrieve category breakdown by ID.", e);
+        }
+        return map;
+    }
+
+    @Override
     public List<Transaction> findRecent(Long userId, int limit) {
         String sql = """
             SELECT t.id, t.user_id, t.category_id, c.name AS category_name, t.type,

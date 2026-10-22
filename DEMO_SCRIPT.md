@@ -101,7 +101,9 @@ This script provides an exact, step-by-step click-path to demonstrate every core
      - Explain how `RecurringScheduler` uses an explicit `Iterator` and `ScheduledExecutorService`.
   2. Navigate to **"Reports & Settings"**:
      - Point to the **"Enable Smart Heuristic Recommendations"** checkbox. Uncheck it to show that heuristic alerts disappear immediately from reports and dashboard, then re-check it.
+     - Under **"Fixed Expenses"**, temporarily uncheck **Rent** and click **Save**; open **Dashboard** and point out the Rent-related concentration or spending-spike insight. Return to **Reports & Settings**, check **Rent**, and click **Save** again. Return to **Dashboard** and show that the Rent insight disappears because fixed categories are omitted from smart insights.
      - Show the generated **Monthly Financial Statement** in the monospace text area.
+     - Point out the report's **Fixed vs Flexible** section: fixed and flexible totals and the classification beside each expense category.
      - Click **"Export Transactions (CSV)"** to demonstrate `CsvExporter` (`BufferedWriter`).
      - Click **"Backup Data (.dat)"** to demonstrate `BackupManager` (`ObjectOutputStream` serializing `UserDataSnapshot`).
 3. Conclude by pointing to `logs/app.log`, showing complete timestamped traceability of every user action and budget warning.

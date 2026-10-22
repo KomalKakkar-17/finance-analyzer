@@ -59,6 +59,11 @@ public interface TransactionDao extends Dao<Transaction, Long> {
     Map<String, BigDecimal> getCategoryExpenseBreakdown(Long userId, YearMonth yearMonth);
 
     /**
+     * Retrieves category-wise expense totals keyed by category ID for fixed-category analysis.
+     */
+    Map<Long, BigDecimal> getCategoryExpenseBreakdownById(Long userId, YearMonth yearMonth);
+
+    /**
      * Retrieves the latest N transactions for the recent activity queue.
      * Demonstrates Unit 2 Collections (LinkedList).
      */

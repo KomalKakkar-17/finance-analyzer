@@ -46,6 +46,53 @@ public class HeuristicEngineTest {
     }
 
     @Test
+    void highCategorySpendSkipsFixedCategoryAndUsesFlexibleDenominator() {
+        AnalysisContext ctx = new AnalysisContext(
+                100L, YearMonth.now(), BigDecimal.ZERO, new BigDecimal("1000"),
+                Map.of("Rent", new BigDecimal("500"), "Food", new BigDecimal("300"),
+                        "Transport", new BigDecimal("200")),
+                Collections.emptyMap(), Collections.emptyList(),
+                Map.of(1L, new BigDecimal("500"), 2L, new BigDecimal("300"),
+                        3L, new BigDecimal("200")),
+                Collections.emptyMap()
+        ).withFixedCategoryData(Set.of(1L),
+                Map.of(1L, new BigDecimal("500"), 2L, new BigDecimal("300"),
+                        3L, new BigDecimal("200")),
+                Collections.emptyMap(), Map.of(1L, "Rent", 2L, "Food", 3L, "Transport"));
+
+        Optional<String> result = new HighCategorySpendRule().evaluate(ctx);
+        assertTrue(result.isPresent());
+        assertTrue(result.get().contains("'Food'"));
+        assertTrue(result.get().contains("60.0%"));
+    }
+
+    @Test
+    void highCategorySpendDoesNotRecommendWhenAllSpendingIsFixed() {
+        AnalysisContext ctx = new AnalysisContext(
+                100L, YearMonth.now(), BigDecimal.ZERO, new BigDecimal("1000"),
+                Map.of("Rent", new BigDecimal("1000")), Collections.emptyMap(), Collections.emptyList(),
+                Map.of(1L, new BigDecimal("1000")), Collections.emptyMap()
+        ).withFixedCategoryData(Set.of(1L), Map.of(1L, new BigDecimal("1000")),
+                Collections.emptyMap(), Map.of(1L, "Rent"));
+
+        assertTrue(new HighCategorySpendRule().evaluate(ctx).isEmpty());
+    }
+
+    @Test
+    void highCategorySpendWithNoFixedCategoriesBehavesAsBefore() {
+        AnalysisContext ctx = new AnalysisContext(
+                100L, YearMonth.now(), BigDecimal.ZERO, new BigDecimal("1000"),
+                Map.of("Food", new BigDecimal("500"), "Transport", new BigDecimal("500")),
+                Collections.emptyMap(), Collections.emptyList()
+        );
+
+        Optional<String> result = new HighCategorySpendRule().evaluate(ctx);
+        assertTrue(result.isPresent());
+        assertTrue(result.get().contains("'Food'"));
+        assertTrue(result.get().contains("50.0%"));
+    }
+
+    @Test
     void testRule2HighExpenseToIncome() {
         // Income ₹10,000. Expense ₹9,500 (95% > 90%)
         AnalysisContext ctx = new AnalysisContext(
@@ -72,6 +119,31 @@ public class HeuristicEngineTest {
         Optional<String> result = new CategorySpikeRule().evaluate(ctx);
         assertTrue(result.isPresent());
         assertTrue(result.get().contains("Spending Spike"));
+    }
+
+    @Test
+    void categorySpikeSkipsFixedCategory() {
+        AnalysisContext ctx = new AnalysisContext(
+                100L, YearMonth.now(), BigDecimal.ZERO, new BigDecimal("1400"),
+                Map.of("Rent", new BigDecimal("1400")),
+                Map.of("Rent", new BigDecimal("1000")), Collections.emptyList(),
+                Map.of(1L, new BigDecimal("1400")), Map.of(1L, new BigDecimal("1000"))
+        ).withFixedCategoryData(Set.of(1L),
+                Map.of(1L, new BigDecimal("1400")), Map.of(1L, new BigDecimal("1000")),
+                Map.of(1L, "Rent"));
+
+        assertTrue(new CategorySpikeRule().evaluate(ctx).isEmpty());
+    }
+
+    @Test
+    void categorySpikeWithoutFixedCategoriesBehavesAsBefore() {
+        AnalysisContext ctx = new AnalysisContext(
+                100L, YearMonth.now(), BigDecimal.ZERO, new BigDecimal("1400"),
+                Map.of("Food", new BigDecimal("1400")),
+                Map.of("Food", new BigDecimal("1000")), Collections.emptyList()
+        );
+
+        assertTrue(new CategorySpikeRule().evaluate(ctx).orElseThrow().contains("Food"));
     }
 
     @Test

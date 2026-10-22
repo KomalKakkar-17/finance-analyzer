@@ -28,6 +28,10 @@ public class AnalysisContext {
 
     /** Names of categories the user has marked as fixed (e.g. Rent, EMI). Never null. */
     private final Set<String> fixedCategoryNames;
+    private final Set<Long> fixedCategoryIds;
+    private final Map<Long, BigDecimal> currentMonthCategoryExpensesById;
+    private final Map<Long, BigDecimal> lastMonthCategoryExpensesById;
+    private final Map<Long, String> categoryNamesById;
 
     public AnalysisContext(Long userId,
                            YearMonth currentMonth,
@@ -49,6 +53,35 @@ public class AnalysisContext {
                            Map<String, BigDecimal> lastMonthCategoryExpenses,
                            List<Transaction> recentTransactions,
                            Set<String> fixedCategoryNames) {
+        this(userId, currentMonth, totalIncome, totalExpense, currentMonthCategoryExpenses,
+                lastMonthCategoryExpenses, recentTransactions, fixedCategoryNames,
+                Collections.emptyMap(), Collections.emptyMap());
+    }
+
+    public AnalysisContext(Long userId,
+                           YearMonth currentMonth,
+                           BigDecimal totalIncome,
+                           BigDecimal totalExpense,
+                           Map<String, BigDecimal> currentMonthCategoryExpenses,
+                           Map<String, BigDecimal> lastMonthCategoryExpenses,
+                           List<Transaction> recentTransactions,
+                           Map<Long, BigDecimal> currentMonthCategoryExpensesById,
+                           Map<Long, BigDecimal> lastMonthCategoryExpensesById) {
+        this(userId, currentMonth, totalIncome, totalExpense, currentMonthCategoryExpenses,
+                lastMonthCategoryExpenses, recentTransactions, Collections.emptySet(),
+                currentMonthCategoryExpensesById, lastMonthCategoryExpensesById);
+    }
+
+    private AnalysisContext(Long userId,
+                            YearMonth currentMonth,
+                            BigDecimal totalIncome,
+                            BigDecimal totalExpense,
+                            Map<String, BigDecimal> currentMonthCategoryExpenses,
+                            Map<String, BigDecimal> lastMonthCategoryExpenses,
+                            List<Transaction> recentTransactions,
+                            Set<String> fixedCategoryNames,
+                            Map<Long, BigDecimal> currentMonthCategoryExpensesById,
+                            Map<Long, BigDecimal> lastMonthCategoryExpensesById) {
         this.userId = userId;
         this.currentMonth = currentMonth;
         this.totalIncome = totalIncome != null ? totalIncome : BigDecimal.ZERO;
@@ -59,7 +92,50 @@ public class AnalysisContext {
                 ? lastMonthCategoryExpenses : Collections.emptyMap();
         this.recentTransactions = recentTransactions != null ? recentTransactions : Collections.emptyList();
         this.fixedCategoryNames = fixedCategoryNames != null
-                ? Collections.unmodifiableSet(fixedCategoryNames) : Collections.emptySet();
+                ? Collections.unmodifiableSet(new java.util.HashSet<>(fixedCategoryNames)) : Collections.emptySet();
+        this.fixedCategoryIds = Collections.emptySet();
+        this.currentMonthCategoryExpensesById = currentMonthCategoryExpensesById != null
+                ? Collections.unmodifiableMap(new java.util.HashMap<>(currentMonthCategoryExpensesById))
+                : Collections.emptyMap();
+        this.lastMonthCategoryExpensesById = lastMonthCategoryExpensesById != null
+                ? Collections.unmodifiableMap(new java.util.HashMap<>(lastMonthCategoryExpensesById))
+                : Collections.emptyMap();
+        this.categoryNamesById = Collections.emptyMap();
+    }
+
+    private AnalysisContext(AnalysisContext source,
+                            Set<Long> fixedCategoryIds,
+                            Map<Long, BigDecimal> currentMonthCategoryExpensesById,
+                            Map<Long, BigDecimal> lastMonthCategoryExpensesById,
+                            Map<Long, String> categoryNamesById) {
+        this.userId = source.userId;
+        this.currentMonth = source.currentMonth;
+        this.totalIncome = source.totalIncome;
+        this.totalExpense = source.totalExpense;
+        this.currentMonthCategoryExpenses = source.currentMonthCategoryExpenses;
+        this.lastMonthCategoryExpenses = source.lastMonthCategoryExpenses;
+        this.recentTransactions = source.recentTransactions;
+        this.fixedCategoryNames = source.fixedCategoryNames;
+        this.fixedCategoryIds = fixedCategoryIds != null
+                ? Collections.unmodifiableSet(new java.util.HashSet<>(fixedCategoryIds))
+                : Collections.emptySet();
+        this.currentMonthCategoryExpensesById = currentMonthCategoryExpensesById != null
+                ? Collections.unmodifiableMap(new java.util.HashMap<>(currentMonthCategoryExpensesById))
+                : Collections.emptyMap();
+        this.lastMonthCategoryExpensesById = lastMonthCategoryExpensesById != null
+                ? Collections.unmodifiableMap(new java.util.HashMap<>(lastMonthCategoryExpensesById))
+                : Collections.emptyMap();
+        this.categoryNamesById = categoryNamesById != null
+                ? Collections.unmodifiableMap(new java.util.HashMap<>(categoryNamesById))
+                : Collections.emptyMap();
+    }
+
+    public AnalysisContext withFixedCategoryData(Set<Long> fixedCategoryIds,
+                                                 Map<Long, BigDecimal> currentMonthCategoryExpensesById,
+                                                 Map<Long, BigDecimal> lastMonthCategoryExpensesById,
+                                                 Map<Long, String> categoryNamesById) {
+        return new AnalysisContext(this, fixedCategoryIds, currentMonthCategoryExpensesById,
+                lastMonthCategoryExpensesById, categoryNamesById);
     }
 
     public Long getUserId() { return userId; }
@@ -75,6 +151,18 @@ public class AnalysisContext {
      * Rules should call {@link #isFixed(String)} before generating a recommendation.
      */
     public Set<String> getFixedCategoryNames() { return fixedCategoryNames; }
+    public Set<Long> getFixedCategoryIds() { return fixedCategoryIds; }
+    public Map<Long, BigDecimal> getCurrentMonthCategoryExpensesById() {
+        return currentMonthCategoryExpensesById;
+    }
+    public Map<Long, BigDecimal> getLastMonthCategoryExpensesById() {
+        return lastMonthCategoryExpensesById;
+    }
+    public Map<Long, String> getCategoryNamesById() { return categoryNamesById; }
+
+    public boolean isFixed(long categoryId) {
+        return fixedCategoryIds.contains(categoryId);
+    }
 
     /**
      * Convenience helper: returns {@code true} if the given category name is in the fixed set.
@@ -84,7 +172,9 @@ public class AnalysisContext {
      */
     public boolean isFixed(String categoryName) {
         if (categoryName == null) return false;
-        return fixedCategoryNames.stream()
-                .anyMatch(f -> f.equalsIgnoreCase(categoryName));
+        return fixedCategoryNames.stream().anyMatch(f -> f.equalsIgnoreCase(categoryName))
+                || categoryNamesById.entrySet().stream()
+                .anyMatch(entry -> entry.getValue().equalsIgnoreCase(categoryName)
+                        && fixedCategoryIds.contains(entry.getKey()));
     }
 }
