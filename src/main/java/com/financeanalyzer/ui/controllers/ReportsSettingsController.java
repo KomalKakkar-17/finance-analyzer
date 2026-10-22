@@ -1,6 +1,10 @@
 package com.financeanalyzer.ui.controllers;
 
+import com.financeanalyzer.dao.CategoryDao;
+import com.financeanalyzer.dao.FixedCategoryDao;
+import com.financeanalyzer.model.Category;
 import com.financeanalyzer.model.User;
+import com.financeanalyzer.model.enums.TransactionType;
 import com.financeanalyzer.service.AuthService;
 import com.financeanalyzer.service.ReportService;
 import com.financeanalyzer.ui.AlertHelper;
@@ -18,13 +22,16 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.YearMonth;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * Controller for Reports and User Settings screen.
- * Implements FR-13 (toggleable recommendations) and FR-14 (monthly reports).
+ * Implements FR-13 (toggleable recommendations), FR-14 (monthly reports),
+ * and FR-16 (user-defined fixed expense categories excluded from recommendations).
  */
 public class ReportsSettingsController {
 
@@ -32,6 +39,8 @@ public class ReportsSettingsController {
 
     private final ReportService reportService;
     private final AuthService authService;
+    private final CategoryDao categoryDao;
+    private final FixedCategoryDao fixedCategoryDao;
     private final User currentUser;
     private final Stage primaryStage;
 
@@ -40,7 +49,7 @@ public class ReportsSettingsController {
     private TextArea reportTextArea;
     private CheckBox recsCheckBox;
 
-    // Callbacks for file operations in Sprint 4
+    // Callbacks for file operations
     private Runnable onExportCsv;
     private Runnable onImportCsv;
     private Runnable onBackupData;
@@ -48,10 +57,14 @@ public class ReportsSettingsController {
 
     public ReportsSettingsController(ReportService reportService,
                                      AuthService authService,
+                                     CategoryDao categoryDao,
+                                     FixedCategoryDao fixedCategoryDao,
                                      User currentUser,
                                      Stage primaryStage) {
         this.reportService = Objects.requireNonNull(reportService, "ReportService must not be null.");
         this.authService = Objects.requireNonNull(authService, "AuthService must not be null.");
+        this.categoryDao = Objects.requireNonNull(categoryDao, "CategoryDao must not be null.");
+        this.fixedCategoryDao = Objects.requireNonNull(fixedCategoryDao, "FixedCategoryDao must not be null.");
         this.currentUser = Objects.requireNonNull(currentUser, "currentUser must not be null.");
         this.primaryStage = primaryStage;
     }
@@ -74,16 +87,21 @@ public class ReportsSettingsController {
         title.getStyleClass().add("card-title");
         title.setStyle("-fx-font-size: 20px; -fx-font-weight: 800;");
 
-        // Preferences Card
+        // Cards
         VBox settingsCard = createPreferencesCard();
-
-        // Report Generator Card
+        VBox fixedCatCard = createFixedCategoriesCard();
         VBox reportCard = createReportCard();
         VBox.setVgrow(reportCard, Priority.ALWAYS);
 
-        root.getChildren().addAll(title, settingsCard, reportCard);
-        return root;
+        root.getChildren().addAll(title, settingsCard, fixedCatCard, reportCard);
+
+        ScrollPane sp = new ScrollPane(root);
+        sp.setFitToWidth(true);
+        sp.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        return sp;
     }
+
+    // ------------------------------------------------------------------ preferences card
 
     private VBox createPreferencesCard() {
         VBox card = new VBox(12);
@@ -111,33 +129,81 @@ public class ReportsSettingsController {
 
         Button exportCsvBtn = new Button("\u2913 Export Transactions (CSV)");
         exportCsvBtn.getStyleClass().add("button");
-        exportCsvBtn.setOnAction(e -> {
-            if (onExportCsv != null) onExportCsv.run();
-        });
+        exportCsvBtn.setOnAction(e -> { if (onExportCsv != null) onExportCsv.run(); });
 
         Button importCsvBtn = new Button("\u2912 Import Transactions (CSV)");
         importCsvBtn.getStyleClass().add("button");
-        importCsvBtn.setOnAction(e -> {
-            if (onImportCsv != null) onImportCsv.run();
-        });
+        importCsvBtn.setOnAction(e -> { if (onImportCsv != null) onImportCsv.run(); });
 
         Button backupBtn = new Button("\u290A Backup Data (.dat)");
         backupBtn.getStyleClass().add("button");
-        backupBtn.setOnAction(e -> {
-            if (onBackupData != null) onBackupData.run();
-        });
+        backupBtn.setOnAction(e -> { if (onBackupData != null) onBackupData.run(); });
 
         Button restoreBtn = new Button("\u290B Restore Data (.dat)");
         restoreBtn.getStyleClass().add("button");
-        restoreBtn.setOnAction(e -> {
-            if (onRestoreData != null) onRestoreData.run();
-        });
+        restoreBtn.setOnAction(e -> { if (onRestoreData != null) onRestoreData.run(); });
 
         dataBtns.getChildren().addAll(exportCsvBtn, importCsvBtn, backupBtn, restoreBtn);
-
         card.getChildren().addAll(sectionTitle, recsCheckBox, recsHelp, new Separator(), dataBtns);
         return card;
     }
+
+    // ------------------------------------------------------------------ fixed categories card (FR-16)
+
+    /**
+     * Builds the Fixed Expense Categories management panel.
+     *
+     * <p>Shows all EXPENSE categories with a toggle CheckBox. Checked = fixed (excluded from
+     * discretionary heuristic recommendations). Changes persist immediately to the DB.</p>
+     */
+    private VBox createFixedCategoriesCard() {
+        VBox card = new VBox(12);
+        card.getStyleClass().add("card");
+        card.setPadding(new Insets(16));
+
+        Label sectionTitle = new Label("Fixed Expense Categories (FR-16)");
+        sectionTitle.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+
+        Label help = new Label(
+                "Mark categories as Fixed (e.g. Rent, EMI, Utilities) to exclude them from "
+                + "heuristic recommendations. Fixed costs are expected and not actionable.");
+        help.setWrapText(true);
+        help.setStyle("-fx-font-size: 11px; -fx-text-fill: -color-text-muted;");
+
+        // Load expense categories and current fixed set
+        List<Category> expenseCategories = categoryDao.findCategoriesForUser(currentUser.getId(), TransactionType.EXPENSE);
+        Set<Long> fixedIds = fixedCategoryDao.getFixedCategoryIds(currentUser.getId());
+
+        // Grid layout: 3 columns
+        FlowPane checkboxPane = new FlowPane(12, 8);
+        checkboxPane.setPadding(new Insets(8, 0, 0, 0));
+
+        for (Category cat : expenseCategories) {
+            CheckBox cb = new CheckBox(cat.getName());
+            cb.setSelected(fixedIds.contains(cat.getId()));
+            cb.setStyle("-fx-font-size: 13px;");
+
+            cb.selectedProperty().addListener((obs, wasFixed, nowFixed) -> {
+                if (nowFixed) {
+                    fixedCategoryDao.addFixedCategory(currentUser.getId(), cat.getId());
+                    AlertHelper.showToast(primaryStage, "\"" + cat.getName() + "\" marked as Fixed.");
+                } else {
+                    fixedCategoryDao.removeFixedCategory(currentUser.getId(), cat.getId());
+                    AlertHelper.showToast(primaryStage, "\"" + cat.getName() + "\" unmarked as Fixed.");
+                }
+            });
+
+            checkboxPane.getChildren().add(cb);
+        }
+
+        Label note = new Label("Changes take effect immediately. Recommendations refresh on next Dashboard load.");
+        note.setStyle("-fx-font-size: 10px; -fx-text-fill: -color-text-muted; -fx-font-style: italic;");
+
+        card.getChildren().addAll(sectionTitle, help, checkboxPane, new Separator(), note);
+        return card;
+    }
+
+    // ------------------------------------------------------------------ report card
 
     private VBox createReportCard() {
         VBox card = new VBox(12);

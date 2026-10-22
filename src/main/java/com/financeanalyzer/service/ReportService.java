@@ -2,6 +2,7 @@ package com.financeanalyzer.service;
 
 import com.financeanalyzer.dao.BudgetDao;
 import com.financeanalyzer.dao.CategoryDao;
+import com.financeanalyzer.dao.FixedCategoryDao;
 import com.financeanalyzer.dao.SavingsGoalDao;
 import com.financeanalyzer.dao.TransactionDao;
 import com.financeanalyzer.model.Budget;
@@ -34,15 +35,18 @@ public class ReportService {
     private final BudgetDao budgetDao;
     private final SavingsGoalDao savingsGoalDao;
     private final HeuristicEngine heuristicEngine;
+    private final FixedCategoryDao fixedCategoryDao;
 
     public ReportService(TransactionDao transactionDao,
                          BudgetDao budgetDao,
                          SavingsGoalDao savingsGoalDao,
-                         HeuristicEngine heuristicEngine) {
+                         HeuristicEngine heuristicEngine,
+                         FixedCategoryDao fixedCategoryDao) {
         this.transactionDao = Objects.requireNonNull(transactionDao, "TransactionDao must not be null.");
         this.budgetDao = Objects.requireNonNull(budgetDao, "BudgetDao must not be null.");
         this.savingsGoalDao = Objects.requireNonNull(savingsGoalDao, "SavingsGoalDao must not be null.");
         this.heuristicEngine = Objects.requireNonNull(heuristicEngine, "HeuristicEngine must not be null.");
+        this.fixedCategoryDao = Objects.requireNonNull(fixedCategoryDao, "FixedCategoryDao must not be null.");
     }
 
     /**
@@ -68,9 +72,10 @@ public class ReportService {
         // Run Heuristics for the report month
         YearMonth lastMonth = yearMonth.minusMonths(1);
         Map<String, BigDecimal> lastBreakdown = transactionDao.getCategoryExpenseBreakdown(userId, lastMonth);
+        Set<String> fixedNames = fixedCategoryDao.getFixedCategoryNames(userId);
         AnalysisContext ctx = new AnalysisContext(
                 userId, yearMonth, totalIncome, totalExpense,
-                sortedBreakdown, lastBreakdown, transactionDao.findRecent(userId, 50)
+                sortedBreakdown, lastBreakdown, transactionDao.findRecent(userId, 50), fixedNames
         );
         List<String> recommendations = heuristicEngine.generateRecommendations(user, ctx);
 

@@ -85,19 +85,24 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User save(User user) {
         String sql = "INSERT INTO users (username, password_hash, recommendations_enabled, created_at) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, user.getUsername().trim());
-            ps.setString(2, user.getPasswordHash());
-            ps.setInt(3, user.isRecommendationsEnabled() ? 1 : 0);
-            ps.setString(4, user.getCreatedAt() != null ? user.getCreatedAt().toString() : LocalDateTime.now().toString());
+        try (Connection conn = DatabaseManager.getConnection()) {
+            conn.setAutoCommit(false);
+            try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, user.getUsername().trim());
+                ps.setString(2, user.getPasswordHash());
+                ps.setInt(3, user.isRecommendationsEnabled() ? 1 : 0);
+                ps.setString(4, user.getCreatedAt() != null ? user.getCreatedAt().toString() : LocalDateTime.now().toString());
 
-            ps.executeUpdate();
-            try (ResultSet rs = ps.getGeneratedKeys()) {
-                if (rs.next()) {
-                    user.setId(rs.getLong(1));
+                ps.executeUpdate();
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        user.setId(rs.getLong(1));
+                    }
                 }
             }
+            // Seed default fixed categories (Rent, Utilities) for every new user
+            DatabaseManager.seedDefaultFixedCategories(conn, user.getId());
+            conn.commit();
             return user;
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error inserting user: " + user.getUsername(), e);

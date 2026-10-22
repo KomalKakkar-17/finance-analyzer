@@ -38,6 +38,7 @@ public class MainApp extends Application {
     private AuditLogDao auditLogDao;
     private BudgetDao budgetDao;
     private SavingsGoalDao savingsGoalDao;
+    private com.financeanalyzer.dao.FixedCategoryDao fixedCategoryDao;
 
     // Services
     private AuthService authService;
@@ -79,6 +80,7 @@ public class MainApp extends Application {
         auditLogDao = new JdbcAuditLogDao();
         budgetDao = new JdbcBudgetDao();
         savingsGoalDao = new JdbcSavingsGoalDao();
+        fixedCategoryDao = new JdbcFixedCategoryDao();
 
         // 3. Instantiate Services
         authService = new AuthService(userDao);
@@ -89,7 +91,7 @@ public class MainApp extends Application {
         ratioAllocationService = new RatioAllocationService(savingsGoalDao);
         inModalAnalyticsService = new DefaultInModalAnalyticsService(budgetDao, transactionDao, savingsGoalDao);
         heuristicEngine = new HeuristicEngine();
-        reportService = new ReportService(transactionDao, budgetDao, savingsGoalDao, heuristicEngine);
+        reportService = new ReportService(transactionDao, budgetDao, savingsGoalDao, heuristicEngine, fixedCategoryDao);
 
         // 4. Instantiate File I/O Managers
         backupManager = new BackupManager(categoryDao, transactionDao, budgetDao, savingsGoalDao, recurringDao);
@@ -149,7 +151,7 @@ public class MainApp extends Application {
 
         // Controllers for active modules
         DashboardController dashController = new DashboardController(
-                transactionDao, budgetDao, savingsGoalDao, transactionService, heuristicEngine, user
+                transactionDao, budgetDao, savingsGoalDao, transactionService, heuristicEngine, fixedCategoryDao, user
         );
         Node dashView = dashController.getView();
 
@@ -174,7 +176,7 @@ public class MainApp extends Application {
         Node recView = recController.getView();
 
         ReportsSettingsController reportsController = new ReportsSettingsController(
-                reportService, authService, user, primaryStage
+                reportService, authService, categoryDao, fixedCategoryDao, user, primaryStage
         );
 
         // Wire File Operation Handlers in Settings

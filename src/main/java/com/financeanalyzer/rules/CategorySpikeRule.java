@@ -25,6 +25,9 @@ public class CategorySpikeRule implements Recommendation {
 
         for (Map.Entry<String, BigDecimal> entry : currentExpenses.entrySet()) {
             String cat = entry.getKey();
+            // Skip categories the user has declared as fixed (non-discretionary)
+            if (ctx.isFixed(cat)) continue;
+
             BigDecimal current = entry.getValue();
             BigDecimal last = lastExpenses.get(cat);
 

@@ -22,6 +22,9 @@ public class HighCategorySpendRule implements Recommendation {
         }
 
         for (Map.Entry<String, BigDecimal> entry : ctx.getCurrentMonthCategoryExpenses().entrySet()) {
+            // Skip categories the user has declared as fixed (non-discretionary)
+            if (ctx.isFixed(entry.getKey())) continue;
+
             BigDecimal spend = entry.getValue();
             if (spend != null && spend.compareTo(BigDecimal.ZERO) > 0) {
                 BigDecimal share = spend.divide(totalExpense, 4, RoundingMode.HALF_UP);

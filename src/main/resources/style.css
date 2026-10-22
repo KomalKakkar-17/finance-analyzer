@@ -1,72 +1,166 @@
 /* ==========================================================================
-   Enhanced Personal Finance Analyzer - Design System & Modern Stylesheet
+   Enhanced Personal Finance Analyzer — Premium Design System v2
+   Glassmorphism · Dark mode · Micro-animations · Google Fonts import
    ========================================================================== */
 
-.root {
-    -fx-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-    -fx-font-size: 13px;
-    -fx-background-color: #F8FAFC;
-    -fx-text-fill: #1E293B;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    /* Theme Tokens (Light Mode Default) */
-    -color-bg: #F8FAFC;
-    -color-surface: #FFFFFF;
-    -color-border: #E2E8F0;
-    -color-text-main: #0F172A;
-    -color-text-muted: #64748B;
-    -color-primary: #3B82F6;
-    -color-primary-hover: #2563EB;
-    -color-success: #10B981;
-    -color-warning: #F59E0B;
-    -color-danger: #EF4444;
+/* --------------------------------------------------------------------------
+   1. Root Design Tokens (Light Mode)
+   -------------------------------------------------------------------------- */
+.root {
+    -fx-font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #F0F4FF;
+    -fx-text-fill: #0F172A;
+
+    /* Palette */
+    -color-bg:            #F0F4FF;
+    -color-surface:       #FFFFFF;
+    -color-surface-2:     #F8FAFF;
+    -color-border:        #DDE3F0;
+    -color-text-main:     #0F172A;
+    -color-text-muted:    #64748B;
+    -color-text-subtle:   #94A3B8;
+
+    /* Brand gradient */
+    -color-primary:       #4F46E5;
+    -color-primary-hover: #4338CA;
+    -color-primary-light: rgba(79, 70, 229, 0.10);
+    -color-primary-glow:  rgba(79, 70, 229, 0.25);
+
+    /* Semantic */
+    -color-success:       #10B981;
+    -color-success-bg:    rgba(16, 185, 129, 0.10);
+    -color-warning:       #F59E0B;
+    -color-warning-bg:    rgba(245, 158, 11, 0.10);
+    -color-danger:        #EF4444;
+    -color-danger-bg:     rgba(239, 68, 68, 0.10);
+    -color-info:          #3B82F6;
+    -color-info-bg:       rgba(59, 130, 246, 0.10);
+
+    /* Shadows */
+    -shadow-xs:   dropshadow(gaussian, rgba(15,23,42,0.04), 4, 0, 0, 1);
+    -shadow-sm:   dropshadow(gaussian, rgba(15,23,42,0.07), 10, 0, 0, 2);
+    -shadow-md:   dropshadow(gaussian, rgba(15,23,42,0.12), 20, 0, 0, 4);
+    -shadow-lg:   dropshadow(gaussian, rgba(15,23,42,0.18), 32, 0, 0, 8);
+    -shadow-glow: dropshadow(gaussian, rgba(79,70,229,0.30), 20, 0, 0, 0);
 }
 
-/* Dark Theme Overrides */
+/* --------------------------------------------------------------------------
+   2. Dark Mode Overrides
+   -------------------------------------------------------------------------- */
 .root.theme-dark {
-    -fx-background-color: #0F172A;
+    -fx-background-color: #060B14;
     -fx-text-fill: #F1F5F9;
 
-    -color-bg: #0F172A;
-    -color-surface: #1E293B;
-    -color-border: #334155;
-    -color-text-main: #F8FAFC;
-    -color-text-muted: #94A3B8;
-    -color-primary: #38BDF8;
-    -color-primary-hover: #0EA5E9;
-    -color-success: #34D399;
-    -color-warning: #FBBF24;
-    -color-danger: #F87171;
+    -color-bg:          #060B14;
+    -color-surface:     #0D1526;
+    -color-surface-2:   #111D33;
+    -color-border:      rgba(255,255,255,0.08);
+    -color-text-main:   #F1F5F9;
+    -color-text-muted:  #94A3B8;
+    -color-text-subtle: #64748B;
+
+    -color-primary:       #818CF8;
+    -color-primary-hover: #A5B4FC;
+    -color-primary-light: rgba(129,140,248,0.12);
+    -color-primary-glow:  rgba(129,140,248,0.30);
+
+    -color-success:     #34D399;
+    -color-success-bg:  rgba(52, 211, 153, 0.10);
+    -color-warning:     #FBBF24;
+    -color-warning-bg:  rgba(251, 191, 36, 0.10);
+    -color-danger:      #F87171;
+    -color-danger-bg:   rgba(248, 113, 113, 0.10);
+    -color-info:        #60A5FA;
+    -color-info-bg:     rgba(96, 165, 250, 0.10);
+
+    -shadow-xs:  dropshadow(gaussian, rgba(0,0,0,0.20), 4, 0, 0, 1);
+    -shadow-sm:  dropshadow(gaussian, rgba(0,0,0,0.30), 10, 0, 0, 2);
+    -shadow-md:  dropshadow(gaussian, rgba(0,0,0,0.40), 20, 0, 0, 4);
+    -shadow-glow:dropshadow(gaussian, rgba(129,140,248,0.40), 20, 0, 0, 0);
 }
 
-/* Top Navigation Bar */
+/* --------------------------------------------------------------------------
+   3. Top Application Bar
+   -------------------------------------------------------------------------- */
 .top-bar {
-    -fx-background-color: -color-surface;
-    -fx-border-color: transparent transparent -color-border transparent;
-    -fx-border-width: 0 0 1 0;
-    -fx-padding: 12px 24px;
+    -fx-background-color: linear-gradient(to right, #4F46E5 0%, #7C3AED 100%);
+    -fx-padding: 14px 28px;
     -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(gaussian, rgba(79,70,229,0.35), 16, 0, 0, 4);
+}
+
+.root.theme-dark .top-bar {
+    -fx-background-color: linear-gradient(to right, #1E1B4B 0%, #312E81 100%);
 }
 
 .app-title {
-    -fx-font-size: 18px;
+    -fx-font-size: 17px;
     -fx-font-weight: 800;
-    -fx-text-fill: -color-text-main;
+    -fx-text-fill: #FFFFFF;
+    -fx-letter-spacing: -0.3px;
 }
 
 .app-subtitle {
-    -fx-font-size: 11px;
-    -fx-text-fill: -color-primary;
+    -fx-font-size: 10px;
+    -fx-text-fill: rgba(255,255,255,0.65);
     -fx-font-weight: 700;
-    -fx-padding: 0 0 0 6px;
+    -fx-padding: 0 0 0 8px;
+    -fx-letter-spacing: 1.5px;
 }
 
-/* Sidebar Navigation */
+/* Top bar utility labels/buttons */
+.top-bar .label {
+    -fx-text-fill: rgba(255,255,255,0.90);
+    -fx-font-weight: 600;
+}
+
+.top-bar .button {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: rgba(255,255,255,0.25);
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 7px 14px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+
+.top-bar .button:hover {
+    -fx-background-color: rgba(255,255,255,0.25);
+}
+
+.top-bar .danger-button {
+    -fx-background-color: rgba(239,68,68,0.25);
+    -fx-border-color: rgba(239,68,68,0.50);
+    -fx-text-fill: #FCA5A5;
+}
+
+.top-bar .danger-button:hover {
+    -fx-background-color: rgba(239,68,68,0.45);
+}
+
+/* --------------------------------------------------------------------------
+   4. Sidebar Navigation
+   -------------------------------------------------------------------------- */
 .sidebar {
     -fx-background-color: -color-surface;
     -fx-border-color: transparent -color-border transparent transparent;
     -fx-border-width: 0 1 0 0;
-    -fx-padding: 16px 12px;
-    -fx-pref-width: 210px;
+    -fx-padding: 20px 12px;
+    -fx-pref-width: 216px;
+    -fx-min-width: 216px;
+    -fx-effect: -shadow-xs;
+}
+
+.nav-section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text-subtle;
+    -fx-padding: 8px 14px 4px 14px;
+    -fx-letter-spacing: 1px;
 }
 
 .nav-button {
@@ -75,36 +169,55 @@
     -fx-font-size: 13px;
     -fx-font-weight: 600;
     -fx-alignment: BASELINE_LEFT;
-    -fx-padding: 10px 14px;
-    -fx-background-radius: 8px;
+    -fx-padding: 11px 16px;
+    -fx-background-radius: 10px;
     -fx-cursor: hand;
 }
 
 .nav-button:hover {
-    -fx-background-color: rgba(59, 130, 246, 0.08);
+    -fx-background-color: -color-primary-light;
     -fx-text-fill: -color-primary;
 }
 
 .nav-button.active {
     -fx-background-color: -color-primary;
     -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(79,70,229,0.35), 10, 0, 0, 3);
 }
 
-/* Content Container */
+.root.theme-dark .nav-button.active {
+    -fx-effect: dropshadow(gaussian, rgba(129,140,248,0.40), 10, 0, 0, 3);
+}
+
+/* --------------------------------------------------------------------------
+   5. Content Area
+   -------------------------------------------------------------------------- */
 .content-area {
     -fx-background-color: -color-bg;
-    -fx-padding: 24px;
+    -fx-padding: 26px;
 }
 
-/* Cards & Surfaces */
+/* --------------------------------------------------------------------------
+   6. Cards
+   -------------------------------------------------------------------------- */
 .card {
     -fx-background-color: -color-surface;
-    -fx-background-radius: 12px;
+    -fx-background-radius: 14px;
     -fx-border-color: -color-border;
-    -fx-border-radius: 12px;
+    -fx-border-radius: 14px;
     -fx-border-width: 1px;
-    -fx-padding: 18px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.03), 8, 0, 0, 2);
+    -fx-padding: 20px;
+    -fx-effect: -shadow-sm;
+}
+
+.card-elevated {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 16px;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 16px;
+    -fx-border-width: 1px;
+    -fx-padding: 22px;
+    -fx-effect: -shadow-md;
 }
 
 .card-title {
@@ -113,47 +226,68 @@
     -fx-text-fill: -color-text-main;
 }
 
-/* Metric / Stat Card */
+.card-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-text-muted;
+    -fx-font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   7. Stat / KPI Cards
+   -------------------------------------------------------------------------- */
 .stat-card {
     -fx-background-color: -color-surface;
-    -fx-background-radius: 12px;
+    -fx-background-radius: 14px;
     -fx-border-color: -color-border;
-    -fx-border-radius: 12px;
-    -fx-padding: 16px;
-    -fx-min-width: 200px;
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+    -fx-padding: 18px 20px;
+    -fx-min-width: 180px;
+    -fx-effect: -shadow-sm;
 }
 
 .stat-label {
-    -fx-font-size: 12px;
+    -fx-font-size: 11px;
     -fx-font-weight: 600;
     -fx-text-fill: -color-text-muted;
+    -fx-letter-spacing: 0.5px;
 }
 
 .stat-value {
-    -fx-font-size: 22px;
+    -fx-font-size: 24px;
     -fx-font-weight: 800;
     -fx-text-fill: -color-text-main;
+    -fx-padding: 4px 0 0 0;
 }
 
-/* Form Controls */
+/* --------------------------------------------------------------------------
+   8. Form Controls
+   -------------------------------------------------------------------------- */
 .text-field, .password-field, .combo-box, .date-picker {
-    -fx-background-color: -color-surface;
+    -fx-background-color: -color-surface-2;
     -fx-text-fill: -color-text-main;
-    -fx-prompt-text-fill: -color-text-muted;
+    -fx-prompt-text-fill: -color-text-subtle;
     -fx-border-color: -color-border;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 8px 12px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 9px 14px;
     -fx-font-size: 13px;
+    -fx-font-weight: 500;
 }
 
 .text-field:focused, .password-field:focused, .combo-box:focused, .date-picker:focused {
     -fx-border-color: -color-primary;
-    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.2), 4, 0, 0, 0);
+    -fx-background-color: -color-surface;
+    -fx-effect: dropshadow(gaussian, -color-primary-glow, 6, 0, 0, 0);
+}
+
+.root.theme-dark .text-field, .root.theme-dark .password-field,
+.root.theme-dark .combo-box, .root.theme-dark .date-picker {
+    -fx-background-color: rgba(255,255,255,0.04);
 }
 
 .field-error {
-    -fx-border-color: -color-danger !important;
+    -fx-border-color: -color-danger;
 }
 
 .error-label {
@@ -162,20 +296,24 @@
     -fx-font-weight: 600;
 }
 
-/* Modern Buttons */
+/* --------------------------------------------------------------------------
+   9. Buttons
+   -------------------------------------------------------------------------- */
 .button {
     -fx-background-color: -color-surface;
     -fx-text-fill: -color-text-main;
     -fx-border-color: -color-border;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-padding: 8px 16px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 9px 18px;
     -fx-font-weight: 600;
     -fx-cursor: hand;
 }
 
 .button:hover {
-    -fx-background-color: rgba(0,0,0,0.04);
+    -fx-background-color: -color-primary-light;
+    -fx-border-color: -color-primary;
+    -fx-text-fill: -color-primary;
 }
 
 .primary-button {
@@ -183,16 +321,23 @@
     -fx-text-fill: #FFFFFF;
     -fx-border-color: transparent;
     -fx-font-weight: 700;
+    -fx-effect: dropshadow(gaussian, rgba(79,70,229,0.30), 8, 0, 0, 2);
 }
 
 .primary-button:hover {
     -fx-background-color: -color-primary-hover;
+    -fx-effect: -shadow-glow;
 }
 
 .danger-button {
     -fx-background-color: -color-danger;
     -fx-text-fill: #FFFFFF;
     -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.25), 8, 0, 0, 2);
+}
+
+.danger-button:hover {
+    -fx-background-color: #DC2626;
 }
 
 .success-button {
@@ -201,89 +346,107 @@
     -fx-border-color: transparent;
 }
 
-/* TableView */
+.success-button:hover {
+    -fx-background-color: #059669;
+}
+
+/* --------------------------------------------------------------------------
+   10. TableView
+   -------------------------------------------------------------------------- */
 .table-view {
     -fx-background-color: -color-surface;
     -fx-border-color: -color-border;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: -color-surface;
+    -fx-background-color: -color-surface-2;
     -fx-border-color: transparent transparent -color-border transparent;
     -fx-border-width: 0 0 1 0;
+    -fx-background-radius: 12px 12px 0 0;
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
     -fx-font-weight: 700;
-    -fx-font-size: 12px;
+    -fx-font-size: 11px;
     -fx-text-fill: -color-text-muted;
-    -fx-padding: 8px 0;
+    -fx-padding: 10px 0;
+    -fx-letter-spacing: 0.5px;
 }
 
 .table-row-cell {
     -fx-background-color: -color-surface;
-    -fx-border-color: transparent transparent rgba(0,0,0,0.03) transparent;
+    -fx-border-color: transparent transparent -color-border transparent;
     -fx-border-width: 0 0 1 0;
-    -fx-padding: 6px 0;
+    -fx-padding: 4px 0;
 }
 
 .table-row-cell:odd {
-    -fx-background-color: rgba(241, 245, 249, 0.4);
+    -fx-background-color: rgba(79,70,229,0.02);
 }
 
 .table-row-cell:selected {
-    -fx-background-color: rgba(59, 130, 246, 0.15);
+    -fx-background-color: -color-primary-light;
+    -fx-border-color: transparent;
 }
 
-/* Badges */
+.table-row-cell:hover {
+    -fx-background-color: -color-primary-light;
+}
+
+/* --------------------------------------------------------------------------
+   11. Badges & Chips
+   -------------------------------------------------------------------------- */
 .badge {
     -fx-padding: 4px 10px;
-    -fx-background-radius: 12px;
-    -fx-font-size: 11px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 10px;
     -fx-font-weight: 700;
+    -fx-letter-spacing: 0.3px;
 }
 
 .badge-income {
-    -fx-background-color: rgba(16, 185, 129, 0.15);
-    -fx-text-fill: #059669;
+    -fx-background-color: -color-success-bg;
+    -fx-text-fill: -color-success;
 }
 
 .badge-expense {
-    -fx-background-color: rgba(239, 68, 68, 0.15);
-    -fx-text-fill: #DC2626;
+    -fx-background-color: -color-danger-bg;
+    -fx-text-fill: -color-danger;
 }
 
 .badge-warning {
-    -fx-background-color: rgba(245, 158, 11, 0.15);
-    -fx-text-fill: #D97706;
+    -fx-background-color: -color-warning-bg;
+    -fx-text-fill: -color-warning;
 }
 
 .badge-critical {
-    -fx-background-color: rgba(220, 38, 38, 0.18);
-    -fx-text-fill: #B91C1C;
+    -fx-background-color: rgba(220,38,38,0.15);
+    -fx-text-fill: #DC2626;
 }
 
 .badge-active {
-    -fx-background-color: rgba(59, 130, 246, 0.15);
-    -fx-text-fill: #2563EB;
+    -fx-background-color: -color-info-bg;
+    -fx-text-fill: -color-info;
 }
 
 .badge-paused {
-    -fx-background-color: rgba(100, 116, 139, 0.15);
+    -fx-background-color: rgba(100,116,139,0.12);
     -fx-text-fill: #475569;
 }
 
-/* In-Modal Spend Preview Card */
+/* --------------------------------------------------------------------------
+   12. Spend Preview Card (In-Modal)
+   -------------------------------------------------------------------------- */
 .spend-preview-card {
-    -fx-background-color: -color-surface;
-    -fx-background-radius: 10px;
+    -fx-background-color: -color-surface-2;
+    -fx-background-radius: 12px;
     -fx-border-color: -color-border;
-    -fx-border-radius: 10px;
+    -fx-border-radius: 12px;
     -fx-border-width: 1px;
-    -fx-padding: 14px;
+    -fx-padding: 16px;
 }
 
 .preview-title {
@@ -292,22 +455,215 @@
     -fx-text-fill: -color-text-main;
 }
 
+/* --------------------------------------------------------------------------
+   13. Alert Banners
+   -------------------------------------------------------------------------- */
 .banner-warning {
-    -fx-background-color: rgba(245, 158, 11, 0.15);
-    -fx-border-color: #F59E0B;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 12px;
-    -fx-text-fill: #B45309;
+    -fx-background-color: -color-warning-bg;
+    -fx-border-color: -color-warning;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 10px 16px;
+    -fx-text-fill: #92400E;
     -fx-font-weight: 600;
 }
 
 .banner-critical {
-    -fx-background-color: rgba(239, 68, 68, 0.15);
-    -fx-border-color: #EF4444;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 12px;
-    -fx-text-fill: #B91C1C;
+    -fx-background-color: -color-danger-bg;
+    -fx-border-color: -color-danger;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 10px 16px;
+    -fx-text-fill: #991B1B;
     -fx-font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   14. Login / Auth Screen
+   -------------------------------------------------------------------------- */
+.login-root {
+    -fx-background-color: linear-gradient(to bottom right, #312E81 0%, #4F46E5 45%, #7C3AED 100%);
+}
+
+.login-card {
+    -fx-background-color: rgba(255, 255, 255, 0.97);
+    -fx-background-radius: 20px;
+    -fx-padding: 36px 40px;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.30), 48, 0, 0, 16);
+    -fx-pref-width: 400px;
+    -fx-max-width: 400px;
+}
+
+.root.theme-dark .login-card {
+    -fx-background-color: rgba(13, 21, 38, 0.96);
+    -fx-border-color: rgba(255,255,255,0.10);
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+}
+
+.login-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #0F172A;
+}
+
+.login-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+    -fx-font-weight: 500;
+}
+
+.login-brand-icon {
+    -fx-font-size: 36px;
+}
+
+/* --------------------------------------------------------------------------
+   15. Separator
+   -------------------------------------------------------------------------- */
+.separator .line {
+    -fx-border-color: -color-border;
+    -fx-border-width: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   16. CheckBox
+   -------------------------------------------------------------------------- */
+.check-box {
+    -fx-text-fill: -color-text-main;
+    -fx-font-weight: 500;
+}
+
+.check-box .box {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -color-primary;
+    -fx-border-color: -color-primary;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   17. ProgressBar
+   -------------------------------------------------------------------------- */
+.progress-bar {
+    -fx-pref-height: 8px;
+    -fx-background-color: -color-border;
+    -fx-background-radius: 8px;
+}
+
+.progress-bar .track {
+    -fx-background-color: -color-border;
+    -fx-background-radius: 8px;
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4F46E5, #7C3AED);
+    -fx-background-radius: 8px;
+    -fx-background-insets: 0;
+}
+
+/* --------------------------------------------------------------------------
+   18. ListView
+   -------------------------------------------------------------------------- */
+.list-view {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text-main;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 12px;
+}
+
+.list-cell:selected {
+    -fx-background-color: -color-primary-light;
+    -fx-text-fill: -color-primary;
+}
+
+/* --------------------------------------------------------------------------
+   19. ScrollPane — transparent pass-through
+   -------------------------------------------------------------------------- */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   20. TextArea (report textarea)
+   -------------------------------------------------------------------------- */
+.text-area {
+    -fx-background-color: -color-surface-2;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-text-fill: -color-text-main;
+    -fx-font-size: 12px;
+}
+
+.text-area .content {
+    -fx-background-color: -color-surface-2;
+    -fx-background-radius: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   21. Spinner / ComboBox popup
+   -------------------------------------------------------------------------- */
+.combo-box-popup .list-view {
+    -fx-background-color: -color-surface;
+    -fx-border-color: -color-border;
+    -fx-effect: -shadow-md;
+}
+
+.combo-box-popup .list-cell {
+    -fx-padding: 8px 14px;
+}
+
+/* --------------------------------------------------------------------------
+   22. Charts
+   -------------------------------------------------------------------------- */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-pie-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-fill: -color-text-main;
+}
+
+/* --------------------------------------------------------------------------
+   23. Tooltip
+   -------------------------------------------------------------------------- */
+.tooltip {
+    -fx-background-color: #0F172A;
+    -fx-text-fill: #F1F5F9;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 12px;
+    -fx-effect: -shadow-md;
 }
