@@ -1,0 +1,8 @@
+target/
+logs/
+data/
+*.db
+*.dat
+.idea/
+.vscode/
+*.iml
