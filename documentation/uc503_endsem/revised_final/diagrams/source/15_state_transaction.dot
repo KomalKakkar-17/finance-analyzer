@@ -1,0 +1,9 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.3", penwidth=1.4, nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#33465A", style="rounded,filled", fillcolor="#E7F3E8", margin="0.18,0.12", penwidth=1.4];
+edge [fontname="Arial", fontsize=11, color="#33465A", arrowsize=0.8, penwidth=1.4];
+
+ start [shape=circle,label="",width=.18,fillcolor="#247B75"];n [label="New form"];edit [label="Edit form\nType locked"];v [label="Validating"];err [label="Validation / save error"];saved [label="Saved and closed"];cancel [label="Cancelled and closed"];end [fillcolor="#247B75",shape=doublecircle,label="",width=.2];
+ start->n [label="new"];start->edit [label="existing record"];n->v [label="Save"];edit->v [label="Save"];v->err [label="invalid / SQL failure"];err->v [label="correct and retry"];v->saved [label="success"];n->cancel [label="Cancel"];edit->cancel [label="Cancel"];err->cancel [label="Cancel"];saved->end;cancel->end;
+
+}

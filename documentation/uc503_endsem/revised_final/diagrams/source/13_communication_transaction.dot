@@ -1,0 +1,20 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.3", penwidth=1.4, nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#33465A", style="filled", fillcolor="#E7F3E8", margin="0.18,0.12", penwidth=1.4];
+edge [fontname="Arial", fontsize=11, color="#33465A", arrowsize=0.8, penwidth=1.4];
+
+ a [label="dialog:TransactionDialogController"];b [label="service:TransactionService"];c [label="categoryDao:JdbcCategoryDao"];d [label="connection:JDBC Connection"];e [label="SQLite transactions",shape=cylinder];
+ a->b [label="1: addExpense(...)"];b->c [label="1.1: findById(categoryId)"];b->b [label="1.2: validateExpense(...)"];b->d [label="1.3: setAutoCommit(false)\n1.4: prepareStatement(...)\n1.6: commit() / rollback()"];
+ d->e [label="1.5: executeUpdate()\nINSERT + generated key"];b->a [label="1.7: Expense",style=dashed];
+
+
+a [fillcolor="#E5F0FC",color="#245D91"];
+
+b [fillcolor="#E7F3E8",color="#387445"];
+
+c [fillcolor="#FFF0DE",color="#A36A26"];
+
+d [fillcolor="#FFF0DE",color="#A36A26"];
+
+e [fillcolor="#FFF0DE",color="#A36A26"];
+}

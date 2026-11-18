@@ -1,0 +1,28 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam sequence {
+ArrowColor #33465A
+LifeLineBorderColor #8A9BAB
+ParticipantFontColor #203346
+}
+hide footbox
+participant "TransactionDialogController" as p0 #E5F0FC
+participant "TransactionService" as p1 #E7F3E8
+participant "JdbcCategoryDao" as p2 #FFF0DE
+participant "JDBC / SQLite" as p3 #FFF0DE
+p0 -> p1: addExpense(...)
+activate p1
+p1 -> p2: findById(categoryId)
+activate p2
+p2 --> p1: Optional<Category>
+deactivate p2
+p1 -> p1: Validators.validateExpense(...)
+p1 -> p3: getConnection(); begin
+activate p3
+p1 -> p3: INSERT; generated key
+p1 -> p3: commit()
+p1 --> p0: Expense with id
+deactivate p1
+note over p0,p3: SQL failure rolls back; addExpense uses direct JDBC.
+@enduml

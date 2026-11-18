@@ -1,0 +1,28 @@
+{
+  "page_count": 51,
+  "mandatory_sections_missing": [],
+  "forbidden_text": [],
+  "diagram_counts": {
+    "Use case": 2,
+    "Activity": 2,
+    "Swimlane": 1,
+    "DFD": 3,
+    "Class": 2,
+    "Sequence": 2,
+    "Communication": 2,
+    "State chart": 2,
+    "Component": 1,
+    "Deployment": 1
+  },
+  "diagram_errors": [],
+  "unembedded_diagrams": [],
+  "embedded_images": 19,
+  "screenshot_placeholders": 8,
+  "empty_pages": [],
+  "application_files_changed": [],
+  "automated_passed": 28,
+  "automated_failed": 0,
+  "toc_field": true,
+  "docx_opened": true,
+  "pdf_readable": true
+}

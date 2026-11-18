@@ -1,0 +1,25 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.3", penwidth=1.4, nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#33465A", style="filled", fillcolor="#E7F3E8", margin="0.18,0.12", penwidth=1.4];
+edge [fontname="Arial", fontsize=11, color="#33465A", arrowsize=0.8, penwidth=1.4];
+
+ node [shape=component];app [label="MainApp / Launcher"];ui [label="JavaFX controller-built views\nCSS / SpendPreviewCard"];services [label="Auth / Transaction / Budget / Goal\nRatio / Analytics / Report services"];rules [label="HeuristicEngine + Recommendation rules"];sched [label="RecurringScheduler"];dao [label="DAO interfaces + JDBC implementations"];files [label="CSV / snapshot I/O"];db [label="SQLite finance.db",shape=cylinder];
+ app->ui [label="constructs"];app->services [label="injects"];app->sched [label="starts / stops"];ui->services;ui->dao [label="some direct queries"];services->rules;services->dao;services->db [label="expense / allocation SQL"];sched->dao;ui->files [label="MainApp callbacks"];files->services;files->dao;dao->db;
+
+
+app [fillcolor="#DDF3F0",color="#247B75"];
+
+ui [fillcolor="#E5F0FC",color="#245D91"];
+
+services [fillcolor="#E7F3E8",color="#387445"];
+
+rules [fillcolor="#E7F3E8",color="#387445"];
+
+sched [fillcolor="#E7F3E8",color="#387445"];
+
+dao [fillcolor="#FFF0DE",color="#A36A26"];
+
+files [fillcolor="#DDF3F0",color="#247B75"];
+
+db [fillcolor="#FFF0DE",color="#A36A26"];
+}

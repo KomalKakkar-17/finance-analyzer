@@ -1,0 +1,12 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ user [label="«actor»\nAccount holder",shape=box];
+ subgraph cluster_app {label="Enhanced Personal Finance Analyzer";color="#344655";node [shape=ellipse];
+ budget [label="Manage monthly budgets"];goal [label="Create / activate goal"];alloc [label="Allocate deposit"];ratio [label="Check active ratio cap"];rec [label="Manage recurring rules"];report [label="View charts / monthly report"];files [label="Import / export / snapshot"];prefs [label="Set advice / fixed categories"];
+ goal->ratio [label="«include»",style=dashed];}
+ user->budget [dir=none];user->goal [dir=none];user->alloc [dir=none];user->rec [dir=none];user->report [dir=none];user->files [dir=none];user->prefs [dir=none];
+
+}

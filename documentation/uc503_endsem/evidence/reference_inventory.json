@@ -1,0 +1,17 @@
+[
+  {
+    "file": "report_references\\UCS503_EndSem_TOC.doc",
+    "bytes": 46592,
+    "sha256": "49f77970a56b0f0889661fbeeb514e42c9ce01572d50dcf70ddf44ab0ad13693"
+  },
+  {
+    "file": "report_references\\PeerWise_Seniors_Report.pdf",
+    "bytes": 3275960,
+    "sha256": "929817172a7491c6144e5eb066ccea805f3979eeb3d769733cf43d6ab927bf0a"
+  },
+  {
+    "file": "report_references\\Finance_Analyzer_MST.pptx",
+    "bytes": 19306067,
+    "sha256": "7c9b59f64e31deb1c03e940eec52d8b6687410a1d0acdb00682b6def91136ca7"
+  }
+]

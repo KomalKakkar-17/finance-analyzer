@@ -1,0 +1,484 @@
+{
+  "automated": [
+    [
+      "A01",
+      "MoneyUtilTest",
+      "testPaiseConversion",
+      "100.50 rupees \u2194 10050 paise; zero and five paise"
+    ],
+    [
+      "A02",
+      "MoneyUtilTest",
+      "testFormatCurrency",
+      "1250.50 formatted with 1,250.50"
+    ],
+    [
+      "A03",
+      "MoneyUtilTest",
+      "testGenericSumAmountsMethod",
+      "Absolute sum 6500; signed sum 3500"
+    ],
+    [
+      "A04",
+      "ValidatorsTest",
+      "testUsernameValidation",
+      "Valid identifiers/demo and invalid username classes"
+    ],
+    [
+      "A05",
+      "ValidatorsTest",
+      "testPasswordValidation",
+      "Six-plus characters vs null/five characters"
+    ],
+    [
+      "A06",
+      "ValidatorsTest",
+      "testAmountValidation",
+      "Positive amounts vs zero/negative/excess scale"
+    ],
+    [
+      "A07",
+      "ValidatorsTest",
+      "testExpenseDateValidation",
+      "Today/past accepted; tomorrow rejected"
+    ],
+    [
+      "A08",
+      "HeuristicEngineTest",
+      "testRule1HighCategorySpend",
+      "Concentration threshold trigger"
+    ],
+    [
+      "A09",
+      "HeuristicEngineTest",
+      "highCategorySpendSkipsFixedCategoryAndUsesFlexibleDenominator",
+      "Fixed categories excluded; flexible denominator"
+    ],
+    [
+      "A10",
+      "HeuristicEngineTest",
+      "highCategorySpendDoesNotRecommendWhenAllSpendingIsFixed",
+      "All fixed spending produces no advice"
+    ],
+    [
+      "A11",
+      "HeuristicEngineTest",
+      "highCategorySpendWithNoFixedCategoriesBehavesAsBefore",
+      "50% concentration; test assumes Food first"
+    ],
+    [
+      "A12",
+      "HeuristicEngineTest",
+      "testRule2HighExpenseToIncome",
+      "95% expense/income triggers"
+    ],
+    [
+      "A13",
+      "HeuristicEngineTest",
+      "testRule3CategorySpike",
+      "40% month-over-month increase triggers"
+    ],
+    [
+      "A14",
+      "HeuristicEngineTest",
+      "categorySpikeSkipsFixedCategory",
+      "Fixed spike suppressed"
+    ],
+    [
+      "A15",
+      "HeuristicEngineTest",
+      "categorySpikeWithoutFixedCategoriesBehavesAsBefore",
+      "Unfixed spike remains eligible"
+    ],
+    [
+      "A16",
+      "HeuristicEngineTest",
+      "testRule4LowSavingsRate",
+      "4% net savings triggers"
+    ],
+    [
+      "A17",
+      "HeuristicEngineTest",
+      "testRule5FrequentMicroTransactions",
+      "Five expenses below 200 trigger"
+    ],
+    [
+      "A18",
+      "HeuristicEngineTest",
+      "testRecommendationsMutedWhenDisabled",
+      "Disabled user returns empty advice"
+    ],
+    [
+      "A19",
+      "TransactionServiceTest",
+      "testAddIncomeAndExpensePolymorphism",
+      "Income 50000; expense 1200: generated IDs and signed amounts"
+    ],
+    [
+      "A20",
+      "TransactionServiceTest",
+      "testCustomCategoryCreationAndDuplicateRejection",
+      "Create category; reject case-insensitive duplicate"
+    ],
+    [
+      "A21",
+      "TransactionServiceTest",
+      "testFutureExpenseDateValidation",
+      "Expense INR 500 dated today + 2 days: InvalidTransactionException"
+    ],
+    [
+      "A22",
+      "TransactionServiceTest",
+      "testInvalidAmountValidation",
+      "Zero and -100 expense amounts: InvalidTransactionException"
+    ],
+    [
+      "A23",
+      "BudgetServiceTest",
+      "testSetAndRetrieveBudget",
+      "Save limit; reload category/month budget"
+    ],
+    [
+      "A24",
+      "BudgetServiceTest",
+      "testAlertThresholdLevels",
+      "50%, 85%, 105%: NORMAL, WARNING, EXCEEDED"
+    ],
+    [
+      "A25",
+      "RatioAllocationServiceTest",
+      "testRatioCapValidation",
+      "60% + 30% accepted; additional 20% rejected"
+    ],
+    [
+      "A26",
+      "RatioAllocationServiceTest",
+      "testAtomicDepositAllocation",
+      "10000 deposit; 50%/30%: balances 5000/3000, remainder 2000"
+    ],
+    [
+      "A27",
+      "JdbcUserFixedCategoryDaoTest",
+      "replaceAllRollsBackEntireUpdateWhenAnyCategoryIsInvalid",
+      "Invalid replacement category: original preferences retained"
+    ],
+    [
+      "A28",
+      "JdbcUserFixedCategoryDaoTest",
+      "fixedCategoryListsAreIsolatedPerUser",
+      "Separate account preference lists remain independent"
+    ]
+  ],
+  "results": [
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.MoneyUtilTest#testGenericSumAmountsMethod",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.MoneyUtilTest#testPaiseConversion",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.MoneyUtilTest#testFormatCurrency",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.ValidatorsTest#testUsernameValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.ValidatorsTest#testExpenseDateValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.ValidatorsTest#testAmountValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.util.ValidatorsTest#testPasswordValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#highCategorySpendSkipsFixedCategoryAndUsesFlexibleDenominator",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#testRule1HighCategorySpend",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#highCategorySpendDoesNotRecommendWhenAllSpendingIsFixed",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#testRule4LowSavingsRate",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#testRecommendationsMutedWhenDisabled",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#testRule2HighExpenseToIncome",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#testRule3CategorySpike",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#highCategorySpendWithNoFixedCategoriesBehavesAsBefore",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#categorySpikeWithoutFixedCategoriesBehavesAsBefore",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#categorySpikeSkipsFixedCategory",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.HeuristicEngineTest#testRule5FrequentMicroTransactions",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.TransactionServiceTest#testAddIncomeAndExpensePolymorphism",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.TransactionServiceTest#testCustomCategoryCreationAndDuplicateRejection",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.TransactionServiceTest#testFutureExpenseDateValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.TransactionServiceTest#testInvalidAmountValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.BudgetServiceTest#testSetAndRetrieveBudget",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.BudgetServiceTest#testAlertThresholdLevels",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.RatioAllocationServiceTest#testRatioCapValidation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.service.RatioAllocationServiceTest#testAtomicDepositAllocation",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDaoTest#replaceAllRollsBackEntireUpdateWhenAnyCategoryIsInvalid",
+      "Assertions completed"
+    ],
+    [
+      "CASE",
+      "SUCCESSFUL",
+      "com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDaoTest#fixedCategoryListsAreIsolatedPerUser",
+      "Assertions completed"
+    ]
+  ],
+  "manual": [
+    [
+      "T01",
+      "FR-01",
+      "Register valid unused username and password >=6 characters.",
+      "Account saved; shell opens; plaintext password absent.",
+      "UC-01"
+    ],
+    [
+      "T02",
+      "FR-01",
+      "Sign in with wrong password; then correct password; sign out.",
+      "Wrong password rejected; correct login works; logout returns to login.",
+      "UC-01"
+    ],
+    [
+      "T03",
+      "FR-02",
+      "Add Salary income INR 50,000 today with Bank Transfer.",
+      "One INCOME row; positive signed impact; values persist.",
+      "UC-02"
+    ],
+    [
+      "T04",
+      "FR-02",
+      "Try expense 0, -5, 10.555 and tomorrow; then 1,000 today.",
+      "Invalid cases rejected; valid EXPENSE saves.",
+      "UC-02"
+    ],
+    [
+      "T05",
+      "FR-02",
+      "Edit amount/notes on existing income and expense.",
+      "Type controls disabled; other changes save; new dialog type enabled.",
+      "UC-03"
+    ],
+    [
+      "T06",
+      "FR-02",
+      "Delete selected transaction: cancel first, confirm next.",
+      "Cancel preserves row; confirm removes only chosen account row.",
+      "UC-03"
+    ],
+    [
+      "T07",
+      "FR-02",
+      "Filter by date/type/category/amount/keyword; reset.",
+      "Matching user records returned; reset clears filters. Invalid numeric bound limitation recorded.",
+      "UC-04"
+    ],
+    [
+      "T08",
+      "FR-03",
+      "Create a custom expense category; repeat case-insensitive name.",
+      "First saves; duplicate rejected; category selectable.",
+      "UC-04"
+    ],
+    [
+      "T09",
+      "FR-04",
+      "Set INR 1,200 monthly category budget; update same month/category.",
+      "Single limit updated; zero/negative limit rejected.",
+      "UC-05"
+    ],
+    [
+      "T10",
+      "FR-04",
+      "Use controlled category spend of 79%, 80%, 99%, 100%.",
+      "NORMAL, WARNING, WARNING, EXCEEDED respectively.",
+      "UC-05"
+    ],
+    [
+      "T11",
+      "FR-05/EXT-04",
+      "Create goal; inspect dialog at 100%,125%,150% scaling.",
+      "Valid goal saves; fields scroll; Save/Cancel remain accessible.",
+      "UC-06"
+    ],
+    [
+      "T12",
+      "FR-05",
+      "Active total 90%; attempt new 20% goal; deactivate/reactivate.",
+      "Over-cap operation rejected; valid toggles reflected.",
+      "UC-06"
+    ],
+    [
+      "T13",
+      "FR-05",
+      "Allocate INR 1,000 across 60%/30%; test induced SQL failure in isolated copy.",
+      "600/300 shares; 100 returned surplus; SQL failure rolls back batch.",
+      "UC-06"
+    ],
+    [
+      "T14",
+      "FR-06",
+      "Create overdue rule in isolated copy; catch up twice; pause rule.",
+      "Dates advance; normal repeat adds no duplicate; paused rule skipped. Failure atomicity remains risk.",
+      "UC-07"
+    ],
+    [
+      "T15",
+      "FR-07",
+      "Preview new current-month expense, then edit/backdate it.",
+      "New-entry budget impact agrees; edit/date limitation identified rather than hidden.",
+      "UC-02"
+    ],
+    [
+      "T16",
+      "FR-08/EXT-03",
+      "Toggle advice off/on; save fixed-category choices.",
+      "Persisted preference refreshes advice; fixed concentration/spike excluded.",
+      "UC-08"
+    ],
+    [
+      "T17",
+      "FR-08",
+      "Refresh selected-month report; save TXT; include empty month.",
+      "Correct monthly totals; file matches displayed text; empty month handled.",
+      "UC-08"
+    ],
+    [
+      "T18",
+      "EXT-02",
+      "CSV export then import controlled ordinary and malformed rows.",
+      "Valid rows accepted, invalid counted; quoted/multiline limitation assessed.",
+      "UC-09"
+    ],
+    [
+      "T19",
+      "EXT-02",
+      "Backup/restore only in disposable database copy; restore twice.",
+      "Snapshot produced; duplicate/omission risks documented; no exact recovery claim.",
+      "UC-09"
+    ],
+    [
+      "T20",
+      "EXT-01",
+      "Change income/expense/goals; return repeatedly to Dashboard/Budgets.",
+      "Latest persisted totals/charts/goals/utilization; no duplicate sections.",
+      "UC-08"
+    ]
+  ]
+}

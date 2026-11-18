@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="804pt" height="588pt" viewBox="0.00 0.00 804.00 588.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 566.6)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-21.6,21.6 -21.6,-566.6 782.79,-566.6 782.79,21.6 -21.6,21.6" />
+<g id="clust1" class="cluster">
+<title>cluster_app</title>
+<polygon fill="white" stroke="#33465a" stroke-width="1.4" points="134.39,-8 134.39,-537 753.19,-537 753.19,-8 134.39,-8" />
+<text xml:space="preserve" text-anchor="middle" x="443.79" y="-518.6" font-family="Arial" font-size="16.00">Enhanced Personal Finance Analyzer</text>
+</g>
+
+<g id="node1" class="node">
+<title>user</title>
+<circle cx="50.695" cy="-308.2" r="11" fill="#DDF3F0" stroke="#247B75" stroke-width="2" /><line x1="50.695" y1="-297.2" x2="50.695" y2="-248.2" stroke="#247B75" stroke-width="2" /><line x1="25.695" y1="-278.2" x2="75.695" y2="-278.2" stroke="#247B75" stroke-width="2" /><line x1="50.695" y1="-248.2" x2="28.695" y2="-218.2" stroke="#247B75" stroke-width="2" /><line x1="50.695" y1="-248.2" x2="72.695" y2="-218.2" stroke="#247B75" stroke-width="2" /><text x="50.695" y="-196.2" font-family="Arial" font-size="14" text-anchor="middle" fill="#203346">Account holder</text></g>
+
+<g id="node2" class="node">
+<title>budget</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-478" rx="129.49" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-473.8" font-family="Arial" font-size="14.00">Manage monthly budgets</text>
+</g>
+
+<g id="edge2" class="edge">
+<title>user-&gt;budget</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M66.57,-326.9C78.54,-365.99 99.35,-412.98 134.39,-442 146.39,-451.94 160.7,-459.21 175.63,-464.53" />
+</g>
+
+<g id="node3" class="node">
+<title>goal</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-405" rx="111.88" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-400.8" font-family="Arial" font-size="14.00">Create / activate goal</text>
+</g>
+
+<g id="edge3" class="edge">
+<title>user-&gt;goal</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M91.47,-327.17C103.48,-342.9 117.92,-358.17 134.39,-369 150.42,-379.53 169.23,-386.99 187.98,-392.27" />
+</g>
+
+<g id="node4" class="node">
+<title>alloc</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-332" rx="88.22" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-327.8" font-family="Arial" font-size="14.00">Allocate deposit</text>
+</g>
+
+<g id="edge4" class="edge">
+<title>user-&gt;alloc</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M100.95,-282.81C111.82,-287.56 123.38,-292.24 134.39,-296 159.35,-304.51 187.31,-311.83 212.21,-317.59" />
+</g>
+
+<g id="node6" class="node">
+<title>rec</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-259" rx="120.12" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-254.8" font-family="Arial" font-size="14.00">Manage recurring rules</text>
+</g>
+
+<g id="edge5" class="edge">
+<title>user-&gt;rec</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M101.15,-259C119.76,-259 141.84,-259 164.08,-259" />
+</g>
+
+<g id="node7" class="node">
+<title>report</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-186" rx="141.02" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-181.8" font-family="Arial" font-size="14.00">View charts / monthly report</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>user-&gt;report</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M100.95,-235.19C111.82,-230.44 123.38,-225.76 134.39,-222 153.17,-215.59 173.65,-209.87 193.25,-204.97" />
+</g>
+
+<g id="node8" class="node">
+<title>files</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-113" rx="130.58" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-108.8" font-family="Arial" font-size="14.00">Import / export / snapshot</text>
+</g>
+
+<g id="edge7" class="edge">
+<title>user-&gt;files</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M91.47,-190.83C103.48,-175.1 117.92,-159.83 134.39,-149 148.3,-139.86 164.31,-133.03 180.56,-127.94" />
+</g>
+
+<g id="node9" class="node">
+<title>prefs</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="284.53" cy="-40" rx="142.14" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="284.53" y="-35.8" font-family="Arial" font-size="14.00">Set advice / fixed categories</text>
+</g>
+
+<g id="edge8" class="edge">
+<title>user-&gt;prefs</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M66.57,-191.1C78.54,-152.01 99.35,-105.02 134.39,-76 145.27,-67 158.03,-60.18 171.43,-55.03" />
+</g>
+
+<g id="node5" class="node">
+<title>ratio</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="629.47" cy="-405" rx="115.72" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="629.47" y="-400.8" font-family="Arial" font-size="14.00">Check active ratio cap</text>
+</g>
+
+<g id="edge1" class="edge">
+<title>goal-&gt;ratio</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" stroke-dasharray="5,2" d="M396.88,-405C430.93,-405 468.61,-405 503.51,-405" />
+<polygon fill="#33465a" stroke="#33465a" stroke-width="1.4" points="503.15,-407.8 511.15,-405 503.15,-402.2 503.15,-407.8" />
+<text xml:space="preserve" text-anchor="middle" x="470.21" y="-408.3" font-family="Arial" font-size="11.00">«include»</text>
+</g>
+</g>
+</svg>

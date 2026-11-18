@@ -1,0 +1,14 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ subgraph cluster_device {label="«device» Windows desktop / laptop";color="#344655";
+ subgraph cluster_jvm {label="«executionEnvironment» Java 21 JVM";
+ app [label="«artifact» Application classes / JAR\nJavaFX 21.0.5 controls and CSS"];libs [label="«artifact» SQLite JDBC 3.46.1.0\njBCrypt 0.4"];app->libs [label="classpath dependencies"];}
+ db [shape=cylinder,label="«artifact» data/finance.db"];cfg [label="«artifact» app.properties"];log [label="«artifact» logs/app.log.*"];files [label="«artifact» User-selected CSV / TXT / DAT"];
+ app->db [label="local JDBC file access"];app->cfg [label="resource load"];app->log [label="logging"];app->files [label="file streams"];
+ }
+ build [label="Maven build tool\ncompile / test / javafx:run"];build->app [label="launches locally"];
+
+}

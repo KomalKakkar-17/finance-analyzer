@@ -1,0 +1,12 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.3", penwidth=1.4, nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#33465A", style="filled", fillcolor="#E7F3E8", margin="0.18,0.12", penwidth=1.4];
+edge [fontname="Arial", fontsize=11, color="#33465A", arrowsize=0.8, penwidth=1.4];
+
+ user [shape=plain, label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD><FONT COLOR="#247B75" POINT-SIZE="28">&#9675;</FONT></TD></TR><TR><TD><FONT COLOR="#247B75" POINT-SIZE="25">&#9585;&#9474;&#9586;</FONT></TD></TR><TR><TD><FONT COLOR="#247B75" POINT-SIZE="25">&#9585; &#9586;</FONT></TD></TR><TR><TD>Account holder</TD></TR></TABLE>>];
+ subgraph cluster_app {label="Enhanced Personal Finance Analyzer";color="#33465A";node [shape=ellipse,fillcolor="#E5F0FC",color="#245D91"];
+ budget [label="Manage monthly budgets"];goal [label="Create / activate goal"];alloc [label="Allocate deposit"];ratio [label="Check active ratio cap"];rec [label="Manage recurring rules"];report [label="View charts / monthly report"];files [label="Import / export / snapshot"];prefs [label="Set advice / fixed categories"];
+ goal->ratio [label="«include»",style=dashed];}
+ user->budget [dir=none];user->goal [dir=none];user->alloc [dir=none];user->rec [dir=none];user->report [dir=none];user->files [dir=none];user->prefs [dir=none];
+
+}

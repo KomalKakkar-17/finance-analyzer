@@ -1,0 +1,25 @@
+{
+  "pdf_actual_page_count": 50,
+  "docx_rendered_page_count": "unverified",
+  "diagram_counts": {
+    "Use case": 2,
+    "Activity": 2,
+    "Swimlane": 1,
+    "DFD": 3,
+    "Class": 2,
+    "Sequence": 2,
+    "Communication": 2,
+    "State chart": 2,
+    "Component": 1,
+    "Deployment": 1
+  },
+  "total_diagrams": 18,
+  "embedded_docx_images": 18,
+  "docx_tables": 19,
+  "mandatory_headings_present": true,
+  "source_hash_drift": [],
+  "screenshot_placeholders": 8,
+  "pdf_frame_overflow": false,
+  "pdf_origin": "shared content/page model; not DOCX conversion",
+  "source_files_untouched_by_documentation": true
+}

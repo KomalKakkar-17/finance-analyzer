@@ -1,0 +1,11 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ u [shape=box,label="Account holder"];f [shape=box,label="User-selected files"];p [shape=circle,label="0\nFinance\nAnalyzer",width=2.0];
+ u->p [label="Credentials; entry/category details;\nbudget/goal/rule settings;\nqueries/preferences"];
+ p->u [label="Authentication/operation results;\nrecords / previews;\ncharts / advice / reports"];
+ f->p [label="CSV rows;\nsnapshot data"];p->f [label="CSV rows; report text;\nsnapshot data"];
+
+}

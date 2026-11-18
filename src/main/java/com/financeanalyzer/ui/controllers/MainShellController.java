@@ -45,6 +45,13 @@ public class MainShellController {
     private Node goalsView;
     private Node recurringView;
     private Node reportsSettingsView;
+    private Runnable refreshDashboard;
+    private Runnable refreshBudgets;
+
+    public void setFinancialRefreshHandlers(Runnable refreshDashboard, Runnable refreshBudgets) {
+        this.refreshDashboard = refreshDashboard;
+        this.refreshBudgets = refreshBudgets;
+    }
 
     public MainShellController(AuthService authService, User currentUser, Stage primaryStage, Runnable onLogout) {
         this.authService = Objects.requireNonNull(authService, "AuthService must not be null.");
@@ -161,6 +168,11 @@ public class MainShellController {
 
     public void showView(Node view, Button activeButton) {
         if (view == null) return;
+        if (view == dashboardView && refreshDashboard != null) {
+            refreshDashboard.run();
+        } else if (view == budgetsView && refreshBudgets != null) {
+            refreshBudgets.run();
+        }
         centerContentArea.getChildren().setAll(view);
         for (Button b : navButtons) {
             b.getStyleClass().remove("active");

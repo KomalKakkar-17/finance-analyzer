@@ -100,6 +100,8 @@ public class TransactionDialogController {
         incomeRadio = new RadioButton("Income");
         incomeRadio.setToggleGroup(typeToggleGroup);
         incomeRadio.setSelected(existingTransaction != null && existingTransaction.getType() == TransactionType.INCOME);
+        expenseRadio.setDisable(existingTransaction != null);
+        incomeRadio.setDisable(existingTransaction != null);
 
         HBox typeBox = new HBox(16, expenseRadio, incomeRadio);
         typeBox.setAlignment(Pos.CENTER_LEFT);
