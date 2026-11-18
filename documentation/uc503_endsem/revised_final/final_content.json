@@ -1,0 +1,2852 @@
+[
+  {
+    "title": "Enhanced Personal Finance Analyzer",
+    "section": "Cover",
+    "level": 0,
+    "items": [
+      {
+        "kind": "p",
+        "text": "UCS 503 Software Engineering Project Report"
+      },
+      {
+        "kind": "p",
+        "text": "END-Semester Evaluation"
+      },
+      {
+        "kind": "p",
+        "text": "Submitted by:"
+      },
+      {
+        "kind": "p",
+        "text": "(1024030872) Komal Kakkar"
+      },
+      {
+        "kind": "p",
+        "text": "(1024030873) Vibhuti Mittal"
+      },
+      {
+        "kind": "p",
+        "text": "(1024030887) Marushika Gupta"
+      },
+      {
+        "kind": "p",
+        "text": "BE [Year], [Branch]"
+      },
+      {
+        "kind": "p",
+        "text": "Group No: [Group number]"
+      },
+      {
+        "kind": "p",
+        "text": "Submitted to:"
+      },
+      {
+        "kind": "p",
+        "text": "[Name of faculty]"
+      },
+      {
+        "kind": "p",
+        "text": "Computer Science and Engineering Department"
+      },
+      {
+        "kind": "p",
+        "text": "Thapar Institute of Engineering & Technology"
+      },
+      {
+        "kind": "p",
+        "text": "TIET, Patiala"
+      },
+      {
+        "kind": "p",
+        "text": "[Submission month and year]"
+      }
+    ],
+    "cover": true
+  },
+  {
+    "title": "Table of Contents",
+    "section": "Contents",
+    "level": 0,
+    "items": [],
+    "toc": 1
+  },
+  {
+    "title": "1. PROJECT SELECTION PHASE",
+    "section": "1.1 Software Bid",
+    "level": 1,
+    "items": [
+      {
+        "kind": "h",
+        "text": "1.1 Software Bid"
+      },
+      {
+        "kind": "p",
+        "text": "The Enhanced Personal Finance Analyzer is an academic desktop solution for recording personal income and expenditure, planning category budgets, and tracking savings goals. The benefit is a single local view of manually entered financial activity, with immediate explanatory feedback before an expense is recorded. It does not initiate payments or synchronize bank accounts."
+      },
+      {
+        "kind": "p",
+        "text": "The problem is fragmentation of everyday records across cash, digital payment descriptions and informal notes. A monthly total alone does not show which category dominates discretionary spending or how a proposed purchase affects a budget. This project addresses those questions through categorized records, monthly aggregation and transparent financial rules."
+      },
+      {
+        "kind": "h",
+        "text": "Scope of work and technical approach"
+      },
+      {
+        "kind": "p",
+        "text": "The final scope includes local account authentication, transaction maintenance, custom categories, monthly category limits, ratio-based savings allocation, recurring-entry catch-up, charts, text reports, and file transfer functions. JavaFX presents forms and tables; Java services apply validation and calculations; JDBC accesses a local SQLite database. Monetary values use BigDecimal in Java and integer paise in storage."
+      },
+      {
+        "kind": "table",
+        "caption": "Feasibility and deliverables",
+        "headers": [
+          "Aspect",
+          "Assessment"
+        ],
+        "rows": [
+          [
+            "Technical",
+            "Java 21, JavaFX, Maven and SQLite are identified in pom.xml and source."
+          ],
+          [
+            "Operational",
+            "Manual entry and local file persistence suit a single-device demonstration."
+          ],
+          [
+            "Economic",
+            "Dependencies are available without a paid banking API; no measured project cost is claimed."
+          ],
+          [
+            "Delivery",
+            "Java desktop application, Maven build configuration, source code, automated tests and user-facing financial views."
+          ]
+        ],
+        "widths": [
+          0.22,
+          0.78
+        ]
+      }
+    ]
+  },
+  {
+    "title": "1.2 Project Overview",
+    "section": "1.2 Project Overview",
+    "level": 2,
+    "items": [
+      {
+        "kind": "p",
+        "text": "The application organizes a financial workflow around tracking, planning and analysis. Tracking creates a categorized history. Planning compares actual spending with monthly limits and records progress toward selected goals. Analysis presents aggregate indicators and rule-triggered observations. The user remains responsible for entering accurate records and deciding how to act on the advice."
+      },
+      {
+        "kind": "p",
+        "text": "Intended users include students and working individuals who want an offline personal ledger rather than a professional accounting system. Each account has its own user identifier. Shared system categories are available to all accounts, while custom categories belong to a particular user. The desktop stores several accounts locally, although only one account is represented by the current in-memory session at a time."
+      },
+      {
+        "kind": "h",
+        "text": "Objectives and boundaries"
+      },
+      {
+        "kind": "table",
+        "caption": "Objectives matched to the final application",
+        "headers": [
+          "Objective",
+          "Implemented mechanism"
+        ],
+        "rows": [
+          [
+            "Record financial activity",
+            "Income/Expense model objects; date, category, amount, payment mode and notes."
+          ],
+          [
+            "Control spending",
+            "Category/month budget comparison and 80%/100% alert levels."
+          ],
+          [
+            "Track planned savings",
+            "Active goals, target amounts, deadlines and percentage allocations."
+          ],
+          [
+            "Reduce missed ledger entries",
+            "Recurring rules checked at startup and periodically while running."
+          ],
+          [
+            "Explain patterns",
+            "Five heuristic rules, category pie chart, three-month bar chart and text report."
+          ]
+        ],
+        "widths": [
+          0.31,
+          0.69
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "The system does not include bank synchronization, investment portfolios, tax filing, loan management, email delivery, web access or a remote REST backend. An allocation deposit changes goal balances independently of transaction cashflow. A payment mode is a text description, not a connection to a payment provider."
+      },
+      {
+        "kind": "h",
+        "text": "Development approach"
+      },
+      {
+        "kind": "p",
+        "text": "The system is organized into functional modules with separate presentation, service, domain and persistence responsibilities. Interface-based DAOs allow storage operations to be implemented independently of most controller code. Existing unit and integration tests check monetary utilities, validation, recommendation rules and selected persistence operations. This modular approach supports focused implementation and verification of individual workflows."
+      }
+    ]
+  },
+  {
+    "title": "Application Modules and Operating Environment",
+    "section": "1.2 Application modules",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "Technology stack",
+        "headers": [
+          "Item",
+          "Version / use"
+        ],
+        "rows": [
+          [
+            "Java",
+            "21; compiler source, target and release in Maven."
+          ],
+          [
+            "JavaFX",
+            "21.0.5; controls, layouts and charts constructed in Java."
+          ],
+          [
+            "SQLite JDBC",
+            "3.46.1.0; local jdbc:sqlite:data/finance.db."
+          ],
+          [
+            "jBCrypt",
+            "0.4; password hashing and password checking."
+          ],
+          [
+            "JUnit Jupiter",
+            "5.10.2; repository unit and integration test sources."
+          ],
+          [
+            "Maven plugins",
+            "Compiler 3.13.0, Surefire 3.2.5, JavaFX plugin 0.0.8."
+          ]
+        ],
+        "widths": [
+          0.28,
+          0.72
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "Desktop architecture"
+      },
+      {
+        "kind": "p",
+        "text": "The interface is constructed programmatically with JavaFX controls, layouts and charts. Controllers call Java services through ordinary method calls. DAO interfaces define persistence operations, and JDBC implementations read and write the local SQLite database. TransactionService and RatioAllocationService also contain direct JDBC transactions for expense insertion and goal allocation."
+      },
+      {
+        "kind": "h",
+        "text": "Session and navigation"
+      },
+      {
+        "kind": "p",
+        "text": "Registration or sign-in establishes one current local account. MainShellController presents Dashboard, Transactions, Budgets, Savings Goals, Recurring Rules, and Reports & Settings. Navigation callbacks refresh financial views from saved records. Signing out clears the session and returns to the account screen."
+      },
+      {
+        "kind": "h",
+        "text": "Operating constraints"
+      },
+      {
+        "kind": "p",
+        "text": "The application requires Java 21, compatible JavaFX native libraries and a writable local working directory. Its relative database path is data/finance.db. Recurring rules are processed while the application runs; startup catch-up handles overdue dates. The application records financial activity manually and does not connect to a bank or initiate payments."
+      }
+    ]
+  },
+  {
+    "title": "2. ANALYSIS PHASE",
+    "section": "2.1 Use Cases",
+    "level": 1,
+    "items": [
+      {
+        "kind": "h",
+        "text": "2.1 Use Cases"
+      },
+      {
+        "kind": "h",
+        "text": "2.1.1 Use-Case Diagrams"
+      },
+      {
+        "kind": "p",
+        "text": "The primary actor is the account holder. Before sign-in, the same person may create an account or submit credentials. After sign-in, the account identifier is passed to the controllers. Diagram boundaries represent the entire local application; SQLite and the recurring scheduler are not external actors."
+      },
+      {
+        "kind": "figure",
+        "id": "01_usecase_track",
+        "caption": "Account access and transaction tracking",
+        "height": 380
+      },
+      {
+        "kind": "p",
+        "text": "Recording an entry includes validation; editing also validates the changed data. Deletion is confirmed rather than treated as a validation subcase. Searching and category creation are separate user goals. A successful account registration opens the same application shell as a successful login. The application has no administrator role or password-reset workflow."
+      }
+    ]
+  },
+  {
+    "title": "Use-case model continued",
+    "section": "2.1.1 Planning and analysis",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "02_usecase_plan",
+        "caption": "Planning, automation and analysis use cases",
+        "height": 390
+      },
+      {
+        "kind": "p",
+        "text": "The planning use cases represent persisted budgets and goals. Creating or activating a goal checks the sum of active allocation ratios. Allocating a deposit is a separate operation; creating income does not automatically allocate savings. Managing a recurring rule configures future ledger generation rather than instructing a bank to debit funds."
+      },
+      {
+        "kind": "p",
+        "text": "Reports, charts and advice read saved records. The advice toggle and fixed-category selection are distinct preferences: disabling advice suppresses all rule messages; marking a category fixed excludes it only from discretionary concentration and category-spike checks. Snapshot creation and restore are exposed functions, but restore is partial and is not a complete account recovery contract."
+      }
+    ]
+  },
+  {
+    "title": "2.1.2 Use Case Templates",
+    "section": "2.1.2 Account access",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "UC-01  Register, sign in and sign out"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-01 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-01"
+          ],
+          [
+            "Preconditions",
+            "Application initialization completes; local database is reachable."
+          ],
+          [
+            "Trigger",
+            "Select Register & Sign In or Sign In."
+          ],
+          [
+            "Main success flow",
+            "1. Enter username and password. 2. Validate registration fields or nonempty login input. 3. Registration checks duplicate username, hashes the password and saves User; login retrieves User and checks BCrypt. 4. Initialize default fixed-category preferences as needed. 5. Set currentUser and open the shell. 6. Sign Out clears currentUser and shows login."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Invalid fields or credentials produce an AuthenticationException message. Duplicate usernames are rejected. Database failures are not comprehensively caught by the login handler, so they remain a reliability risk. Canceling registration mode does not create an account."
+          ],
+          [
+            "Postconditions",
+            "A successful operation establishes one in-memory session. Password plaintext is not saved; logout does not delete stored records."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "Registration accepts at least six username characters from letters, digits, underscore, dot and hyphen; demo is a special accepted short name. Password validation requires at least six characters. These are implemented rules, not a recommendation that six-character passwords are sufficient for production security. Account deletion and credential recovery are not user-facing functions."
+      }
+    ]
+  },
+  {
+    "title": "Transaction use-case templates",
+    "section": "2.1.2 Transaction maintenance",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "UC-02  Record income or expense"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-02 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-02, FR-07"
+          ],
+          [
+            "Preconditions",
+            "Signed in; an appropriate category is available."
+          ],
+          [
+            "Trigger",
+            "Transactions > New Transaction."
+          ],
+          [
+            "Main success flow",
+            "1. Choose Income or Expense. 2. Enter amount, category, date, payment mode and optional notes. 3. Observe live preview. 4. Save. 5. UI and service validation run. 6. Income goes through transactionDao.save(); expense uses direct JDBC in addExpense(). 7. Table reloads; dashboard/budgets reload on navigation."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Nonpositive amounts and scale above two decimal places are rejected. Expense dates after today are rejected. SQL insert failure reports an error; addExpense rolls back. Preview does not itself save any data."
+          ],
+          [
+            "Postconditions",
+            "A new persisted row has a generated ID, positive stored amount and explicit INCOME/EXPENSE type."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "UC-03  Edit or delete a transaction"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-03 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-02"
+          ],
+          [
+            "Preconditions",
+            "Signed in; selected row belongs to current account."
+          ],
+          [
+            "Trigger",
+            "Double-click row to edit or choose Delete Transaction."
+          ],
+          [
+            "Main success flow",
+            "Edit: open populated dialog, keep the type locked, change permitted fields, save and reload. Delete: request deletion, confirm, call deleteTransaction(id,userId), then reload."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Cancel closes without persistence. No selection produces a prompt. Failed updates/deletes may return false or raise a data-access exception."
+          ],
+          [
+            "Postconditions",
+            "Successful edit replaces stored values; successful delete removes the selected user-scoped row."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Category and budget use-case templates",
+    "section": "2.1.2 Categories and budgets",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "UC-04  Classify and find financial records"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-04 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-02, FR-03"
+          ],
+          [
+            "Preconditions",
+            "Signed in; transaction list initialized."
+          ],
+          [
+            "Trigger",
+            "Add Category or apply Search & Filters."
+          ],
+          [
+            "Main success flow",
+            "Create a named category with income/expense type; reject an existing case-insensitive name. For retrieval, specify date range, category, type, amount bounds or notes/category keyword; execute user-scoped query and replace table data. Reset removes filters."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Blank or duplicate category names are rejected. Nonnumeric filter amounts currently become null rather than producing validation feedback. Custom category classification does not alter existing rows automatically."
+          ],
+          [
+            "Postconditions",
+            "A saved category becomes selectable; filtered results remain scoped to the account."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "UC-05  Manage monthly category budgets"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-05 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-04"
+          ],
+          [
+            "Preconditions",
+            "Signed in; expense category and month selected."
+          ],
+          [
+            "Trigger",
+            "Budgets > Set Category Budget."
+          ],
+          [
+            "Main success flow",
+            "Enter a positive limit and save. Upsert the unique user/category/month record. Query spending in that category and month. Calculate utilization and show NORMAL, WARNING or EXCEEDED. Edit or delete through the row menu."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Zero/negative limits fail validation. Missing budget gives normal status in the alert service. Overspending is allowed; warnings do not block saving an expense."
+          ],
+          [
+            "Postconditions",
+            "A persisted monthly limit and calculated spending comparison are visible."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Savings use-case template",
+    "section": "2.1.2 Goal creation and allocation",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "UC-06  Create, manage and fund savings goals"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-06 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-05, EXT-04"
+          ],
+          [
+            "Preconditions",
+            "Signed in; current active-goal ratios are available."
+          ],
+          [
+            "Trigger",
+            "Savings Goals > New Savings Goal or Allocate Savings Deposit."
+          ],
+          [
+            "Main success flow",
+            "1. Enter title, positive target, deadline and ratio from 0 to 100. 2. Validate fields and active ratio sum. 3. Save a new active goal. 4. Enter a positive deposit. 5. Read active goals and calculate each rounded share. 6. Batch saved_paise increments within one JDBC transaction. 7. Commit and show allocation summary."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Blank titles, nonpositive targets, missing/past deadlines or out-of-range ratios are rejected. The implementation accepts today as a deadline. Exceeding 100% active allocation raises AllocationRatioException. SQL failure rolls back allocation updates. Cancel performs no write."
+          ],
+          [
+            "Postconditions",
+            "Goal rows reflect saved allocations. Remainder is returned in the result but has no persisted unallocated-savings account."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "The New/Edit dialog uses a scrollable form and separate action footer. Its size is capped to the current screen bounds after showing. This code change addresses clipping; 100%, 125% and 150% scaling still require manual acceptance checks."
+      }
+    ]
+  },
+  {
+    "title": "Recurring use-case template",
+    "section": "2.1.2 Recurring entries",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "UC-07  Configure and process recurring transactions"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-07 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-06"
+          ],
+          [
+            "Preconditions",
+            "Signed in to create rules; application process running to execute scheduled work."
+          ],
+          [
+            "Trigger",
+            "Create Rule, Run Catch-up Now, startup catch-up or periodic timer."
+          ],
+          [
+            "Main success flow",
+            "1. Select type/category, positive amount, frequency and start date; end date is optional. 2. Save ACTIVE rule with nextDueDate=startDate. 3. Find active rules due on/before today. 4. Generate each missed occurrence. 5. Save audit message and advance date with Frequency.nextDate(). 6. Mark expired when the following date exceeds the end date."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "End date before start is rejected. Paused rules are skipped until resumed. Processing failure is logged. The current save/audit/advance sequence is not one atomic database transaction, so a mid-sequence failure may cause duplicate retry records."
+          ],
+          [
+            "Postconditions",
+            "Transactions carry recurring_rule_id; rule stores its next date/status; execution history records success/failure."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      },
+      {
+        "kind": "table",
+        "caption": "Recurring intervals and persisted state",
+        "headers": [
+          "Item",
+          "Implemented meaning"
+        ],
+        "rows": [
+          [
+            "DAILY / WEEKLY",
+            "Advance using LocalDate.plusDays(1) / plusWeeks(1)."
+          ],
+          [
+            "MONTHLY / YEARLY",
+            "Advance from the current occurrence using plusMonths(1) / plusYears(1)."
+          ],
+          [
+            "ACTIVE / PAUSED / EXPIRED",
+            "Persisted RuleStatus enum values. No background service runs when app is closed."
+          ]
+        ],
+        "widths": [
+          0.31,
+          0.69
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "The manual catch-up command calls the scheduler synchronously from the UI handler. Large backlogs can block interaction; no backlog performance measurement was performed. Automatic periodic callbacks use Platform.runLater to refresh UI tables."
+      }
+    ]
+  },
+  {
+    "title": "Analysis and file use-case templates",
+    "section": "2.1.2 Reports and data transfer",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "UC-08  Review financial position and preferences"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-08 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "FR-08, EXT-01, EXT-03"
+          ],
+          [
+            "Preconditions",
+            "Signed in; saved records may be empty."
+          ],
+          [
+            "Trigger",
+            "Open Dashboard or refresh monthly report; change advice/fixed preferences."
+          ],
+          [
+            "Main success flow",
+            "Read income, expense and category totals. Construct charts and goal snapshot. Build AnalysisContext and evaluate five rules when enabled. Generate monthly text with category/budget/goal summaries. Persist preference changes and refresh insight display after successful advice update."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Zero income avoids division by zero. Disabled advice produces no messages. Individual rule exceptions are logged and do not stop all other rules. Historical micro-spend advice is not strictly aligned to the selected report month."
+          ],
+          [
+            "Postconditions",
+            "A read-only analysis is displayed; only explicitly changed preferences are saved."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "UC-09  Transfer financial data through files"
+      },
+      {
+        "kind": "table",
+        "caption": "UC-09 specification",
+        "headers": [
+          "Field",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Primary actor",
+            "Account holder"
+          ],
+          [
+            "Requirements",
+            "EXT-02"
+          ],
+          [
+            "Preconditions",
+            "Signed in; suitable file path selected."
+          ],
+          [
+            "Trigger",
+            "Reports & Settings file button."
+          ],
+          [
+            "Main success flow",
+            "Export writes CSV or text; import validates CSV rows and counts imported/skipped records. Backup serializes UserDataSnapshot. Restore reads snapshot and appends selected records to the current account."
+          ],
+          [
+            "Alternative flows and exceptions",
+            "Canceling file selection performs no operation. Invalid rows are skipped with reasons. Restore omits recurring rules/preferences, may duplicate records and is not atomic as a whole."
+          ],
+          [
+            "Postconditions",
+            "Selected output file exists after successful export; imported records persist where accepted. Restore is only a partial import, not exact recovery."
+          ]
+        ],
+        "widths": [
+          0.23,
+          0.77
+        ]
+      }
+    ]
+  },
+  {
+    "title": "2.2 Activity Diagram and Swimlane Diagrams",
+    "section": "2.2 Expense activity",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "03_activity_expense",
+        "caption": "Expense entry with validation and persistence",
+        "height": 355
+      },
+      {
+        "kind": "p",
+        "text": "The activity starts when the account holder opens a new transaction dialog. The amount and category listeners calculate an advisory preview while the record remains unsaved. Save triggers explicit field parsing and validation. The expense service checks the selected category and rejects an invalid amount or future date."
+      },
+      {
+        "kind": "p",
+        "text": "The expense insertion is protected by setAutoCommit(false), commit and rollback. Generated keys populate the object identifier. Only the success path closes the dialog and refreshes the transaction table. Returning to Dashboard or Budgets calls the navigation refresh callbacks. These activities do not imply a bank transaction or automatic savings-goal deduction."
+      }
+    ]
+  },
+  {
+    "title": "Savings activity",
+    "section": "2.2 Goal activity",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "04_activity_savings",
+        "caption": "Goal creation followed by ratio allocation",
+        "height": 340
+      },
+      {
+        "kind": "p",
+        "text": "Goal creation and funding are separate actions. Validation checks the new ratio against the total of currently active goals. A new goal begins active with zero saved amount. A deposit then uses the current active set to calculate shares and applies all saved-balance changes inside a JDBC transaction."
+      },
+      {
+        "kind": "p",
+        "text": "An inactive goal receives no new allocation. The remainder reported to the user is a calculated result, not an account balance in the schema. Independent per-goal rounding can over-allocate tiny deposits; this is a known limitation rather than an omitted decision state. A target being reached is not an automatic transition to inactive: active status is explicitly changed by the user."
+      }
+    ]
+  },
+  {
+    "title": "Expense swimlane diagram",
+    "section": "2.2 Responsibility allocation",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "05_swimlane_expense",
+        "caption": "Responsibilities across user, interface, logic and persistence",
+        "height": 350
+      },
+      {
+        "kind": "p",
+        "text": "The swimlanes separate responsibility rather than imply remote services. The user supplies information; JavaFX controls collect it; the transaction service enforces validation; JDBC reads categories and inserts the expense. These operations occur in the local process. There is no HTTP request, REST controller, ORM session or server-side deployment."
+      },
+      {
+        "kind": "p",
+        "text": "The JDBC lane includes the expense SQL executed by TransactionService.addExpense(). The service validates the selected category and the financial fields, then commits the insert before recording recent activity. Income creation follows the same domain validation pattern but delegates its save operation to JdbcTransactionDao."
+      }
+    ]
+  },
+  {
+    "title": "2.3 Data Flow Diagrams",
+    "section": "2.3.1 DFD Level 0",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "2.3.1 DFD Level 0"
+      },
+      {
+        "kind": "figure",
+        "id": "06_dfd_context",
+        "caption": "Context diagram with external entities and data flows",
+        "height": 365
+      },
+      {
+        "kind": "p",
+        "text": "The context boundary includes authentication, financial records, analytics, scheduled processing and persistence. The external account holder exchanges credentials, entry data, plan settings, queries and preferences with the application. A user-selected file is a separate external source/sink for CSV, report text and serialized snapshots."
+      },
+      {
+        "kind": "p",
+        "text": "DFD notation is data-oriented: rectangles are external entities, circles are transformations, arrows carry named data, and parallel-rule stores appear only in decomposed levels. An arrow is not a method call or execution-order edge. The context diagram deliberately excludes a database actor because SQLite is inside the system boundary."
+      },
+      {
+        "kind": "p",
+        "text": "The aggregated user-input flow is decomposed at Level 1 into credentials, tracking details, planning settings, analysis queries/preferences and file-operation queries. Outputs are decomposed into authentication/operation results, record views, previews, charts/advice and reports. File inputs and outputs retain the same logical content across levels."
+      }
+    ]
+  },
+  {
+    "title": "2.3.2 DFD Level 1",
+    "section": "2.3.2 DFD Level 1",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "07_dfd_level1",
+        "caption": "Major transformations and logical stores",
+        "height": 440
+      },
+      {
+        "kind": "p",
+        "text": "Processes 1.0-5.0 divide authentication, tracking, planning, analysis/reporting and file transfer. D1 groups account/preference tables; D2 groups category, transaction and recurring data; D3 groups budgets and savings goals. Repeated symbols identify the same external account holder and logical stores, not extra users or databases."
+      },
+      {
+        "kind": "p",
+        "text": "The same account-holder and file exchanges from Level 0 remain at Level 1. File-operation query is a decomposition of the context query input. Internal report text passes from analysis to transfer for text export. Internal scheduled generation belongs to tracking and is not represented as a new external user input. DFDs describe the implemented data responsibilities, including partial restore; they do not assert atomicity of all process writes."
+      }
+    ]
+  },
+  {
+    "title": "2.3.3 DFD Level 2",
+    "section": "2.3.3 DFD Level 2",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "08_dfd_level2",
+        "caption": "Decomposition of tracking process 2.0",
+        "height": 330
+      },
+      {
+        "kind": "p",
+        "text": "This diagram expands only process 2.0. Transaction details enter validation, valid entries reach persistence, queries reach retrieval, and category/rule settings reach their management transformation. The D2 interface retains stored-record reads and record-change writes. The external outputs remain operation results and record views."
+      },
+      {
+        "kind": "p",
+        "text": "A validation result is one kind of operation result, not an additional context-level output. The diagram does not add budget-preview inputs to process 2.0 because previews belong to analysis process 4.0 at Level 1. This separation keeps the parent and child interfaces balanced. In the actual UI both responsibilities are combined in the transaction dialog."
+      }
+    ]
+  },
+  {
+    "title": "2.4 Software Requirement Specification in IEEE Format",
+    "section": "2.4 Purpose and context",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Introduction, purpose and scope"
+      },
+      {
+        "kind": "p",
+        "text": "The SRS defines the purpose, operating environment, user characteristics, functional requirements, quality requirements, interfaces and data constraints of the desktop application. Functional requirements are grouped by user goal; acceptance criteria specify observable behavior and connect requirements to use cases and tests."
+      },
+      {
+        "kind": "p",
+        "text": "The product boundary is one JavaFX application process and its local files. Its principal functions are manual ledger management, budget planning, savings allocation, recurring entries and interpretable financial analysis. The account holder supplies financial data and controls local preferences and file operations."
+      },
+      {
+        "kind": "table",
+        "caption": "Definitions and abbreviations",
+        "headers": [
+          "Term",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "DAO",
+            "Data Access Object: an interface/implementation for persistence operations."
+          ],
+          [
+            "JDBC",
+            "Java Database Connectivity API used for SQLite SQL access."
+          ],
+          [
+            "Paise",
+            "One hundredth of a rupee; integer storage unit."
+          ],
+          [
+            "Allocation ratio",
+            "Integer percentage assigned to an active savings goal."
+          ],
+          [
+            "Fixed category",
+            "Per-user classification excluded from discretionary concentration/spike advice."
+          ],
+          [
+            "Heuristic",
+            "Explicit threshold rule; not a machine-learned prediction."
+          ],
+          [
+            "FR / EXT / UC / T / A",
+            "Functional requirement / additional requirement / use case / manual test / automated test."
+          ]
+        ],
+        "widths": [
+          0.29,
+          0.71
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "Overall description"
+      },
+      {
+        "kind": "p",
+        "text": "The intended user understands dates, categories and monetary amounts but need not know SQL or Java. Java 21 and JavaFX are required for execution. Maven resolves and launches development builds. The data path is relative to the working directory, so demonstrations should launch from the repository root. The desktop and operating-system clock supply dates and recurring scheduling context."
+      }
+    ]
+  },
+  {
+    "title": "SRS functional requirements for tracking",
+    "section": "2.4 Functional requirements FR-01 to FR-04",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "Functional requirements for tracking",
+        "headers": [
+          "ID",
+          "Required final behavior",
+          "Related use cases and tests"
+        ],
+        "rows": [
+          [
+            "FR-01",
+            "Register local accounts, verify BCrypt credentials, establish one session and sign out without deleting data.",
+            "UC-01; T01-T02; validators A04-A05."
+          ],
+          [
+            "FR-02",
+            "Create, view, edit, delete, search and filter account transactions. Amount is positive and scale <=2; expense date is not future. Editing preserves original type.",
+            "UC-02/03/04; T03-T07; A06-A07."
+          ],
+          [
+            "FR-03",
+            "Offer system/custom categories and category totals. Reject blank or duplicate custom names within visible categories/type.",
+            "UC-04; T08; A20."
+          ],
+          [
+            "FR-04",
+            "Set monthly expense-category budgets; calculate spending utilization; show default warning at >=80% and exceeded at >=100%.",
+            "UC-05; T09-T10; A23–A24."
+          ]
+        ],
+        "widths": [
+          0.13,
+          0.61,
+          0.26
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "Acceptance boundaries"
+      },
+      {
+        "kind": "p",
+        "text": "FR-01 does not include forgotten-password recovery, email verification or server authentication. Usernames accept a restricted character set with a demo exception. Password strength beyond minimum length is not enforced. Financial-data separation primarily relies on user-scoped UI queries and updates; not every DAO lookup takes a user ID."
+      },
+      {
+        "kind": "p",
+        "text": "FR-02 accepts descriptive payment modes, optional notes and date/category/type/amount/keyword filters. Invalid amount-filter text currently disables that bound rather than producing a warning. Future income dates are not rejected by the income validator. Budget warnings are informational; overspending is not blocked."
+      },
+      {
+        "kind": "p",
+        "text": "FR-03 categories have a type and may be system-wide or account-specific. The final interface supports category creation, not a general category editing/deletion screen. FR-04 limits are unique per user/category/month; setting an existing combination updates the limit through SQL upsert."
+      }
+    ]
+  },
+  {
+    "title": "SRS functional requirements for planning and analysis",
+    "section": "2.4 Functional requirements FR-05 to FR-08",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "Planning and analysis requirements",
+        "headers": [
+          "ID",
+          "Required final behavior",
+          "Related use cases and tests"
+        ],
+        "rows": [
+          [
+            "FR-05",
+            "Create/edit/delete/toggle goals and distribute positive deposits over active goal ratios. Active total cannot exceed 100 through GoalService.",
+            "UC-06; T11-T13; A25–A26."
+          ],
+          [
+            "FR-06",
+            "Persist recurring rules with interval/dates/status; generate due occurrences at startup and configured periodic checks; allow manual catch-up.",
+            "UC-07; T14; Pending manual execution."
+          ],
+          [
+            "FR-07",
+            "Provide an in-modal category budget preview, projected utilization and savings/goal impact before saving.",
+            "UC-02; T15; known edit/date limitations."
+          ],
+          [
+            "FR-08",
+            "Allow recommendation preference changes; produce rule advice and monthly text reports with export.",
+            "UC-08; T16-T17; A08-A18 cover rules."
+          ]
+        ],
+        "widths": [
+          0.13,
+          0.61,
+          0.26
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "Calculation and timing semantics"
+      },
+      {
+        "kind": "p",
+        "text": "FR-05 deposit allocation is a bookkeeping update to goal balances. It neither checks available net income nor debits an account. Independent rounding is a limitation for tiny deposits. Target completion changes a derived progress value, not a stored lifecycle state."
+      },
+      {
+        "kind": "p",
+        "text": "FR-06 supports DAILY, WEEKLY, MONTHLY and YEARLY. Periodic checks default to five minutes. The process must be running; startup catch-up iterates missed dates. No exactly-once execution guarantee is asserted because transaction insert, audit insert and next-date update are separate operations."
+      },
+      {
+        "kind": "p",
+        "text": "FR-07 is implemented for the current month using an additive proposed amount. A new current-month entry is its reliable intended case. Editing and backdating do not have replacement-aware/date-aware previews. FR-08 report totals use the selected month, but micro-spend advice uses a recent list and today-based window; historical advice therefore has a known period mismatch."
+      }
+    ]
+  },
+  {
+    "title": "SRS extensions and non-functional requirements",
+    "section": "2.4 Extensions and quality attributes",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "Additional functional requirements",
+        "headers": [
+          "ID",
+          "Required behavior"
+        ],
+        "rows": [
+          [
+            "EXT-01",
+            "Dashboard displays monthly KPIs, category pie chart, a three-month income/expense chart, goals and recent activity. Navigation reloads saved records."
+          ],
+          [
+            "EXT-02",
+            "CSV transfer and binary snapshots are exposed. Restore and complex CSV parsing remain partial."
+          ],
+          [
+            "EXT-03",
+            "Persist account-specific fixed expense classifications and exclude them from two discretionary rules."
+          ],
+          [
+            "EXT-04",
+            "Keep New/Edit Savings Goal controls and action buttons accessible through content sizing, screen-height limits and a scrollable form."
+          ]
+        ],
+        "widths": [
+          0.18,
+          0.82
+        ]
+      },
+      {
+        "kind": "table",
+        "caption": "Non-functional requirements",
+        "headers": [
+          "ID",
+          "Requirement / target",
+          "Implementation and constraints"
+        ],
+        "rows": [
+          [
+            "NFR-01 Security",
+            "Hash passwords; parameterize SQL values; scope financial operations to account.",
+            "BCrypt password hashing and prepared SQL statements; local storage is unencrypted."
+          ],
+          [
+            "NFR-02 Reliability",
+            "Protect expense insert and goal-allocation batch with commit/rollback.",
+            "Explicit JDBC commit/rollback; recurring execution and restore are not fully atomic."
+          ],
+          [
+            "NFR-03 Usability",
+            "Readable forms, modal feedback and accessible goal buttons.",
+            "JavaFX implementation present; scaling/user study unexecuted."
+          ],
+          [
+            "NFR-04 Performance",
+            "Interactive entry and bounded background impact are acceptance targets.",
+            "No numerical latency or capacity guarantee measured."
+          ],
+          [
+            "NFR-05 Maintainability",
+            "Separate UI, services, rules and persistence responsibilities.",
+            "Packages/interfaces present; some UI and services use DAOs/SQL directly."
+          ],
+          [
+            "NFR-06 Availability",
+            "Operate offline while running with local files available.",
+            "No network dependency for financial operations; no always-on scheduler."
+          ]
+        ],
+        "widths": [
+          0.2,
+          0.4,
+          0.4
+        ]
+      }
+    ]
+  },
+  {
+    "title": "SRS database requirements",
+    "section": "2.4 Data dictionary",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "SQLite tables and integrity rules",
+        "headers": [
+          "Table",
+          "Important data and constraints"
+        ],
+        "rows": [
+          [
+            "users",
+            "id PK; username UNIQUE; password_hash; recommendations_enabled; created_at."
+          ],
+          [
+            "categories",
+            "id PK; nullable user_id FK for system categories; name; INCOME/EXPENSE; is_system."
+          ],
+          [
+            "transactions",
+            "id PK; user/category FKs; positive amount_paise; type; txn_date; payment_mode; notes; optional recurring_rule_id; created_at."
+          ],
+          [
+            "budgets",
+            "id PK; user/category FKs; year_month; positive limit_paise; UNIQUE(user,category,month)."
+          ],
+          [
+            "savings_goals",
+            "id PK; user FK; title; positive target_paise; nonnegative saved_paise; deadline; ratio 0-100; is_active."
+          ],
+          [
+            "recurring_rules",
+            "id PK; user/category FKs; amount_paise; type; frequency; start_date; next_due_date; end_date; status."
+          ],
+          [
+            "execution_audit_log",
+            "id PK; rule_id FK; run_at; result; message."
+          ],
+          [
+            "user_fixed_categories",
+            "Composite PK(user_id,category_id); both foreign keys."
+          ],
+          [
+            "user_fixed_category_initializations",
+            "user_id PK/FK; records completed default-preference initialization."
+          ]
+        ],
+        "widths": [
+          0.31,
+          0.69
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "DatabaseManager enables PRAGMA foreign_keys on each connection. Transaction dates and year-month values are stored as text and selected using an ISO month prefix. User-related rows generally cascade when a user is deleted at DAO level, although the UI does not offer account deletion. Deleting a recurring rule sets existing transaction recurring_rule_id values to NULL and cascades its execution audit rows."
+      },
+      {
+        "kind": "p",
+        "text": "The relational references support one user to many transactions, budgets and goals, and one category to many transactions. A system category may have no owning user. Java domain objects store foreign-key identifiers rather than direct nested User/Category object references. The schema does not encode the cross-row active-ratio total; GoalService enforces it in application logic."
+      }
+    ]
+  },
+  {
+    "title": "SRS interfaces, security and financial logic",
+    "section": "2.4 Interfaces and constraints",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "External interface requirements"
+      },
+      {
+        "kind": "p",
+        "text": "The user interface is local JavaFX: Login/Register, Dashboard, Transactions, Budgets, Savings Goals, Recurring Rules, and Reports & Settings. Modal dialogs collect transaction, budget, goal, allocation and recurring details. No network protocol or REST interface is required. Software interfaces are JDBC, JavaFX lifecycle/events, BCrypt, Java logging and file streams."
+      },
+      {
+        "kind": "p",
+        "text": "CSV exchange uses Date,Type,Category,Amount,PaymentMode,Notes with ISO dates and decimal rupee amounts. Imports process one line at a time, skip malformed records, and expose imported/skipped counts. Text reports use a file chooser. Binary snapshots use Java object serialization, contain financial data and a User object including its password hash, and are not encrypted."
+      },
+      {
+        "kind": "table",
+        "caption": "Financial logic and acceptance examples",
+        "headers": [
+          "Operation",
+          "Formula / example expectation"
+        ],
+        "rows": [
+          [
+            "Cashflow and rate",
+            "Income - expense; (income - expense)/income x 100. INR 50,000 and INR 1,100 imply INR 48,900 and 97.8%."
+          ],
+          [
+            "Budget utilization",
+            "(spent + proposed expense)/limit x 100. INR 1,000 against INR 1,200 implies about 83.33%."
+          ],
+          [
+            "Goal shares",
+            "Deposit x ratio/100 rounded to two decimals; 60% of INR 1,000 is INR 600."
+          ],
+          [
+            "Concentration",
+            "Flexible category amount / (all expenses - fixed expenses); trigger strictly above 40%."
+          ],
+          [
+            "Other rules",
+            "Expense/income >90%; net savings/income <10%; category growth >=25% with prior >=INR 500; >=5 expenses below INR 200."
+          ]
+        ],
+        "widths": [
+          0.27,
+          0.73
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "The local SQLite database and serialized snapshots are unencrypted. Snapshots include a User object and its password hash, so access depends on operating-system file permissions. Snapshot deserialization is suitable only for trusted local files. Account authentication uses BCrypt; password recovery and remote roles are outside the application scope."
+      }
+    ]
+  },
+  {
+    "title": "Financial Recommendation Requirements",
+    "section": "2.4 Recommendation requirements",
+    "level": 2,
+    "items": [
+      {
+        "kind": "p",
+        "text": "HeuristicEngine evaluates five independent Recommendation implementations against an AnalysisContext. Each rule returns Optional<String>: a present value is displayed as advice; an empty value indicates that the rule has not triggered. The account preference can suppress the complete recommendation list."
+      },
+      {
+        "kind": "table",
+        "caption": "Financial recommendation rules",
+        "headers": [
+          "Rule",
+          "Condition",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "HighCategorySpendRule",
+            "Flexible category share > 40%",
+            "Fixed-category expenses are removed from the denominator and excluded as candidates."
+          ],
+          [
+            "HighExpenseToIncomeRule",
+            "Expenses / income > 90%",
+            "Warns when the monthly expense burden approaches income; zero income is handled separately."
+          ],
+          [
+            "CategorySpikeRule",
+            "Increase >= 25%; previous amount >= INR 500",
+            "Compares category spending with the preceding month; fixed categories are excluded."
+          ],
+          [
+            "LowSavingsRateRule",
+            "Net savings / income < 10%",
+            "Uses income minus expenses rather than savings-goal deposits."
+          ],
+          [
+            "FrequentMicroTransactionsRule",
+            "At least 5 expenses below INR 200 in the recent window",
+            "Uses the supplied recent transaction list and today-based date window."
+          ]
+        ],
+        "widths": [
+          0.25,
+          0.31,
+          0.44
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "Preference handling"
+      },
+      {
+        "kind": "p",
+        "text": "CategoryService supplies account-specific fixed-category identifiers. The engine enriches the analysis context before iterating over rules. ReportsSettingsController persists recommendation preference changes through AuthService and invokes the dashboard insight callback after a successful update."
+      },
+      {
+        "kind": "h",
+        "text": "Failure handling and analytical limits"
+      },
+      {
+        "kind": "p",
+        "text": "An exception in one rule is logged without preventing the remaining rules from running. Advice is explanatory and does not block a transaction. Monthly totals are selected by report month, while the micro-transaction rule uses a bounded recent list and a today-based window; its advice can therefore differ from a historical-month interpretation."
+      }
+    ]
+  },
+  {
+    "title": "Financial Data Integrity and Business Constraints",
+    "section": "2.4 Data integrity requirements",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "Domain constraints and enforcement",
+        "headers": [
+          "Area",
+          "Rule",
+          "Enforcement"
+        ],
+        "rows": [
+          [
+            "Money",
+            "Positive transaction amounts with at most two decimal places",
+            "Validators checks input; MoneyUtil converts decimal rupees to integer paise."
+          ],
+          [
+            "Expense date",
+            "Today or an earlier date",
+            "validateExpense rejects a future expense date."
+          ],
+          [
+            "Category",
+            "A selected category must exist and match the transaction type",
+            "TransactionService validates category identity/type before persistence."
+          ],
+          [
+            "Budgets",
+            "One positive limit per account, category and month",
+            "BudgetService validates; a unique database constraint supports upsert."
+          ],
+          [
+            "Savings ratio",
+            "Active allocation percentages total at most 100",
+            "GoalService checks creation, active updates and reactivation."
+          ],
+          [
+            "Allocation",
+            "Only active goals receive deposit shares",
+            "RatioAllocationService reads active goals and batches saved_paise updates."
+          ],
+          [
+            "Recurring dates",
+            "End date cannot precede start date",
+            "Rule validation checks dates; scheduler advances due dates using frequency."
+          ]
+        ],
+        "widths": [
+          0.17,
+          0.42,
+          0.41
+        ]
+      },
+      {
+        "kind": "h",
+        "text": "Persistence transaction boundaries"
+      },
+      {
+        "kind": "p",
+        "text": "Expense insertion runs with auto-commit disabled and commits after generated-key retrieval. On SQL failure it rolls back. Savings allocation also batches balance updates within one JDBC transaction. Fixed-category replacement deletes and inserts account preferences within a transaction, so an invalid category rolls back the replacement."
+      },
+      {
+        "kind": "h",
+        "text": "Known system constraints"
+      },
+      {
+        "kind": "p",
+        "text": "Recurring occurrence insertion, audit logging and next-date advancement are separate operations. Snapshot restoration appends selected records and omits recurring rules and fixed-category preferences. Independent rounding of very small goal allocations can exceed the original deposit. These limits affect recovery and edge-case behavior and do not represent additional persisted states."
+      }
+    ]
+  },
+  {
+    "title": "Requirements Traceability",
+    "section": "2.4 Requirements traceability",
+    "level": 2,
+    "items": [
+      {
+        "kind": "table",
+        "caption": "Requirements to use cases, implementation and tests",
+        "headers": [
+          "ID",
+          "Use case",
+          "Principal implementation",
+          "Test IDs"
+        ],
+        "rows": [
+          [
+            "FR-01",
+            "UC-01",
+            "AuthService; JdbcUserDao",
+            "T01-T02; A04-A05"
+          ],
+          [
+            "FR-02",
+            "UC-02/03/04",
+            "TransactionService; TransactionsController",
+            "T03-T07; A06-A07; A19,A21,A22"
+          ],
+          [
+            "FR-03",
+            "UC-04",
+            "addCustomCategory(); category breakdown queries",
+            "T08; A20"
+          ],
+          [
+            "FR-04",
+            "UC-05",
+            "BudgetService; JdbcBudgetDao",
+            "T09-T10; A23,A24"
+          ],
+          [
+            "FR-05",
+            "UC-06",
+            "GoalService; RatioAllocationService",
+            "T11-T13; A25,A26"
+          ],
+          [
+            "FR-06",
+            "UC-07",
+            "RecurringScheduler; JdbcRecurringTransactionDao",
+            "T14"
+          ],
+          [
+            "FR-07",
+            "UC-02",
+            "DefaultInModalAnalyticsService",
+            "T15"
+          ],
+          [
+            "FR-08",
+            "UC-08",
+            "HeuristicEngine; ReportService; AuthService",
+            "T16-T17; A08-A18"
+          ],
+          [
+            "EXT-01",
+            "UC-08",
+            "DashboardController.refreshView(); navigation callbacks",
+            "T20"
+          ],
+          [
+            "EXT-02",
+            "UC-09",
+            "CSV classes; BackupManager",
+            "T18-T19"
+          ],
+          [
+            "EXT-03",
+            "UC-08",
+            "CategoryService; JdbcUserFixedCategoryDao",
+            "T16; A27,A28"
+          ],
+          [
+            "EXT-04",
+            "UC-06",
+            "GoalsController.handleAddOrEditGoal()",
+            "T11"
+          ]
+        ],
+        "widths": [
+          0.14,
+          0.17,
+          0.47,
+          0.22
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "The matrix connects user requirements to principal use cases and implementation modules. Automated cases A01–A28 record executed assertions; cases T01–T20 cover screen interaction and additional acceptance scenarios. An automated result applies to its asserted service behavior, not to the entire associated graphical workflow."
+      }
+    ]
+  },
+  {
+    "title": "2.5 User Stories and Story Cards",
+    "section": "2.5 Tracking story cards",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "US-01"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want to register and sign in, so that I can access my local financial records."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-01; UC-01; T01-T02"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Given valid unused credentials, registration opens the shell. Given wrong credentials, no session is created. Sign Out returns to login without deleting data."
+      },
+      {
+        "kind": "h",
+        "text": "US-02"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want to record income and expenses, so that I can review how money changes over time."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-02; UC-02; T03-T04"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Positive two-decimal entries save with date, category and mode. Zero/negative amounts and future expenses are rejected. Saving updates the transaction table."
+      },
+      {
+        "kind": "h",
+        "text": "US-03"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want to correct or remove a transaction, so that my ledger reflects the actual event."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-02; UC-03; T05-T06"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Editing locks type but permits other fields. Cancel does not save. Deletion requires confirmation and reloads the table."
+      },
+      {
+        "kind": "h",
+        "text": "US-04"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want custom categories and filters, so that I can locate specific spending."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-02/03; UC-04; T07-T08"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Category name cannot be blank or duplicate. Filters return current-account records. Reset restores the unfiltered view."
+      }
+    ]
+  },
+  {
+    "title": "User Stories and Story Cards continued",
+    "section": "2.5 Planning and analysis stories",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "US-05"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want monthly category budgets, so that I can see when spending approaches my limit."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-04; UC-05; T09-T10"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: At 80% show warning; at 100% show exceeded. Returning to Budgets re-queries actual spending."
+      },
+      {
+        "kind": "h",
+        "text": "US-06"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want to divide a savings deposit between active goals, so that I can track several priorities."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-05; UC-06; T11-T13"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Active ratios cannot exceed 100 through the service. Allocation updates all goal shares together or rolls back on SQL failure."
+      },
+      {
+        "kind": "h",
+        "text": "US-07"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want recurring ledger rules, so that missed fixed entries can be generated when I return."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-06; UC-07; T14"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Due active rules generate occurrences through today. Paused rules do not generate entries; audit records describe processing."
+      },
+      {
+        "kind": "h",
+        "text": "US-08"
+      },
+      {
+        "kind": "p",
+        "text": "As an account holder, I want explainable advice and reports, so that I can understand spending without surrendering control."
+      },
+      {
+        "kind": "p",
+        "text": "Traceability: FR-07/08; EXT-01/03; UC-08; T15-T17,T20"
+      },
+      {
+        "kind": "p",
+        "text": "Acceptance criteria: Advice can be disabled. Fixed categories are excluded from two discretionary rules. Reports show the selected month; dashboard refreshes on navigation."
+      }
+    ]
+  },
+  {
+    "title": "3. DESIGN PHASE",
+    "section": "3.1 Class Diagram",
+    "level": 1,
+    "items": [
+      {
+        "kind": "h",
+        "text": "3.1 Class Diagram"
+      },
+      {
+        "kind": "h",
+        "text": "Case 1 Transaction management"
+      },
+      {
+        "kind": "figure",
+        "id": "09_class_transactions",
+        "caption": "Actual transaction classes, interfaces and dependencies",
+        "height": 340
+      },
+      {
+        "kind": "p",
+        "text": "Income and Expense inherit the shared identifiers, amount, date and descriptive fields of abstract Transaction. Their getType() and getSignedAmount() methods supply dynamic behavior. JdbcTransactionDao realizes TransactionDao, whose generic parent contract is Dao<Transaction,Long>. Dashed dependencies indicate service use or object construction, not ownership."
+      },
+      {
+        "kind": "p",
+        "text": "Multiplicity between Transaction and Category is a relational identifier reference: each saved transaction has one category_id and a category may classify many transactions. It is not a Java field of type Category. TransactionService validates category existence before saving. Its expense path contains direct JDBC SQL, while its income path calls the DAO interface. The diagram therefore shows both object creation and persistence abstraction without claiming uniform delegation."
+      }
+    ]
+  },
+  {
+    "title": "Class Diagram case 2",
+    "section": "3.1 Budget and savings management",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "10_class_planning",
+        "caption": "Planning services and financial models",
+        "height": 410
+      },
+      {
+        "kind": "p",
+        "text": "BudgetService creates monthly Budget objects and delegates storage to BudgetDao. GoalService creates and validates SavingsGoal objects using SavingsGoalDao. RatioAllocationService reads active goals through that interface but executes its allocation batch directly using DatabaseManager. That direct SQL dependency is explained in the component model."
+      },
+      {
+        "kind": "p",
+        "text": "The userId fields represent one account to many budgets or goals through foreign keys. User is omitted from this focused service view; no owning List<Budget> or List<SavingsGoal> is present in that Java model. The stored active flag is separate from progress. A goal remains active after reaching its target unless explicitly deactivated. Dashed dependencies indicate service use, not ownership."
+      },
+      {
+        "kind": "h",
+        "text": "Model and service responsibilities"
+      },
+      {
+        "kind": "p",
+        "text": "SavingsGoal stores the target, saved amount, deadline, allocation percentage and active flag. Its progress method calculates a display value from savedAmount and targetAmount. GoalService.getTotalActiveRatio() iterates over active goals; createGoal(), updateGoal() and toggleGoalActive() use this total to protect the allocation pool. RatioAllocationService uses the same active-goal set when distributing an entered deposit."
+      },
+      {
+        "kind": "p",
+        "text": "Budget stores a category, month and limit. BudgetService combines this plan with transaction totals to calculate utilization. There is no Java ownership collection linking a Budget to transactions: the service joins their meaning through account, category and month identifiers. The DAO interfaces isolate ordinary save and lookup operations, while allocation uses a direct JDBC transaction for its batch update."
+      }
+    ]
+  },
+  {
+    "title": "3.2 Sequence Diagram",
+    "section": "3.2 Expense persistence",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Case 1 Adding an expense"
+      },
+      {
+        "kind": "figure",
+        "id": "11_sequence_expense",
+        "caption": "Expense validation and JDBC commit sequence",
+        "height": 365
+      },
+      {
+        "kind": "p",
+        "text": "TransactionDialogController invokes TransactionService.addExpense(). The service obtains the category through JdbcCategoryDao and calls Validators.validateExpense(). The JDBC participant groups connection, statement and database interactions. The success path returns an Expense with its generated identifier."
+      },
+      {
+        "kind": "p",
+        "text": "On SQLException the insert path calls rollback() and throws DataAccessException; the dialog catches the exception and keeps the form available. The success result is an Expense with its generated ID. TransactionsController then re-queries the table. Preview queries occur before this save sequence and do not commit a record. The expense path executes SQL directly in addExpense(); income persistence uses the transaction DAO."
+      }
+    ]
+  },
+  {
+    "title": "Sequence Diagram case 2",
+    "section": "3.2 Goal creation",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Case 2 Creating a savings goal"
+      },
+      {
+        "kind": "figure",
+        "id": "12_sequence_goal",
+        "caption": "Goal validation, ratio check and insertion",
+        "height": 365
+      },
+      {
+        "kind": "p",
+        "text": "GoalService validates the proposed fields, reads all active goals and sums allocation ratios before insertion. If the total plus the new ratio exceeds 100, AllocationRatioException is raised before save(). JdbcSavingsGoalDao binds values to INSERT savings_goals and returns the object with a generated identifier."
+      },
+      {
+        "kind": "p",
+        "text": "The sequence documents creation only. Funding is a later RatioAllocationService operation, not a side effect of createGoal(). Validation and the sum check are application operations; they are not a database-wide cross-row constraint or a proven concurrent transaction guarantee. The dialog catches ratio errors separately and presents a targeted warning."
+      }
+    ]
+  },
+  {
+    "title": "3.3 Collaboration Diagram",
+    "section": "3.3 Transaction communication",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Case 1 Transaction persistence"
+      },
+      {
+        "kind": "figure",
+        "id": "13_communication_transaction",
+        "caption": "Numbered expense-persistence object messages",
+        "height": 330
+      },
+      {
+        "kind": "p",
+        "text": "This communication diagram emphasizes object links and numbered messages rather than time-scaled lifelines. Message 1 starts the use case, 1.1 obtains category information, 1.2 validates fields, and 1.3-1.6 perform transactional JDBC work. The dashed return completes the Expense result."
+      },
+      {
+        "kind": "p",
+        "text": "The local JDBC Connection and database are represented separately to expose the persistence boundary. prepareStatement() creates a PreparedStatement, which is abbreviated into the connection interaction to avoid overcrowding. executeUpdate() inserts one row; generated-key retrieval assigns the ID. The commit/rollback label represents alternative outcomes and does not imply both execute on success."
+      },
+      {
+        "kind": "p",
+        "text": "Income persistence uses transactionDao.save() instead of the direct expense SQL path. The collaboration is intentionally limited to one significant actual scenario rather than merging incompatible alternatives into a single call chain."
+      }
+    ]
+  },
+  {
+    "title": "Collaboration Diagram case 2",
+    "section": "3.3 Recommendation communication",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Case 2 Financial recommendation generation"
+      },
+      {
+        "kind": "figure",
+        "id": "14_communication_advice",
+        "caption": "Recommendation engine and rule communication",
+        "height": 330
+      },
+      {
+        "kind": "p",
+        "text": "DashboardController queries current and previous spending before passing AnalysisContext to HeuristicEngine. The engine checks the user preference, obtains account-specific fixed-category information through CategoryService, and creates an enriched context using withFixedCategoryData(). It iterates over five Recommendation implementations and collects present Optional<String> messages."
+      },
+      {
+        "kind": "p",
+        "text": "HighCategorySpendRule and CategorySpikeRule skip fixed categories. Total-expense and savings-rate rules still include fixed obligations. The communication therefore supports explainable advice without suggesting a machine-learning model or external recommendation service."
+      },
+      {
+        "kind": "p",
+        "text": "Recommendation defines evaluate(AnalysisContext) and getRuleName(). Concrete rules implement both methods. The collection List<Recommendation> allows the engine to invoke different financial checks through the same interface."
+      }
+    ]
+  },
+  {
+    "title": "3.4 State Chart Diagrams",
+    "section": "3.4 Transaction workflow",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Case 1 Transaction dialog lifecycle"
+      },
+      {
+        "kind": "figure",
+        "id": "15_state_transaction",
+        "caption": "Conceptual transaction-dialog states",
+        "height": 340
+      },
+      {
+        "kind": "p",
+        "text": "These are conceptual UI workflow states, not values stored in transactions. A new form permits a type choice; an edit form starts from an existing object and disables type controls. Both enter validation on Save. Invalid input or an SQL error leaves the dialog available for correction."
+      },
+      {
+        "kind": "p",
+        "text": "Successful persistence closes the dialog and returns the saved record. Cancel closes it without a persistence call. Dialog workflow states are not stored in the transactions table. Editing an existing object can change its in-memory values before a failed update, while saved database values change only when persistence succeeds."
+      }
+    ]
+  },
+  {
+    "title": "State Chart Diagrams case 2",
+    "section": "3.4 Savings-goal lifecycle",
+    "level": 2,
+    "items": [
+      {
+        "kind": "h",
+        "text": "Case 2 Persisted active status of a goal"
+      },
+      {
+        "kind": "figure",
+        "id": "16_state_goal",
+        "caption": "Savings-goal active flag and deletion",
+        "height": 320
+      },
+      {
+        "kind": "p",
+        "text": "The stored state distinction is is_active=1 or is_active=0. A valid creation starts active. Deactivation removes the goal from future allocation; reactivation checks whether its ratio fits within the current active pool. Deletion removes the row rather than changing a status to DELETED."
+      },
+      {
+        "kind": "p",
+        "text": "Funding changes saved_paise while retaining the active flag. Reaching the target does not automatically deactivate a goal. getProgressPercentage() derives a percentage and caps its display at 100. A deadline passing is not an implemented EXPIRED transition for SavingsGoal. Recurring rules have a separate ACTIVE/PAUSED/EXPIRED enumeration and must not be confused with goal states."
+      }
+    ]
+  },
+  {
+    "title": "4. IMPLEMENTATION",
+    "section": "4.1 Component Diagrams",
+    "level": 1,
+    "items": [
+      {
+        "kind": "h",
+        "text": "4.1 Component Diagrams"
+      },
+      {
+        "kind": "figure",
+        "id": "17_component",
+        "caption": "Implemented application components and dependencies",
+        "height": 340
+      },
+      {
+        "kind": "p",
+        "text": "MainApp constructs DAOs, services, file managers and controllers using constructor injection. JavaFX controllers combine view building and event handling. Services implement business rules, while JDBC DAOs map rows to models. HeuristicEngine coordinates the independent Recommendation implementations. RecurringScheduler owns a single-thread scheduled executor."
+      },
+      {
+        "kind": "p",
+        "text": "Controllers coordinate screens and events, services enforce financial rules, and DAOs map persisted records. DashboardController also performs direct DAO queries, while TransactionService.addExpense() and RatioAllocationService.allocateDeposit() contain SQL transactions. MainApp wires dependencies and file-operation callbacks; stop() shuts down the scheduler and logger."
+      },
+      {
+        "kind": "p",
+        "text": "Java language mechanisms include abstract classes, interfaces, overriding, overloaded constructors/methods, generic DAOs, collections, lambdas, streams, try-with-resources and checked/unchecked exceptions. Transaction.getSignedAmount() is overridden by Income and Expense; AnalysisContext.isFixed(long/String) is an actual overload."
+      }
+    ]
+  },
+  {
+    "title": "4.2 Deployment Diagrams",
+    "section": "4.2 Local desktop deployment",
+    "level": 2,
+    "items": [
+      {
+        "kind": "figure",
+        "id": "18_deployment",
+        "caption": "Single-device Java desktop deployment",
+        "height": 320
+      },
+      {
+        "kind": "p",
+        "text": "The executable environment is a local Java 21 JVM with JavaFX and JDBC libraries. Maven is a build/launch tool, not a hosted runtime service. The application accesses data/finance.db through a local SQLite JDBC URL and loads app.properties/style.css as resources. File choosers write CSV, text and snapshots to user-selected paths."
+      },
+      {
+        "kind": "h",
+        "text": "Execution and local storage"
+      },
+      {
+        "kind": "p",
+        "text": "Maven compiles and launches the Java application with its configured dependencies. JavaFX native libraries must match the operating system. Configuration and CSS are packaged resources; the SQLite database, application logs and user-selected CSV, text and snapshot files remain local. Changing the working directory changes the location resolved by the relative database URL."
+      }
+    ]
+  },
+  {
+    "title": "4.3 Screenshots",
+    "section": "4.3 Evidence captures",
+    "level": 2,
+    "items": [
+      {
+        "kind": "screenshot",
+        "title": "Login and Registration",
+        "caption": "Figure 4.3: Login and Registration Interface — Screenshot to be inserted"
+      },
+      {
+        "kind": "screenshot",
+        "title": "Dashboard",
+        "caption": "Figure 4.4: Dashboard Interface — Screenshot to be inserted"
+      }
+    ]
+  },
+  {
+    "title": "Screenshots continued",
+    "section": "4.3 Evidence captures",
+    "level": 2,
+    "items": [
+      {
+        "kind": "screenshot",
+        "title": "Transaction Management",
+        "caption": "Figure 4.5: Transaction Management Interface — Screenshot to be inserted"
+      },
+      {
+        "kind": "screenshot",
+        "title": "Budget Management",
+        "caption": "Figure 4.6: Budget Management Interface — Screenshot to be inserted"
+      }
+    ]
+  },
+  {
+    "title": "Screenshots continued",
+    "section": "4.3 Evidence captures",
+    "level": 2,
+    "items": [
+      {
+        "kind": "screenshot",
+        "title": "Savings Goals",
+        "caption": "Figure 4.7: Savings Goals Interface — Screenshot to be inserted"
+      },
+      {
+        "kind": "screenshot",
+        "title": "Recurring Transactions",
+        "caption": "Figure 4.8: Recurring Transactions Interface — Screenshot to be inserted"
+      }
+    ]
+  },
+  {
+    "title": "Screenshots continued",
+    "section": "4.3 Evidence captures",
+    "level": 2,
+    "items": [
+      {
+        "kind": "screenshot",
+        "title": "Reports and Analytics",
+        "caption": "Figure 4.9: Reports and Analytics Interface — Screenshot to be inserted"
+      },
+      {
+        "kind": "screenshot",
+        "title": "Settings and Financial Recommendations",
+        "caption": "Figure 4.10: Settings and Financial Recommendations Interface — Screenshot to be inserted"
+      }
+    ]
+  },
+  {
+    "title": "5. TESTING",
+    "section": "5.1 Test Plan",
+    "level": 1,
+    "items": [
+      {
+        "kind": "h",
+        "text": "5.1 Test Plan"
+      },
+      {
+        "kind": "p",
+        "text": "Testing checks financial validation, monetary calculations, recommendation rules and selected database workflows. The execution on 16 November 2026 compiled all 85 production Java files and 8 test source files using Java 21. All 28 existing @Test methods passed under the JUnit Jupiter engine. Lifecycle methods were executed by the engine. Database tests used a new disposable SQLite file with isolated configuration."
+      },
+      {
+        "kind": "table",
+        "caption": "Test environment and strategy",
+        "headers": [
+          "Item",
+          "Specification"
+        ],
+        "rows": [
+          [
+            "Environment",
+            "Windows; Java 21; JavaFX 21.0.5; JUnit Jupiter 5.10.2; cached project dependencies."
+          ],
+          [
+            "Isolation",
+            "Temporary compiled classes and app.properties; unique SQLite test file; application database unchanged."
+          ],
+          [
+            "Unit scope",
+            "Money conversion/aggregation, username/password/amount/date validation, five recommendation rules and preference suppression."
+          ],
+          [
+            "Integration scope",
+            "Transaction creation/validation, category duplicates, budget save/query and alert levels, goal ratio cap, deposit balances, fixed-category rollback and account isolation."
+          ],
+          [
+            "Manual scope",
+            "Authentication screens, edit/delete, charts, navigation refresh, recurring scheduling, file exchange and display scaling."
+          ],
+          [
+            "Entry criteria",
+            "Sources compile; test resources point to a disposable database; required libraries available."
+          ],
+          [
+            "Exit criteria",
+            "Automated assertions pass; manual acceptance results recorded; critical defects resolved before operational acceptance."
+          ]
+        ],
+        "widths": [
+          0.24,
+          0.76
+        ]
+      },
+      {
+        "kind": "p",
+        "text": "Boundary-value and equivalence-class testing cover positive and invalid monetary inputs, future expense dates, budget utilization classes and the active savings ratio cap. The budget test samples 50%, 85% and 105%; exact 80% and 100% boundaries remain manual acceptance cases. The allocation test verifies a successful update and reloaded balances, not an induced rollback failure."
+      },
+      {
+        "kind": "p",
+        "text": "GUI, performance, security and display-scaling checks are pending manual verification. The complete existing automated suite passed, but this does not establish screen usability, CSV round-trip reliability or complete snapshot recovery. The equal-share concentration test has an order-sensitive assertion and remains a portability risk."
+      }
+    ]
+  },
+  {
+    "title": "5.2 Test Cases",
+    "section": "5.2 Automated tests",
+    "landscape": true,
+    "items": [
+      {
+        "kind": "p",
+        "text": "Executed on 16 November 2026. Pass means the assertions in the named existing test method completed successfully."
+      },
+      {
+        "kind": "table",
+        "caption": "Automated tests 1",
+        "headers": [
+          "Test Case ID",
+          "Test Scenario",
+          "Input / Test Data",
+          "Expected Result",
+          "Actual Result",
+          "Status",
+          "Remarks"
+        ],
+        "rows": [
+          [
+            "A01",
+            "Paise Conversion",
+            "100.50, 0, 0.05",
+            "10050, 0, 5 paise",
+            "Assertions completed",
+            "Pass",
+            "MoneyUtilTest.testPaiseConversion()"
+          ],
+          [
+            "A02",
+            "Format Currency",
+            "1250.50",
+            "Formatted amount includes 1,250.50",
+            "Assertions completed",
+            "Pass",
+            "MoneyUtilTest.testFormatCurrency()"
+          ],
+          [
+            "A03",
+            "Generic Sum Amounts Method",
+            "Income and expense list",
+            "Absolute sum 6500; signed sum 3500",
+            "Assertions completed",
+            "Pass",
+            "MoneyUtilTest.testGenericSumAmountsMethod()"
+          ],
+          [
+            "A04",
+            "Username Validation",
+            "Valid names, demo; invalid classes",
+            "Valid accepted; invalid rejected",
+            "Assertions completed",
+            "Pass",
+            "ValidatorsTest.testUsernameValidation()"
+          ],
+          [
+            "A05",
+            "Password Validation",
+            "secret123; null; 12345",
+            "Eight-character password accepted; null and five characters rejected",
+            "Assertions completed",
+            "Pass",
+            "ValidatorsTest.testPasswordValidation()"
+          ],
+          [
+            "A06",
+            "Amount Validation",
+            "Positive, 0, negative, >2 decimals",
+            "Only valid positive scale accepted",
+            "Assertions completed",
+            "Pass",
+            "ValidatorsTest.testAmountValidation()"
+          ],
+          [
+            "A07",
+            "Expense Date Validation",
+            "Today, past, tomorrow",
+            "Future expense rejected",
+            "Assertions completed",
+            "Pass",
+            "ValidatorsTest.testExpenseDateValidation()"
+          ],
+          [
+            "A08",
+            "Rule1 High Category Spend",
+            "Concentrated category spending",
+            "Concentration advice present",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.testRule1HighCategorySpend()"
+          ],
+          [
+            "A09",
+            "high Category Spend Skips Fixed Category And Uses Flexible Denominator",
+            "Fixed and flexible categories",
+            "Fixed excluded; flexible share used",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.highCategorySpendSkipsFixedCategoryAndUsesFlexibleDenominator()"
+          ],
+          [
+            "A10",
+            "high Category Spend Does Not Recommend When All Spending Is Fixed",
+            "All monthly spending fixed",
+            "No concentration advice",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.highCategorySpendDoesNotRecommendWhenAllSpendingIsFixed()"
+          ]
+        ],
+        "widths": [
+          0.06,
+          0.14,
+          0.17,
+          0.2,
+          0.12,
+          0.07,
+          0.24
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Automated Test Cases continued",
+    "section": "5.2 Automated tests",
+    "landscape": true,
+    "items": [
+      {
+        "kind": "p",
+        "text": "Executed on 16 November 2026. Pass means the assertions in the named existing test method completed successfully."
+      },
+      {
+        "kind": "table",
+        "caption": "Automated tests 2",
+        "headers": [
+          "Test Case ID",
+          "Test Scenario",
+          "Input / Test Data",
+          "Expected Result",
+          "Actual Result",
+          "Status",
+          "Remarks"
+        ],
+        "rows": [
+          [
+            "A11",
+            "high Category Spend With No Fixed Categories Behaves As Before",
+            "Food 500; Transport 500",
+            "Existing assertion expects Food advice",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.highCategorySpendWithNoFixedCategoriesBehavesAsBefore(); ordering-sensitive assertion"
+          ],
+          [
+            "A12",
+            "Rule2 High Expense To Income",
+            "Expense/income = 95%",
+            "High expense warning",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.testRule2HighExpenseToIncome()"
+          ],
+          [
+            "A13",
+            "Rule3 Category Spike",
+            "Category increase = 40%",
+            "Spike warning",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.testRule3CategorySpike()"
+          ],
+          [
+            "A14",
+            "category Spike Skips Fixed Category",
+            "Fixed-category increase",
+            "No fixed-category spike warning",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.categorySpikeSkipsFixedCategory()"
+          ],
+          [
+            "A15",
+            "category Spike Without Fixed Categories Behaves As Before",
+            "Eligible unfixed category spike",
+            "Spike warning retained",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.categorySpikeWithoutFixedCategoriesBehavesAsBefore()"
+          ],
+          [
+            "A16",
+            "Rule4 Low Savings Rate",
+            "Net savings rate = 4%",
+            "Low savings warning",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.testRule4LowSavingsRate()"
+          ],
+          [
+            "A17",
+            "Rule5 Frequent Micro Transactions",
+            "Five expenses below 200",
+            "Micro-spending warning",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.testRule5FrequentMicroTransactions()"
+          ],
+          [
+            "A18",
+            "Recommendations Muted When Disabled",
+            "Recommendations disabled",
+            "Empty recommendation list",
+            "Assertions completed",
+            "Pass",
+            "HeuristicEngineTest.testRecommendationsMutedWhenDisabled()"
+          ],
+          [
+            "A19",
+            "Add Income And Expense Polymorphism",
+            "Income 50000; expense 1200",
+            "Income 50000; expense 1200: generated IDs and signed amounts",
+            "Assertions completed",
+            "Pass",
+            "TransactionServiceTest.testAddIncomeAndExpensePolymorphism()"
+          ]
+        ],
+        "widths": [
+          0.06,
+          0.14,
+          0.17,
+          0.2,
+          0.12,
+          0.07,
+          0.24
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Automated Test Cases continued",
+    "section": "5.2 Automated tests",
+    "landscape": true,
+    "items": [
+      {
+        "kind": "p",
+        "text": "Executed on 16 November 2026. Pass means the assertions in the named existing test method completed successfully."
+      },
+      {
+        "kind": "table",
+        "caption": "Automated tests 3",
+        "headers": [
+          "Test Case ID",
+          "Test Scenario",
+          "Input / Test Data",
+          "Expected Result",
+          "Actual Result",
+          "Status",
+          "Remarks"
+        ],
+        "rows": [
+          [
+            "A20",
+            "Custom Category Creation And Duplicate Rejection",
+            "Create category; reject case-insensitive duplicate",
+            "Create category; reject case-insensitive duplicate",
+            "Assertions completed",
+            "Pass",
+            "TransactionServiceTest.testCustomCategoryCreationAndDuplicateRejection()"
+          ],
+          [
+            "A21",
+            "Future Expense Date Validation",
+            "INR 500; today + 2 days",
+            "InvalidTransactionException",
+            "Assertions completed",
+            "Pass",
+            "TransactionServiceTest.testFutureExpenseDateValidation()"
+          ],
+          [
+            "A22",
+            "Invalid Amount Validation",
+            "Zero; -100 expense amounts",
+            "InvalidTransactionException",
+            "Assertions completed",
+            "Pass",
+            "TransactionServiceTest.testInvalidAmountValidation()"
+          ],
+          [
+            "A23",
+            "Set And Retrieve Budget",
+            "Rent; 2026-11; INR 25000",
+            "ID assigned; reloaded limit 25000",
+            "Assertions completed",
+            "Pass",
+            "BudgetServiceTest.testSetAndRetrieveBudget()"
+          ],
+          [
+            "A24",
+            "Alert Threshold Levels",
+            "50%, 85%, 105%",
+            "50%, 85%, 105%: NORMAL, WARNING, EXCEEDED",
+            "Assertions completed",
+            "Pass",
+            "BudgetServiceTest.testAlertThresholdLevels(); exact 80/100 boundaries not exercised"
+          ],
+          [
+            "A25",
+            "Ratio Cap Validation",
+            "60% + 30% accepted; additional 20% rejected",
+            "60% + 30% accepted; additional 20% rejected",
+            "Assertions completed",
+            "Pass",
+            "RatioAllocationServiceTest.testRatioCapValidation()"
+          ],
+          [
+            "A26",
+            "Atomic Deposit Allocation",
+            "10000 deposit; 50%/30%",
+            "10000 deposit; 50%/30%: balances 5000/3000, remainder 2000",
+            "Assertions completed",
+            "Pass",
+            "RatioAllocationServiceTest.testAtomicDepositAllocation(); successful allocation only; rollback not injected"
+          ],
+          [
+            "A27",
+            "replace All Rolls Back Entire Update When Any Category Is Invalid",
+            "Invalid replacement category",
+            "Invalid replacement category: original preferences retained",
+            "Assertions completed",
+            "Pass",
+            "JdbcUserFixedCategoryDaoTest.replaceAllRollsBackEntireUpdateWhenAnyCategoryIsInvalid()"
+          ],
+          [
+            "A28",
+            "fixed Category Lists Are Isolated Per User",
+            "Separate account preference lists remain independent",
+            "Separate account preference lists remain independent",
+            "Assertions completed",
+            "Pass",
+            "JdbcUserFixedCategoryDaoTest.fixedCategoryListsAreIsolatedPerUser()"
+          ]
+        ],
+        "widths": [
+          0.06,
+          0.14,
+          0.17,
+          0.2,
+          0.12,
+          0.07,
+          0.24
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Manual Acceptance Test Cases",
+    "section": "5.2 Manual acceptance",
+    "landscape": true,
+    "items": [
+      {
+        "kind": "p",
+        "text": "These screen and additional acceptance scenarios have not been executed. Automated service checks do not replace the complete graphical workflow."
+      },
+      {
+        "kind": "table",
+        "caption": "Manual acceptance cases 1",
+        "headers": [
+          "Test Case ID",
+          "Test Scenario",
+          "Input / Test Data",
+          "Expected Result",
+          "Actual Result",
+          "Status",
+          "Remarks"
+        ],
+        "rows": [
+          [
+            "T01",
+            "UC-01 / FR-01",
+            "Register valid unused username and password >=6 characters.",
+            "Account saved; shell opens; plaintext password absent.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T02",
+            "UC-01 / FR-01",
+            "Sign in with wrong password; then correct password; sign out.",
+            "Wrong password rejected; correct login works; logout returns to login.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T03",
+            "UC-02 / FR-02",
+            "Add Salary income INR 50,000 today with Bank Transfer.",
+            "One INCOME row; positive signed impact; values persist.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T04",
+            "UC-02 / FR-02",
+            "Try expense 0, -5, 10.555 and tomorrow; then 1,000 today.",
+            "Invalid cases rejected; valid EXPENSE saves.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T05",
+            "UC-03 / FR-02",
+            "Edit amount/notes on existing income and expense.",
+            "Type controls disabled; other changes save; new dialog type enabled.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T06",
+            "UC-03 / FR-02",
+            "Delete selected transaction: cancel first, confirm next.",
+            "Cancel preserves row; confirm removes only chosen account row.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T07",
+            "UC-04 / FR-02",
+            "Filter by date/type/category/amount/keyword; reset.",
+            "Matching user records returned; reset clears filters. Invalid numeric bound limitation recorded.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T08",
+            "UC-04 / FR-03",
+            "Create a custom expense category; repeat case-insensitive name.",
+            "First saves; duplicate rejected; category selectable.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T09",
+            "UC-05 / FR-04",
+            "Set INR 1,200 monthly category budget; update same month/category.",
+            "Single limit updated; zero/negative limit rejected.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T10",
+            "UC-05 / FR-04",
+            "Use controlled category spend of 79%, 80%, 99%, 100%.",
+            "NORMAL, WARNING, WARNING, EXCEEDED respectively.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ]
+        ],
+        "widths": [
+          0.06,
+          0.12,
+          0.23,
+          0.28,
+          0.1,
+          0.09,
+          0.12
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Manual Acceptance Test Cases",
+    "section": "5.2 Manual acceptance",
+    "landscape": true,
+    "items": [
+      {
+        "kind": "p",
+        "text": "These screen and additional acceptance scenarios have not been executed. Automated service checks do not replace the complete graphical workflow."
+      },
+      {
+        "kind": "table",
+        "caption": "Manual acceptance cases 2",
+        "headers": [
+          "Test Case ID",
+          "Test Scenario",
+          "Input / Test Data",
+          "Expected Result",
+          "Actual Result",
+          "Status",
+          "Remarks"
+        ],
+        "rows": [
+          [
+            "T11",
+            "UC-06 / FR-05/EXT-04",
+            "Create goal; inspect dialog at 100%,125%,150% scaling.",
+            "Valid goal saves; fields scroll; Save/Cancel remain accessible.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T12",
+            "UC-06 / FR-05",
+            "Active total 90%; attempt new 20% goal; deactivate/reactivate.",
+            "Over-cap operation rejected; valid toggles reflected.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T13",
+            "UC-06 / FR-05",
+            "Allocate INR 1,000 across 60%/30%; test induced SQL failure in isolated copy.",
+            "600/300 shares; 100 returned surplus; SQL failure rolls back batch.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T14",
+            "UC-07 / FR-06",
+            "Create overdue rule in isolated copy; catch up twice; pause rule.",
+            "Dates advance; normal repeat adds no duplicate; paused rule skipped. Failure atomicity remains risk.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T15",
+            "UC-02 / FR-07",
+            "Preview new current-month expense, then edit/backdate it.",
+            "New-entry budget impact agrees; edit/date limitation identified rather than hidden.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T16",
+            "UC-08 / FR-08/EXT-03",
+            "Toggle advice off/on; save fixed-category choices.",
+            "Persisted preference refreshes advice; fixed concentration/spike excluded.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T17",
+            "UC-08 / FR-08",
+            "Refresh selected-month report; save TXT; include empty month.",
+            "Correct monthly totals; file matches displayed text; empty month handled.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T18",
+            "UC-09 / EXT-02",
+            "CSV export then import controlled ordinary and malformed rows.",
+            "Valid rows accepted, invalid counted; quoted/multiline limitation assessed.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T19",
+            "UC-09 / EXT-02",
+            "Backup/restore only in disposable database copy; restore twice.",
+            "Snapshot produced; duplicate/omission risks documented; no exact recovery claim.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ],
+          [
+            "T20",
+            "UC-08 / EXT-01",
+            "Change income/expense/goals; return repeatedly to Dashboard/Budgets.",
+            "Latest persisted totals/charts/goals/utilization; no duplicate sections.",
+            "Not recorded",
+            "Not Executed",
+            "Pending manual verification"
+          ]
+        ],
+        "widths": [
+          0.06,
+          0.12,
+          0.23,
+          0.28,
+          0.1,
+          0.09,
+          0.12
+        ]
+      }
+    ]
+  },
+  {
+    "title": "5.3 Test Reports by Peers",
+    "section": "5.3 Peer review record",
+    "level": 2,
+    "items": [
+      {
+        "kind": "p",
+        "text": "Peer testing record"
+      },
+      {
+        "kind": "table",
+        "caption": "Peer tester details",
+        "headers": [
+          "Field",
+          "Entry"
+        ],
+        "rows": [
+          [
+            "Tester name / roll number",
+            ""
+          ],
+          [
+            "Date / application revision",
+            ""
+          ],
+          [
+            "Operating system / Java version",
+            ""
+          ],
+          [
+            "Use cases / test case IDs",
+            ""
+          ]
+        ],
+        "widths": [
+          0.4,
+          0.6
+        ]
+      },
+      {
+        "kind": "table",
+        "caption": "Peer observations",
+        "headers": [
+          "Test ID / scenario",
+          "Observed result",
+          "Defect / severity",
+          "Retest status"
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ],
+        "widths": [
+          0.25,
+          0.3,
+          0.25,
+          0.2
+        ]
+      },
+      {
+        "kind": "table",
+        "caption": "Peer acceptance",
+        "headers": [
+          "Field",
+          "Entry"
+        ],
+        "rows": [
+          [
+            "Overall observations",
+            ""
+          ],
+          [
+            "Acceptance recommendation",
+            ""
+          ],
+          [
+            "Tester signature / date",
+            ""
+          ],
+          [
+            "Evaluator acknowledgement",
+            ""
+          ]
+        ],
+        "widths": [
+          0.4,
+          0.6
+        ]
+      }
+    ]
+  }
+]

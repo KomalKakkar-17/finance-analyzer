@@ -52,6 +52,10 @@ public class DashboardController {
     private final HeuristicEngine heuristicEngine;
     private final User currentUser;
     private final VBox insightsContainer = new VBox();
+    private VBox content;
+    private HBox header;
+    private Label monthBadge;
+    private ScrollPane view;
 
     public DashboardController(TransactionDao transactionDao,
                                BudgetDao budgetDao,
@@ -68,44 +72,39 @@ public class DashboardController {
     }
 
     public Parent getView() {
+        if (view != null) return view;
         YearMonth currentMonth = YearMonth.now();
-        Long userId = currentUser.getId();
 
-        VBox content = new VBox(20);
+        content = new VBox(20);
         content.setPadding(new Insets(24));
         content.getStyleClass().add("content-area");
 
         // 1. Dashboard Header
-        HBox header = new HBox(16);
+        header = new HBox(16);
         header.setAlignment(Pos.CENTER_LEFT);
         Label title = new Label("Financial Dashboard");
         title.getStyleClass().add("card-title");
         title.setStyle("-fx-font-size: 22px; -fx-font-weight: 800;");
 
-        Label monthBadge = new Label(DateUtil.formatDisplayMonth(currentMonth));
+        monthBadge = new Label(DateUtil.formatDisplayMonth(currentMonth));
         monthBadge.getStyleClass().addAll("badge", "badge-active");
         header.getChildren().addAll(title, monthBadge);
 
-        // 2. Recommendations Banner (if triggered and enabled)
+        view = new ScrollPane(content);
+        view.setFitToWidth(true);
+        view.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        refreshView();
+        return view;
+    }
+
+    public void refreshView() {
+        if (content == null) return;
+        YearMonth currentMonth = YearMonth.now();
+        monthBadge.setText(DateUtil.formatDisplayMonth(currentMonth));
         refreshInsights();
-
-        // 3. Four KPI Stat Cards
-        HBox kpiRow = createKpiRow(currentMonth);
-
-        // 4. Charts Row (PieChart & BarChart)
-        HBox chartsRow = createChartsRow(currentMonth);
-
-        // 5. Goals & Recent Activity Row
-        HBox bottomRow = createBottomRow(currentMonth);
-
-        content.getChildren().addAll(header);
-        content.getChildren().add(insightsContainer);
-        content.getChildren().addAll(kpiRow, chartsRow, bottomRow);
-
-        ScrollPane scrollPane = new ScrollPane(content);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
-        return scrollPane;
+        // Replace data sections rather than appending duplicate nodes or rebuilding navigation.
+        content.getChildren().setAll(header, insightsContainer,
+                createKpiRow(currentMonth), createChartsRow(currentMonth), createBottomRow(currentMonth));
     }
 
     public void refreshInsights() {

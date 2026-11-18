@@ -1,0 +1,9 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.3", penwidth=1.4, nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#33465A", style="rounded,filled", fillcolor="#E7F3E8", margin="0.18,0.12", penwidth=1.4];
+edge [fontname="Arial", fontsize=11, color="#33465A", arrowsize=0.8, penwidth=1.4];
+
+ start [shape=circle,label="",width=.18,fillcolor="#247B75"];input [label="Enter title, target, deadline, ratio"];valid [fillcolor="#FFF0DE",color="#A36A26",shape=diamond,label="Valid fields and\nactive ratio <=100%?"];reject [label="Show validation / ratio error"];save [label="goalDao.save(goal)"];deposit [label="Enter positive deposit"];shares [label="Read active goals\nCalculate rounded ratio shares"];commit [label="Batch saved_paise updates\nCommit transaction"];done [label="Display allocation result\nRefresh goals table"];end [fillcolor="#247B75",shape=doublecircle,label="",width=.2];
+ start->input->valid;valid->reject [label="no"];reject->input;valid->save [label="yes"];save->deposit->shares->commit;commit->sqlok;sqlok->done [label="yes"];sqlok->failed [label="no"];failed->deposit;done->end;sqlok [shape=diamond,label="SQL succeeds?",fillcolor="#FFF0DE",color="#A36A26"];failed [label="Rollback and display error"];
+
+}

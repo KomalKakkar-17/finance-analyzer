@@ -1,0 +1,9 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ a [label="dashboard:DashboardController"];b [label="engine:HeuristicEngine"];c [label="categories:CategoryService"];d [label="ctx:AnalysisContext"];e [label="rule:Recommendation\n(one of five implementations)"];
+ a->b [label="1: generateRecommendations(user, ctx)"];b->c [label="1.1: findExpenseCategories(userId)\n1.2: findFixedCategoryIds(userId)"];b->d [label="1.3: withFixedCategoryData(...)"];b->e [label="1.4*: evaluate(ctx)"];e->b [label="Optional<String>",style=dashed];b->a [label="1.5: List<String>",style=dashed];
+
+}

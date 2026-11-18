@@ -1,0 +1,2470 @@
+{
+  "src/main/java/com/financeanalyzer/app/Launcher.java": [
+    {
+      "method": "main",
+      "line": 8
+    }
+  ],
+  "src/main/java/com/financeanalyzer/app/MainApp.java": [
+    {
+      "method": "init",
+      "line": 69
+    },
+    {
+      "method": "start",
+      "line": 116
+    },
+    {
+      "method": "showLoginScene",
+      "line": 131
+    },
+    {
+      "method": "onLoginSuccess",
+      "line": 142
+    },
+    {
+      "method": "showMainShell",
+      "line": 150
+    },
+    {
+      "method": "stop",
+      "line": 283
+    },
+    {
+      "method": "main",
+      "line": 291
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/AuditLogDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/BudgetDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/CategoryDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/Dao.java": [],
+  "src/main/java/com/financeanalyzer/dao/FixedCategoryDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/RecurringTransactionDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/SavingsGoalDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/TransactionDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/UserDao.java": [],
+  "src/main/java/com/financeanalyzer/dao/UserFixedCategoryDao.java": [],
+  "src/main/java/com/financeanalyzer/exception/AllocationRatioException.java": [
+    {
+      "method": "AllocationRatioException",
+      "line": 9
+    },
+    {
+      "method": "getTotalRatio",
+      "line": 14
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/AppException.java": [
+    {
+      "method": "AppException",
+      "line": 8
+    },
+    {
+      "method": "AppException",
+      "line": 12
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/AuthenticationException.java": [
+    {
+      "method": "AuthenticationException",
+      "line": 7
+    },
+    {
+      "method": "AuthenticationException",
+      "line": 11
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/BudgetExceededException.java": [
+    {
+      "method": "BudgetExceededException",
+      "line": 14
+    },
+    {
+      "method": "getCategoryName",
+      "line": 23
+    },
+    {
+      "method": "getLimit",
+      "line": 27
+    },
+    {
+      "method": "getCurrentSpent",
+      "line": 31
+    },
+    {
+      "method": "getAttemptAmount",
+      "line": 35
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/DataAccessException.java": [
+    {
+      "method": "DataAccessException",
+      "line": 8
+    },
+    {
+      "method": "DataAccessException",
+      "line": 12
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/InsufficientDataException.java": [
+    {
+      "method": "InsufficientDataException",
+      "line": 7
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/InvalidFixedCategoryException.java": [
+    {
+      "method": "InvalidFixedCategoryException",
+      "line": 7
+    }
+  ],
+  "src/main/java/com/financeanalyzer/exception/InvalidTransactionException.java": [
+    {
+      "method": "InvalidTransactionException",
+      "line": 7
+    },
+    {
+      "method": "InvalidTransactionException",
+      "line": 11
+    }
+  ],
+  "src/main/java/com/financeanalyzer/io/BackupManager.java": [
+    {
+      "method": "BackupManager",
+      "line": 28
+    },
+    {
+      "method": "createBackup",
+      "line": 44
+    },
+    {
+      "method": "restoreBackup",
+      "line": 77
+    }
+  ],
+  "src/main/java/com/financeanalyzer/io/CsvExporter.java": [
+    {
+      "method": "exportTransactions",
+      "line": 34
+    },
+    {
+      "method": "escapeCsv",
+      "line": 72
+    }
+  ],
+  "src/main/java/com/financeanalyzer/io/CsvImporter.java": [
+    {
+      "method": "CsvImporter",
+      "line": 33
+    },
+    {
+      "method": "importTransactions",
+      "line": 47
+    },
+    {
+      "method": "processLine",
+      "line": 85
+    },
+    {
+      "method": "parseCsvLine",
+      "line": 140
+    },
+    {
+      "method": "SkippedLineReport",
+      "line": 164
+    },
+    {
+      "method": "ImportSummary",
+      "line": 169
+    },
+    {
+      "method": "getSkippedCount",
+      "line": 170
+    }
+  ],
+  "src/main/java/com/financeanalyzer/io/ReportWriter.java": [
+    {
+      "method": "writeReport",
+      "line": 29
+    }
+  ],
+  "src/main/java/com/financeanalyzer/io/UserDataSnapshot.java": [
+    {
+      "method": "UserDataSnapshot",
+      "line": 26
+    },
+    {
+      "method": "getUser",
+      "line": 41
+    },
+    {
+      "method": "getCustomCategories",
+      "line": 43
+    },
+    {
+      "method": "getTransactions",
+      "line": 44
+    },
+    {
+      "method": "getBudgets",
+      "line": 45
+    },
+    {
+      "method": "getSavingsGoals",
+      "line": 46
+    },
+    {
+      "method": "getRecurringRules",
+      "line": 47
+    },
+    {
+      "method": "getSnapshotTimestamp",
+      "line": 48
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/AnalyticsDTO.java": [
+    {
+      "method": "AnalyticsDTO",
+      "line": 29
+    },
+    {
+      "method": "AnalyticsDTO",
+      "line": 42
+    },
+    {
+      "method": "getCategorySpent",
+      "line": 58
+    },
+    {
+      "method": "setCategorySpent",
+      "line": 62
+    },
+    {
+      "method": "getBudgetLimit",
+      "line": 66
+    },
+    {
+      "method": "setBudgetLimit",
+      "line": 70
+    },
+    {
+      "method": "getRemainingBudget",
+      "line": 74
+    },
+    {
+      "method": "setRemainingBudget",
+      "line": 78
+    },
+    {
+      "method": "getProjectedUtilisationPercent",
+      "line": 82
+    },
+    {
+      "method": "setProjectedUtilisationPercent",
+      "line": 86
+    },
+    {
+      "method": "getAlertLevel",
+      "line": 90
+    },
+    {
+      "method": "setAlertLevel",
+      "line": 94
+    },
+    {
+      "method": "isHasBudget",
+      "line": 98
+    },
+    {
+      "method": "setHasBudget",
+      "line": 102
+    },
+    {
+      "method": "getProposedAmount",
+      "line": 106
+    },
+    {
+      "method": "setProposedAmount",
+      "line": 110
+    },
+    {
+      "method": "getMonthlySavingsBefore",
+      "line": 114
+    },
+    {
+      "method": "setMonthlySavingsBefore",
+      "line": 118
+    },
+    {
+      "method": "getMonthlySavingsAfter",
+      "line": 122
+    },
+    {
+      "method": "setMonthlySavingsAfter",
+      "line": 126
+    },
+    {
+      "method": "getGoalImpacts",
+      "line": 130
+    },
+    {
+      "method": "setGoalImpacts",
+      "line": 134
+    },
+    {
+      "method": "GoalImpact",
+      "line": 151
+    },
+    {
+      "method": "getGoalTitle",
+      "line": 161
+    },
+    {
+      "method": "getTargetAmount",
+      "line": 165
+    },
+    {
+      "method": "getCurrentSaved",
+      "line": 169
+    },
+    {
+      "method": "getAllocationRatio",
+      "line": 173
+    },
+    {
+      "method": "getMonthlyContributionReduction",
+      "line": 177
+    },
+    {
+      "method": "getMessage",
+      "line": 181
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/AuditLog.java": [
+    {
+      "method": "AuditLog",
+      "line": 18
+    },
+    {
+      "method": "AuditLog",
+      "line": 22
+    },
+    {
+      "method": "AuditLog",
+      "line": 30
+    },
+    {
+      "method": "getId",
+      "line": 34
+    },
+    {
+      "method": "setId",
+      "line": 38
+    },
+    {
+      "method": "getRuleId",
+      "line": 42
+    },
+    {
+      "method": "setRuleId",
+      "line": 46
+    },
+    {
+      "method": "getRunAt",
+      "line": 50
+    },
+    {
+      "method": "setRunAt",
+      "line": 54
+    },
+    {
+      "method": "getResult",
+      "line": 58
+    },
+    {
+      "method": "setResult",
+      "line": 62
+    },
+    {
+      "method": "getMessage",
+      "line": 66
+    },
+    {
+      "method": "setMessage",
+      "line": 70
+    },
+    {
+      "method": "toString",
+      "line": 76
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/Budget.java": [
+    {
+      "method": "Budget",
+      "line": 21
+    },
+    {
+      "method": "Budget",
+      "line": 24
+    },
+    {
+      "method": "Budget",
+      "line": 33
+    },
+    {
+      "method": "getId",
+      "line": 37
+    },
+    {
+      "method": "setId",
+      "line": 41
+    },
+    {
+      "method": "getUserId",
+      "line": 45
+    },
+    {
+      "method": "setUserId",
+      "line": 49
+    },
+    {
+      "method": "getCategoryId",
+      "line": 53
+    },
+    {
+      "method": "setCategoryId",
+      "line": 57
+    },
+    {
+      "method": "getCategoryName",
+      "line": 61
+    },
+    {
+      "method": "setCategoryName",
+      "line": 65
+    },
+    {
+      "method": "getYearMonth",
+      "line": 69
+    },
+    {
+      "method": "setYearMonth",
+      "line": 73
+    },
+    {
+      "method": "getLimit",
+      "line": 77
+    },
+    {
+      "method": "setLimit",
+      "line": 81
+    },
+    {
+      "method": "equals",
+      "line": 87
+    },
+    {
+      "method": "hashCode",
+      "line": 97
+    },
+    {
+      "method": "toString",
+      "line": 102
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/Category.java": [
+    {
+      "method": "Category",
+      "line": 21
+    },
+    {
+      "method": "Category",
+      "line": 24
+    },
+    {
+      "method": "Category",
+      "line": 32
+    },
+    {
+      "method": "getId",
+      "line": 36
+    },
+    {
+      "method": "setId",
+      "line": 40
+    },
+    {
+      "method": "getUserId",
+      "line": 44
+    },
+    {
+      "method": "setUserId",
+      "line": 48
+    },
+    {
+      "method": "getName",
+      "line": 52
+    },
+    {
+      "method": "setName",
+      "line": 56
+    },
+    {
+      "method": "getType",
+      "line": 60
+    },
+    {
+      "method": "setType",
+      "line": 64
+    },
+    {
+      "method": "isSystem",
+      "line": 68
+    },
+    {
+      "method": "setSystem",
+      "line": 72
+    },
+    {
+      "method": "equals",
+      "line": 78
+    },
+    {
+      "method": "hashCode",
+      "line": 87
+    },
+    {
+      "method": "toString",
+      "line": 92
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/Expense.java": [
+    {
+      "method": "Expense",
+      "line": 16
+    },
+    {
+      "method": "Expense",
+      "line": 20
+    },
+    {
+      "method": "Expense",
+      "line": 26
+    },
+    {
+      "method": "getType",
+      "line": 32
+    },
+    {
+      "method": "getSignedAmount",
+      "line": 42
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/Income.java": [
+    {
+      "method": "Income",
+      "line": 16
+    },
+    {
+      "method": "Income",
+      "line": 20
+    },
+    {
+      "method": "Income",
+      "line": 26
+    },
+    {
+      "method": "getType",
+      "line": 32
+    },
+    {
+      "method": "getSignedAmount",
+      "line": 42
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/RecurringTransaction.java": [
+    {
+      "method": "RecurringTransaction",
+      "line": 30
+    },
+    {
+      "method": "RecurringTransaction",
+      "line": 34
+    },
+    {
+      "method": "getId",
+      "line": 51
+    },
+    {
+      "method": "setId",
+      "line": 55
+    },
+    {
+      "method": "getUserId",
+      "line": 59
+    },
+    {
+      "method": "setUserId",
+      "line": 63
+    },
+    {
+      "method": "getCategoryId",
+      "line": 67
+    },
+    {
+      "method": "setCategoryId",
+      "line": 71
+    },
+    {
+      "method": "getCategoryName",
+      "line": 75
+    },
+    {
+      "method": "setCategoryName",
+      "line": 79
+    },
+    {
+      "method": "getType",
+      "line": 83
+    },
+    {
+      "method": "setType",
+      "line": 87
+    },
+    {
+      "method": "getAmount",
+      "line": 91
+    },
+    {
+      "method": "setAmount",
+      "line": 95
+    },
+    {
+      "method": "getFrequency",
+      "line": 99
+    },
+    {
+      "method": "setFrequency",
+      "line": 103
+    },
+    {
+      "method": "getStartDate",
+      "line": 107
+    },
+    {
+      "method": "setStartDate",
+      "line": 111
+    },
+    {
+      "method": "getNextDueDate",
+      "line": 115
+    },
+    {
+      "method": "setNextDueDate",
+      "line": 119
+    },
+    {
+      "method": "getEndDate",
+      "line": 123
+    },
+    {
+      "method": "setEndDate",
+      "line": 127
+    },
+    {
+      "method": "getStatus",
+      "line": 131
+    },
+    {
+      "method": "setStatus",
+      "line": 135
+    },
+    {
+      "method": "equals",
+      "line": 141
+    },
+    {
+      "method": "hashCode",
+      "line": 150
+    },
+    {
+      "method": "toString",
+      "line": 155
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/SavingsGoal.java": [
+    {
+      "method": "SavingsGoal",
+      "line": 24
+    },
+    {
+      "method": "SavingsGoal",
+      "line": 29
+    },
+    {
+      "method": "SavingsGoal",
+      "line": 41
+    },
+    {
+      "method": "getId",
+      "line": 45
+    },
+    {
+      "method": "setId",
+      "line": 49
+    },
+    {
+      "method": "getUserId",
+      "line": 53
+    },
+    {
+      "method": "setUserId",
+      "line": 57
+    },
+    {
+      "method": "getTitle",
+      "line": 61
+    },
+    {
+      "method": "setTitle",
+      "line": 65
+    },
+    {
+      "method": "getTargetAmount",
+      "line": 69
+    },
+    {
+      "method": "setTargetAmount",
+      "line": 73
+    },
+    {
+      "method": "getSavedAmount",
+      "line": 77
+    },
+    {
+      "method": "setSavedAmount",
+      "line": 81
+    },
+    {
+      "method": "getDeadline",
+      "line": 85
+    },
+    {
+      "method": "setDeadline",
+      "line": 89
+    },
+    {
+      "method": "getAllocationRatio",
+      "line": 93
+    },
+    {
+      "method": "setAllocationRatio",
+      "line": 97
+    },
+    {
+      "method": "isActive",
+      "line": 101
+    },
+    {
+      "method": "setActive",
+      "line": 105
+    },
+    {
+      "method": "getRemainingAmount",
+      "line": 115
+    },
+    {
+      "method": "getProgressPercentage",
+      "line": 126
+    },
+    {
+      "method": "equals",
+      "line": 139
+    },
+    {
+      "method": "hashCode",
+      "line": 148
+    },
+    {
+      "method": "toString",
+      "line": 153
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/Transaction.java": [
+    {
+      "method": "Transaction",
+      "line": 33
+    },
+    {
+      "method": "Transaction",
+      "line": 40
+    },
+    {
+      "method": "getType",
+      "line": 60
+    },
+    {
+      "method": "getSignedAmount",
+      "line": 69
+    },
+    {
+      "method": "getId",
+      "line": 72
+    },
+    {
+      "method": "setId",
+      "line": 76
+    },
+    {
+      "method": "getUserId",
+      "line": 80
+    },
+    {
+      "method": "setUserId",
+      "line": 84
+    },
+    {
+      "method": "getCategoryId",
+      "line": 88
+    },
+    {
+      "method": "setCategoryId",
+      "line": 92
+    },
+    {
+      "method": "getCategoryName",
+      "line": 96
+    },
+    {
+      "method": "setCategoryName",
+      "line": 100
+    },
+    {
+      "method": "getAmount",
+      "line": 104
+    },
+    {
+      "method": "setAmount",
+      "line": 108
+    },
+    {
+      "method": "getDate",
+      "line": 112
+    },
+    {
+      "method": "setDate",
+      "line": 116
+    },
+    {
+      "method": "getPaymentMode",
+      "line": 120
+    },
+    {
+      "method": "setPaymentMode",
+      "line": 124
+    },
+    {
+      "method": "getNotes",
+      "line": 128
+    },
+    {
+      "method": "setNotes",
+      "line": 132
+    },
+    {
+      "method": "getRecurringRuleId",
+      "line": 136
+    },
+    {
+      "method": "setRecurringRuleId",
+      "line": 140
+    },
+    {
+      "method": "getCreatedAt",
+      "line": 144
+    },
+    {
+      "method": "setCreatedAt",
+      "line": 148
+    },
+    {
+      "method": "equals",
+      "line": 154
+    },
+    {
+      "method": "hashCode",
+      "line": 165
+    },
+    {
+      "method": "toString",
+      "line": 170
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/User.java": [
+    {
+      "method": "User",
+      "line": 20
+    },
+    {
+      "method": "User",
+      "line": 25
+    },
+    {
+      "method": "User",
+      "line": 33
+    },
+    {
+      "method": "getId",
+      "line": 37
+    },
+    {
+      "method": "setId",
+      "line": 41
+    },
+    {
+      "method": "getUsername",
+      "line": 45
+    },
+    {
+      "method": "setUsername",
+      "line": 49
+    },
+    {
+      "method": "getPasswordHash",
+      "line": 53
+    },
+    {
+      "method": "setPasswordHash",
+      "line": 57
+    },
+    {
+      "method": "isRecommendationsEnabled",
+      "line": 61
+    },
+    {
+      "method": "setRecommendationsEnabled",
+      "line": 65
+    },
+    {
+      "method": "getCreatedAt",
+      "line": 69
+    },
+    {
+      "method": "setCreatedAt",
+      "line": 73
+    },
+    {
+      "method": "equals",
+      "line": 79
+    },
+    {
+      "method": "hashCode",
+      "line": 86
+    },
+    {
+      "method": "toString",
+      "line": 91
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/AnalysisContext.java": [
+    {
+      "method": "AnalysisContext",
+      "line": 35
+    },
+    {
+      "method": "AnalysisContext",
+      "line": 47
+    },
+    {
+      "method": "AnalysisContext",
+      "line": 60
+    },
+    {
+      "method": "AnalysisContext",
+      "line": 74
+    },
+    {
+      "method": "AnalysisContext",
+      "line": 105
+    },
+    {
+      "method": "withFixedCategoryData",
+      "line": 132
+    },
+    {
+      "method": "getUserId",
+      "line": 140
+    },
+    {
+      "method": "getCurrentMonth",
+      "line": 142
+    },
+    {
+      "method": "getTotalIncome",
+      "line": 143
+    },
+    {
+      "method": "getTotalExpense",
+      "line": 144
+    },
+    {
+      "method": "getCurrentMonthCategoryExpenses",
+      "line": 145
+    },
+    {
+      "method": "getLastMonthCategoryExpenses",
+      "line": 146
+    },
+    {
+      "method": "getRecentTransactions",
+      "line": 147
+    },
+    {
+      "method": "getFixedCategoryNames",
+      "line": 153
+    },
+    {
+      "method": "getFixedCategoryIds",
+      "line": 154
+    },
+    {
+      "method": "getCurrentMonthCategoryExpensesById",
+      "line": 155
+    },
+    {
+      "method": "getLastMonthCategoryExpensesById",
+      "line": 158
+    },
+    {
+      "method": "getCategoryNamesById",
+      "line": 161
+    },
+    {
+      "method": "isFixed",
+      "line": 162
+    },
+    {
+      "method": "isFixed",
+      "line": 173
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/CategorySpikeRule.java": [
+    {
+      "method": "evaluate",
+      "line": 18
+    },
+    {
+      "method": "recommendationForCategory",
+      "line": 55
+    },
+    {
+      "method": "getRuleName",
+      "line": 76
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/FrequentMicroTransactionsRule.java": [
+    {
+      "method": "evaluate",
+      "line": 20
+    },
+    {
+      "method": "getRuleName",
+      "line": 51
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/HighCategorySpendRule.java": [
+    {
+      "method": "evaluate",
+      "line": 23
+    },
+    {
+      "method": "getRuleName",
+      "line": 72
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/HighExpenseToIncomeRule.java": [
+    {
+      "method": "evaluate",
+      "line": 17
+    },
+    {
+      "method": "getRuleName",
+      "line": 37
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/LowSavingsRateRule.java": [
+    {
+      "method": "evaluate",
+      "line": 17
+    },
+    {
+      "method": "getRuleName",
+      "line": 39
+    }
+  ],
+  "src/main/java/com/financeanalyzer/rules/Recommendation.java": [],
+  "src/main/java/com/financeanalyzer/service/AuthService.java": [
+    {
+      "method": "AuthService",
+      "line": 30
+    },
+    {
+      "method": "register",
+      "line": 44
+    },
+    {
+      "method": "login",
+      "line": 77
+    },
+    {
+      "method": "logout",
+      "line": 106
+    },
+    {
+      "method": "getCurrentUser",
+      "line": 112
+    },
+    {
+      "method": "setCurrentUser",
+      "line": 116
+    },
+    {
+      "method": "isLoggedIn",
+      "line": 120
+    },
+    {
+      "method": "updateRecommendationsPreference",
+      "line": 128
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/BudgetService.java": [
+    {
+      "method": "BudgetService",
+      "line": 35
+    },
+    {
+      "method": "setBudget",
+      "line": 45
+    },
+    {
+      "method": "deleteBudget",
+      "line": 62
+    },
+    {
+      "method": "getBudgetsForMonth",
+      "line": 73
+    },
+    {
+      "method": "getBudgetByCategory",
+      "line": 80
+    },
+    {
+      "method": "calculateUtilisation",
+      "line": 88
+    },
+    {
+      "method": "checkBudgetAlert",
+      "line": 107
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/CategoryService.java": [
+    {
+      "method": "CategoryService",
+      "line": 24
+    },
+    {
+      "method": "findExpenseCategories",
+      "line": 30
+    },
+    {
+      "method": "findFixedCategoryIds",
+      "line": 34
+    },
+    {
+      "method": "setFixed",
+      "line": 38
+    },
+    {
+      "method": "replaceAll",
+      "line": 46
+    },
+    {
+      "method": "validateFixedCategory",
+      "line": 59
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/DefaultInModalAnalyticsService.java": [
+    {
+      "method": "DefaultInModalAnalyticsService",
+      "line": 35
+    },
+    {
+      "method": "calculatePreview",
+      "line": 45
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/GoalService.java": [
+    {
+      "method": "GoalService",
+      "line": 26
+    },
+    {
+      "method": "createGoal",
+      "line": 36
+    },
+    {
+      "method": "updateGoal",
+      "line": 58
+    },
+    {
+      "method": "toggleGoalActive",
+      "line": 89
+    },
+    {
+      "method": "deleteGoal",
+      "line": 106
+    },
+    {
+      "method": "getActiveGoals",
+      "line": 110
+    },
+    {
+      "method": "getAllGoals",
+      "line": 114
+    },
+    {
+      "method": "getTotalActiveRatio",
+      "line": 122
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/HeuristicEngine.java": [
+    {
+      "method": "HeuristicEngine",
+      "line": 25
+    },
+    {
+      "method": "HeuristicEngine",
+      "line": 30
+    },
+    {
+      "method": "HeuristicEngine",
+      "line": 35
+    },
+    {
+      "method": "defaultRules",
+      "line": 40
+    },
+    {
+      "method": "generateRecommendations",
+      "line": 59
+    },
+    {
+      "method": "getRegisteredRules",
+      "line": 96
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/InModalAnalyticsService.java": [],
+  "src/main/java/com/financeanalyzer/service/RatioAllocationService.java": [
+    {
+      "method": "RatioAllocationService",
+      "line": 29
+    },
+    {
+      "method": "allocateDeposit",
+      "line": 43
+    },
+    {
+      "method": "GoalAllocationShare",
+      "line": 108
+    },
+    {
+      "method": "getGoalId",
+      "line": 115
+    },
+    {
+      "method": "getGoalTitle",
+      "line": 117
+    },
+    {
+      "method": "getRatio",
+      "line": 118
+    },
+    {
+      "method": "getAllocatedAmount",
+      "line": 119
+    },
+    {
+      "method": "AllocationResult",
+      "line": 130
+    },
+    {
+      "method": "getTotalDeposit",
+      "line": 138
+    },
+    {
+      "method": "getTotalAllocated",
+      "line": 140
+    },
+    {
+      "method": "getUnallocatedRemainder",
+      "line": 141
+    },
+    {
+      "method": "getShares",
+      "line": 142
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/RecurringScheduler.java": [
+    {
+      "method": "RecurringScheduler",
+      "line": 42
+    },
+    {
+      "method": "setUiRefreshCallback",
+      "line": 59
+    },
+    {
+      "method": "start",
+      "line": 66
+    },
+    {
+      "method": "runCatchUp",
+      "line": 80
+    },
+    {
+      "method": "processRule",
+      "line": 114
+    },
+    {
+      "method": "stop",
+      "line": 168
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/ReportService.java": [
+    {
+      "method": "ReportService",
+      "line": 38
+    },
+    {
+      "method": "generateMonthlyReportText",
+      "line": 58
+    }
+  ],
+  "src/main/java/com/financeanalyzer/service/TransactionService.java": [
+    {
+      "method": "TransactionService",
+      "line": 46
+    },
+    {
+      "method": "addIncome",
+      "line": 55
+    },
+    {
+      "method": "addExpense",
+      "line": 77
+    },
+    {
+      "method": "updateTransaction",
+      "line": 132
+    },
+    {
+      "method": "deleteTransaction",
+      "line": 156
+    },
+    {
+      "method": "findFiltered",
+      "line": 170
+    },
+    {
+      "method": "getAllTransactions",
+      "line": 179
+    },
+    {
+      "method": "getRecentTransactions",
+      "line": 186
+    },
+    {
+      "method": "getCategories",
+      "line": 193
+    },
+    {
+      "method": "addCustomCategory",
+      "line": 200
+    },
+    {
+      "method": "getUniquePaymentModes",
+      "line": 224
+    },
+    {
+      "method": "getCategoryTotals",
+      "line": 238
+    },
+    {
+      "method": "recordActivity",
+      "line": 251
+    },
+    {
+      "method": "getRecentActivityList",
+      "line": 262
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/AlertHelper.java": [
+    {
+      "method": "AlertHelper",
+      "line": 21
+    },
+    {
+      "method": "showError",
+      "line": 25
+    },
+    {
+      "method": "showWarning",
+      "line": 33
+    },
+    {
+      "method": "showInfo",
+      "line": 41
+    },
+    {
+      "method": "showConfirmation",
+      "line": 49
+    },
+    {
+      "method": "showTextInput",
+      "line": 58
+    },
+    {
+      "method": "showToast",
+      "line": 70
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/AppLogger.java": [
+    {
+      "method": "AppLogger",
+      "line": 22
+    },
+    {
+      "method": "initLogger",
+      "line": 26
+    },
+    {
+      "method": "format",
+      "line": 55
+    },
+    {
+      "method": "getLogger",
+      "line": 99
+    },
+    {
+      "method": "shutdown",
+      "line": 106
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/ConfigLoader.java": [
+    {
+      "method": "ConfigLoader",
+      "line": 22
+    },
+    {
+      "method": "loadProperties",
+      "line": 26
+    },
+    {
+      "method": "getProperty",
+      "line": 47
+    },
+    {
+      "method": "getIntProperty",
+      "line": 58
+    },
+    {
+      "method": "getDoubleProperty",
+      "line": 78
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/DateUtil.java": [
+    {
+      "method": "DateUtil",
+      "line": 20
+    },
+    {
+      "method": "toIsoString",
+      "line": 28
+    },
+    {
+      "method": "parseIsoDate",
+      "line": 35
+    },
+    {
+      "method": "toMonthString",
+      "line": 49
+    },
+    {
+      "method": "parseYearMonth",
+      "line": 56
+    },
+    {
+      "method": "formatDisplayDate",
+      "line": 70
+    },
+    {
+      "method": "formatDisplayMonth",
+      "line": 77
+    },
+    {
+      "method": "monthsUntil",
+      "line": 84
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/MoneyUtil.java": [
+    {
+      "method": "MoneyUtil",
+      "line": 20
+    },
+    {
+      "method": "toRupees",
+      "line": 31
+    },
+    {
+      "method": "toPaise",
+      "line": 41
+    },
+    {
+      "method": "formatCurrency",
+      "line": 54
+    },
+    {
+      "method": "formatSignedCurrency",
+      "line": 68
+    },
+    {
+      "method": "sumAmounts",
+      "line": 88
+    },
+    {
+      "method": "sumSignedAmounts",
+      "line": 108
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/Pair.java": [
+    {
+      "method": "Pair",
+      "line": 19
+    },
+    {
+      "method": "of",
+      "line": 24
+    },
+    {
+      "method": "getFirst",
+      "line": 28
+    },
+    {
+      "method": "getSecond",
+      "line": 32
+    },
+    {
+      "method": "equals",
+      "line": 38
+    },
+    {
+      "method": "hashCode",
+      "line": 45
+    },
+    {
+      "method": "toString",
+      "line": 50
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/Result.java": [
+    {
+      "method": "Result",
+      "line": 17
+    },
+    {
+      "method": "success",
+      "line": 23
+    },
+    {
+      "method": "failure",
+      "line": 27
+    },
+    {
+      "method": "isSuccess",
+      "line": 31
+    },
+    {
+      "method": "isFailure",
+      "line": 35
+    },
+    {
+      "method": "getData",
+      "line": 39
+    },
+    {
+      "method": "getErrorMessage",
+      "line": 43
+    }
+  ],
+  "src/main/java/com/financeanalyzer/util/Validators.java": [
+    {
+      "method": "Validators",
+      "line": 13
+    },
+    {
+      "method": "isValidUsername",
+      "line": 21
+    },
+    {
+      "method": "isValidPassword",
+      "line": 31
+    },
+    {
+      "method": "validateExpense",
+      "line": 40
+    },
+    {
+      "method": "validateIncome",
+      "line": 59
+    },
+    {
+      "method": "validateAmount",
+      "line": 73
+    },
+    {
+      "method": "validateBudgetLimit",
+      "line": 88
+    },
+    {
+      "method": "validateSavingsGoal",
+      "line": 97
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/DatabaseManager.java": [
+    {
+      "method": "DatabaseManager",
+      "line": 30
+    },
+    {
+      "method": "initDbUrl",
+      "line": 34
+    },
+    {
+      "method": "getConnection",
+      "line": 54
+    },
+    {
+      "method": "initializeDatabase",
+      "line": 70
+    },
+    {
+      "method": "seedSystemCategories",
+      "line": 216
+    },
+    {
+      "method": "seedDemoDataIfEmpty",
+      "line": 261
+    },
+    {
+      "method": "insertTxnBatch",
+      "line": 412
+    },
+    {
+      "method": "getCategoryId",
+      "line": 425
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcAuditLogDao.java": [
+    {
+      "method": "findById",
+      "line": 24
+    },
+    {
+      "method": "findAll",
+      "line": 42
+    },
+    {
+      "method": "findByRuleId",
+      "line": 67
+    },
+    {
+      "method": "save",
+      "line": 86
+    },
+    {
+      "method": "update",
+      "line": 109
+    },
+    {
+      "method": "deleteById",
+      "line": 114
+    },
+    {
+      "method": "mapRowToAuditLog",
+      "line": 117
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcBudgetDao.java": [
+    {
+      "method": "findById",
+      "line": 27
+    },
+    {
+      "method": "findAll",
+      "line": 50
+    },
+    {
+      "method": "findByCategoryAndMonth",
+      "line": 75
+    },
+    {
+      "method": "findAllForMonth",
+      "line": 100
+    },
+    {
+      "method": "save",
+      "line": 126
+    },
+    {
+      "method": "update",
+      "line": 153
+    },
+    {
+      "method": "deleteById",
+      "line": 168
+    },
+    {
+      "method": "mapRowToBudget",
+      "line": 180
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcCategoryDao.java": [
+    {
+      "method": "findById",
+      "line": 25
+    },
+    {
+      "method": "findAll",
+      "line": 43
+    },
+    {
+      "method": "findCategoriesForUser",
+      "line": 48
+    },
+    {
+      "method": "findByName",
+      "line": 83
+    },
+    {
+      "method": "save",
+      "line": 110
+    },
+    {
+      "method": "update",
+      "line": 137
+    },
+    {
+      "method": "deleteById",
+      "line": 152
+    },
+    {
+      "method": "mapRowToCategory",
+      "line": 165
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcFixedCategoryDao.java": [
+    {
+      "method": "getFixedCategoryNames",
+      "line": 49
+    },
+    {
+      "method": "getFixedCategoryIds",
+      "line": 67
+    },
+    {
+      "method": "addFixedCategory",
+      "line": 85
+    },
+    {
+      "method": "removeFixedCategory",
+      "line": 99
+    },
+    {
+      "method": "isFixed",
+      "line": 113
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcRecurringTransactionDao.java": [
+    {
+      "method": "findById",
+      "line": 30
+    },
+    {
+      "method": "findAll",
+      "line": 54
+    },
+    {
+      "method": "findDueRules",
+      "line": 80
+    },
+    {
+      "method": "save",
+      "line": 105
+    },
+    {
+      "method": "update",
+      "line": 140
+    },
+    {
+      "method": "updateStatus",
+      "line": 170
+    },
+    {
+      "method": "advanceNextDueDate",
+      "line": 185
+    },
+    {
+      "method": "deleteById",
+      "line": 200
+    },
+    {
+      "method": "mapRowToRule",
+      "line": 212
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcSavingsGoalDao.java": [
+    {
+      "method": "findById",
+      "line": 27
+    },
+    {
+      "method": "findAll",
+      "line": 45
+    },
+    {
+      "method": "findActiveGoals",
+      "line": 64
+    },
+    {
+      "method": "save",
+      "line": 83
+    },
+    {
+      "method": "update",
+      "line": 112
+    },
+    {
+      "method": "addFunds",
+      "line": 137
+    },
+    {
+      "method": "updateAllocationRatio",
+      "line": 152
+    },
+    {
+      "method": "updateActiveStatus",
+      "line": 167
+    },
+    {
+      "method": "deleteById",
+      "line": 182
+    },
+    {
+      "method": "mapRowToGoal",
+      "line": 194
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcTransactionDao.java": [
+    {
+      "method": "findById",
+      "line": 31
+    },
+    {
+      "method": "findAll",
+      "line": 55
+    },
+    {
+      "method": "findFiltered",
+      "line": 81
+    },
+    {
+      "method": "save",
+      "line": 147
+    },
+    {
+      "method": "update",
+      "line": 182
+    },
+    {
+      "method": "deleteById",
+      "line": 207
+    },
+    {
+      "method": "getCategorySpendInMonth",
+      "line": 221
+    },
+    {
+      "method": "getTotalExpenseInMonth",
+      "line": 242
+    },
+    {
+      "method": "getTotalIncomeInMonth",
+      "line": 262
+    },
+    {
+      "method": "getCategoryExpenseBreakdown",
+      "line": 282
+    },
+    {
+      "method": "getCategoryExpenseBreakdownById",
+      "line": 312
+    },
+    {
+      "method": "findRecent",
+      "line": 340
+    },
+    {
+      "method": "mapRowToTransaction",
+      "line": 366
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcUserDao.java": [
+    {
+      "method": "findById",
+      "line": 25
+    },
+    {
+      "method": "findByUsername",
+      "line": 43
+    },
+    {
+      "method": "findAll",
+      "line": 62
+    },
+    {
+      "method": "save",
+      "line": 86
+    },
+    {
+      "method": "update",
+      "line": 113
+    },
+    {
+      "method": "updateRecommendationsSetting",
+      "line": 127
+    },
+    {
+      "method": "deleteById",
+      "line": 141
+    },
+    {
+      "method": "mapRowToUser",
+      "line": 152
+    }
+  ],
+  "src/main/java/com/financeanalyzer/dao/jdbc/JdbcUserFixedCategoryDao.java": [
+    {
+      "method": "findFixedCategoryIds",
+      "line": 36
+    },
+    {
+      "method": "setFixed",
+      "line": 54
+    },
+    {
+      "method": "replaceAll",
+      "line": 77
+    },
+    {
+      "method": "initializeDefaultsIfNeeded",
+      "line": 110
+    },
+    {
+      "method": "markInitialized",
+      "line": 170
+    },
+    {
+      "method": "rollback",
+      "line": 177
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/enums/AlertLevel.java": [
+    {
+      "method": "getDisplayName",
+      "line": 23
+    },
+    {
+      "method": "getColorHex",
+      "line": 27
+    },
+    {
+      "method": "fromUtilisation",
+      "line": 38
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/enums/Frequency.java": [
+    {
+      "method": "nextDate",
+      "line": 20
+    }
+  ],
+  "src/main/java/com/financeanalyzer/model/enums/RuleStatus.java": [],
+  "src/main/java/com/financeanalyzer/model/enums/TransactionType.java": [],
+  "src/main/java/com/financeanalyzer/ui/components/SpendPreviewCard.java": [
+    {
+      "method": "SpendPreviewCard",
+      "line": 54
+    },
+    {
+      "method": "getView",
+      "line": 59
+    },
+    {
+      "method": "buildView",
+      "line": 63
+    },
+    {
+      "method": "updatePreview",
+      "line": 108
+    },
+    {
+      "method": "call",
+      "line": 121
+    },
+    {
+      "method": "renderAnalytics",
+      "line": 140
+    },
+    {
+      "method": "shutdown",
+      "line": 194
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/BudgetsController.java": [
+    {
+      "method": "BudgetsController",
+      "line": 59
+    },
+    {
+      "method": "getView",
+      "line": 72
+    },
+    {
+      "method": "createSummaryCard",
+      "line": 135
+    },
+    {
+      "method": "createTableView",
+      "line": 170
+    },
+    {
+      "method": "updateItem",
+      "line": 214
+    },
+    {
+      "method": "updateItem",
+      "line": 246
+    },
+    {
+      "method": "refreshView",
+      "line": 292
+    },
+    {
+      "method": "handleEditSelected",
+      "line": 333
+    },
+    {
+      "method": "handleDeleteSelected",
+      "line": 342
+    },
+    {
+      "method": "handleAddOrEditBudget",
+      "line": 356
+    },
+    {
+      "method": "BudgetItemViewModel",
+      "line": 441
+    },
+    {
+      "method": "getBudgetId",
+      "line": 454
+    },
+    {
+      "method": "getCategoryId",
+      "line": 456
+    },
+    {
+      "method": "getCategoryName",
+      "line": 457
+    },
+    {
+      "method": "getLimit",
+      "line": 458
+    },
+    {
+      "method": "getSpent",
+      "line": 459
+    },
+    {
+      "method": "getRemaining",
+      "line": 460
+    },
+    {
+      "method": "getUtilisation",
+      "line": 461
+    },
+    {
+      "method": "getAlertLevel",
+      "line": 462
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/DashboardController.java": [
+    {
+      "method": "DashboardController",
+      "line": 59
+    },
+    {
+      "method": "getView",
+      "line": 73
+    },
+    {
+      "method": "refreshView",
+      "line": 99
+    },
+    {
+      "method": "refreshInsights",
+      "line": 109
+    },
+    {
+      "method": "createRecommendationsBanner",
+      "line": 117
+    },
+    {
+      "method": "createKpiRow",
+      "line": 153
+    },
+    {
+      "method": "buildStatCard",
+      "line": 178
+    },
+    {
+      "method": "createChartsRow",
+      "line": 193
+    },
+    {
+      "method": "createBottomRow",
+      "line": 253
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/GoalsController.java": [
+    {
+      "method": "GoalsController",
+      "line": 51
+    },
+    {
+      "method": "getView",
+      "line": 61
+    },
+    {
+      "method": "createRatioTrackerCard",
+      "line": 100
+    },
+    {
+      "method": "createTableView",
+      "line": 126
+    },
+    {
+      "method": "updateItem",
+      "line": 137
+    },
+    {
+      "method": "updateItem",
+      "line": 185
+    },
+    {
+      "method": "refreshView",
+      "line": 244
+    },
+    {
+      "method": "handleToggleActive",
+      "line": 264
+    },
+    {
+      "method": "handleEditSelected",
+      "line": 276
+    },
+    {
+      "method": "handleDeleteSelected",
+      "line": 285
+    },
+    {
+      "method": "handleAddOrEditGoal",
+      "line": 296
+    },
+    {
+      "method": "handleDepositModal",
+      "line": 398
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/LoginController.java": [
+    {
+      "method": "LoginController",
+      "line": 40
+    },
+    {
+      "method": "getView",
+      "line": 50
+    },
+    {
+      "method": "toggleMode",
+      "line": 154
+    },
+    {
+      "method": "handleAction",
+      "line": 168
+    },
+    {
+      "method": "showError",
+      "line": 208
+    },
+    {
+      "method": "clearErrors",
+      "line": 217
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/MainShellController.java": [
+    {
+      "method": "setFinancialRefreshHandlers",
+      "line": 50
+    },
+    {
+      "method": "MainShellController",
+      "line": 55
+    },
+    {
+      "method": "setViews",
+      "line": 62
+    },
+    {
+      "method": "getView",
+      "line": 72
+    },
+    {
+      "method": "createTopBar",
+      "line": 97
+    },
+    {
+      "method": "createSidebar",
+      "line": 132
+    },
+    {
+      "method": "createNavButton",
+      "line": 155
+    },
+    {
+      "method": "showView",
+      "line": 168
+    },
+    {
+      "method": "toggleTheme",
+      "line": 184
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/RecurringController.java": [
+    {
+      "method": "RecurringController",
+      "line": 51
+    },
+    {
+      "method": "getView",
+      "line": 63
+    },
+    {
+      "method": "createTableView",
+      "line": 107
+    },
+    {
+      "method": "updateItem",
+      "line": 118
+    },
+    {
+      "method": "updateItem",
+      "line": 143
+    },
+    {
+      "method": "updateItem",
+      "line": 169
+    },
+    {
+      "method": "refreshTable",
+      "line": 201
+    },
+    {
+      "method": "handleTogglePauseResume",
+      "line": 206
+    },
+    {
+      "method": "handleDeleteRule",
+      "line": 226
+    },
+    {
+      "method": "handleRunCatchUp",
+      "line": 248
+    },
+    {
+      "method": "handleAddRule",
+      "line": 254
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/ReportsSettingsController.java": [
+    {
+      "method": "ReportsSettingsController",
+      "line": 60
+    },
+    {
+      "method": "setFileOperationHandlers",
+      "line": 72
+    },
+    {
+      "method": "setDashboardInsightsRefreshHandler",
+      "line": 80
+    },
+    {
+      "method": "getView",
+      "line": 84
+    },
+    {
+      "method": "createPreferencesCard",
+      "line": 110
+    },
+    {
+      "method": "createFixedCategoriesCard",
+      "line": 168
+    },
+    {
+      "method": "updateItem",
+      "line": 195
+    },
+    {
+      "method": "createReportCard",
+      "line": 232
+    },
+    {
+      "method": "generateReport",
+      "line": 290
+    },
+    {
+      "method": "handleSaveReportAsText",
+      "line": 295
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/TransactionDialogController.java": [
+    {
+      "method": "TransactionDialogController",
+      "line": 59
+    },
+    {
+      "method": "setSpendPreviewCard",
+      "line": 65
+    },
+    {
+      "method": "showAndWait",
+      "line": 76
+    },
+    {
+      "method": "refreshCategories",
+      "line": 229
+    },
+    {
+      "method": "triggerPreviewUpdate",
+      "line": 246
+    },
+    {
+      "method": "handleAddCustomCategory",
+      "line": 263
+    },
+    {
+      "method": "handleSave",
+      "line": 277
+    },
+    {
+      "method": "showError",
+      "line": 339
+    },
+    {
+      "method": "clearError",
+      "line": 348
+    }
+  ],
+  "src/main/java/com/financeanalyzer/ui/controllers/TransactionsController.java": [
+    {
+      "method": "TransactionsController",
+      "line": 63
+    },
+    {
+      "method": "getView",
+      "line": 75
+    },
+    {
+      "method": "createFilterBar",
+      "line": 124
+    },
+    {
+      "method": "populateCategoryFilter",
+      "line": 196
+    },
+    {
+      "method": "updateItem",
+      "line": 205
+    },
+    {
+      "method": "updateItem",
+      "line": 212
+    },
+    {
+      "method": "createTableView",
+      "line": 218
+    },
+    {
+      "method": "updateItem",
+      "line": 234
+    },
+    {
+      "method": "updateItem",
+      "line": 260
+    },
+    {
+      "method": "refreshTable",
+      "line": 316
+    },
+    {
+      "method": "applyFilters",
+      "line": 320
+    },
+    {
+      "method": "resetFilters",
+      "line": 338
+    },
+    {
+      "method": "handleAddTransaction",
+      "line": 349
+    },
+    {
+      "method": "handleEditSelected",
+      "line": 361
+    },
+    {
+      "method": "handleDeleteSelected",
+      "line": 379
+    },
+    {
+      "method": "handleAddCategory",
+      "line": 404
+    },
+    {
+      "method": "parseBigDecimal",
+      "line": 461
+    }
+  ]
+}

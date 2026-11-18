@@ -1,0 +1,16 @@
+@startuml
+hide footbox
+participant "TransactionDialog" as p0
+participant "TransactionService" as p1
+participant "JdbcCategoryDao" as p2
+participant "JDBC / SQLite" as p3
+p0 -> p1: addExpense(userId, categoryId, amount, date, ...)
+p1 -> p2: findById(categoryId)
+p2 --> p1: Optional<Category>
+p1 -> p1: validateExpense(...)
+p1 -> p3: getConnection(); setAutoCommit(false)
+p1 -> p3: INSERT transactions; generated key
+p1 -> p3: commit()
+p1 --> p0: Expense with generated id
+note over p0: TransactionService inserts expenses directly; the failure branch rolls back.
+@enduml

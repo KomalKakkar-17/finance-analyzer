@@ -1,0 +1,92 @@
+[
+  {
+    "id": "01_usecase_track",
+    "title": "Tracking and account use cases",
+    "type": "Use case"
+  },
+  {
+    "id": "02_usecase_plan",
+    "title": "Planning and analysis use cases",
+    "type": "Use case"
+  },
+  {
+    "id": "03_activity_expense",
+    "title": "Record an expense",
+    "type": "Activity"
+  },
+  {
+    "id": "04_activity_savings",
+    "title": "Create and fund a savings goal",
+    "type": "Activity"
+  },
+  {
+    "id": "05_swimlane_expense",
+    "title": "Expense responsibilities across layers",
+    "type": "Swimlane"
+  },
+  {
+    "id": "06_dfd_context",
+    "title": "DFD Level 0",
+    "type": "DFD"
+  },
+  {
+    "id": "07_dfd_level1",
+    "title": "DFD Level 1",
+    "type": "DFD"
+  },
+  {
+    "id": "08_dfd_level2",
+    "title": "DFD Level 2 for process 2.0",
+    "type": "DFD"
+  },
+  {
+    "id": "09_class_transactions",
+    "title": "Transaction management class diagram",
+    "type": "Class"
+  },
+  {
+    "id": "10_class_planning",
+    "title": "Budget and savings class diagram",
+    "type": "Class"
+  },
+  {
+    "id": "11_sequence_expense",
+    "title": "Adding an expense transaction",
+    "type": "Sequence"
+  },
+  {
+    "id": "12_sequence_goal",
+    "title": "Creating a savings goal",
+    "type": "Sequence"
+  },
+  {
+    "id": "13_communication_transaction",
+    "title": "Transaction persistence communication",
+    "type": "Communication"
+  },
+  {
+    "id": "14_communication_advice",
+    "title": "Recommendation generation communication",
+    "type": "Communication"
+  },
+  {
+    "id": "15_state_transaction",
+    "title": "Transaction dialog workflow states",
+    "type": "State chart"
+  },
+  {
+    "id": "16_state_goal",
+    "title": "Savings goal persisted active flag",
+    "type": "State chart"
+  },
+  {
+    "id": "17_component",
+    "title": "Application component structure",
+    "type": "Component"
+  },
+  {
+    "id": "18_deployment",
+    "title": "Local desktop deployment",
+    "type": "Deployment"
+  }
+]

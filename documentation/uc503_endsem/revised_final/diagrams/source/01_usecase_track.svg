@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760pt" height="515pt" viewBox="0.00 0.00 760.00 515.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 493.6)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-21.6,21.6 -21.6,-493.6 738.79,-493.6 738.79,21.6 -21.6,21.6" />
+<g id="clust1" class="cluster">
+<title>cluster_app</title>
+<path fill="#f7fafe" stroke="#afc7df" stroke-width="1.4" d="M146.39,-8C146.39,-8 697.19,-8 697.19,-8 703.19,-8 709.19,-14 709.19,-20 709.19,-20 709.19,-452 709.19,-452 709.19,-458 703.19,-464 697.19,-464 697.19,-464 146.39,-464 146.39,-464 140.39,-464 134.39,-458 134.39,-452 134.39,-452 134.39,-20 134.39,-20 134.39,-14 140.39,-8 146.39,-8" />
+<text xml:space="preserve" text-anchor="middle" x="421.79" y="-445.6" font-family="Arial" font-size="16.00">Enhanced Personal Finance Analyzer</text>
+</g>
+
+<g id="node1" class="node">
+<title>user</title>
+<circle cx="50.695" cy="-260.2" r="11" fill="#DDF3F0" stroke="#247B75" stroke-width="2" /><line x1="50.695" y1="-249.2" x2="50.695" y2="-200.2" stroke="#247B75" stroke-width="2" /><line x1="25.695" y1="-230.2" x2="75.695" y2="-230.2" stroke="#247B75" stroke-width="2" /><line x1="50.695" y1="-200.2" x2="28.695" y2="-170.2" stroke="#247B75" stroke-width="2" /><line x1="50.695" y1="-200.2" x2="72.695" y2="-170.2" stroke="#247B75" stroke-width="2" /><text x="50.695" y="-148.2" font-family="Arial" font-size="14" text-anchor="middle" fill="#203346">Account holder</text></g>
+
+<g id="node2" class="node">
+<title>auth</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="272.97" cy="-405" rx="92.06" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="272.97" y="-400.8" font-family="Arial" font-size="14.00">Register / sign in</text>
+</g>
+
+<g id="edge3" class="edge">
+<title>user-&gt;auth</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M72.8,-279C85.84,-310.6 105.69,-346.15 134.39,-369 149.94,-381.38 169.32,-389.53 188.57,-394.89" />
+</g>
+
+<g id="node3" class="node">
+<title>add</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="272.97" cy="-332" rx="130.58" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="272.97" y="-327.8" font-family="Arial" font-size="14.00">Record income / expense</text>
+</g>
+
+<g id="edge4" class="edge">
+<title>user-&gt;add</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M101.33,-270.66C111.47,-280.2 122.65,-289.16 134.39,-296 147.94,-303.89 163.23,-310.08 178.57,-314.93" />
+</g>
+
+<g id="node4" class="node">
+<title>edit</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="272.97" cy="-259" rx="86.56" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="272.97" y="-254.8" font-family="Arial" font-size="14.00">Edit transaction</text>
+</g>
+
+<g id="edge5" class="edge">
+<title>user-&gt;edit</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M101.13,-221.77C131.32,-228.35 170.36,-236.86 203.5,-244.08" />
+</g>
+
+<g id="node5" class="node">
+<title>del</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="272.97" cy="-186" rx="98.12" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="272.97" y="-181.8" font-family="Arial" font-size="14.00">Delete transaction</text>
+</g>
+
+<g id="edge6" class="edge">
+<title>user-&gt;del</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M101.13,-205.39C125.23,-202.65 154.97,-199.28 182.85,-196.12" />
+</g>
+
+<g id="node6" class="node">
+<title>search</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="272.97" cy="-113" rx="108.55" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="272.97" y="-108.8" font-family="Arial" font-size="14.00">Search / filter history</text>
+</g>
+
+<g id="edge7" class="edge">
+<title>user-&gt;search</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M101.31,-169.02C111.77,-161.57 123.08,-154.46 134.39,-149 151.63,-140.68 171.03,-134.1 189.72,-128.97" />
+</g>
+
+<g id="node7" class="node">
+<title>cat</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="272.97" cy="-40" rx="123.42" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="272.97" y="-35.8" font-family="Arial" font-size="14.00">Create custom category</text>
+</g>
+
+<g id="edge8" class="edge">
+<title>user-&gt;cat</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" d="M80.07,-143.11C93.32,-118.76 111.33,-93.12 134.39,-76 146.49,-67.02 160.63,-60.28 175.15,-55.22" />
+</g>
+
+<g id="node8" class="node">
+<title>valid</title>
+<ellipse fill="#e5f0fc" stroke="#245d91" stroke-width="1.4" cx="595.92" cy="-295" rx="105.28" ry="24.1" />
+<text xml:space="preserve" text-anchor="middle" x="595.92" y="-290.8" font-family="Arial" font-size="14.00">Validate transaction</text>
+</g>
+
+<g id="edge1" class="edge">
+<title>add-&gt;valid</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" stroke-dasharray="5,2" d="M384.87,-319.21C419.26,-315.25 457.01,-310.9 490.91,-306.99" />
+<polygon fill="#33465a" stroke="#33465a" stroke-width="1.4" points="491.09,-309.79 498.72,-306.09 490.45,-304.22 491.09,-309.79" />
+<text xml:space="preserve" text-anchor="middle" x="447.1" y="-317.91" font-family="Arial" font-size="11.00">«include»</text>
+</g>
+
+<g id="edge2" class="edge">
+<title>edit-&gt;valid</title>
+<path fill="none" stroke="#33465a" stroke-width="1.4" stroke-dasharray="5,2" d="M354.86,-267.25C390.39,-270.96 432.6,-275.46 470.64,-279.8 477.69,-280.6 484.97,-281.45 492.3,-282.32" />
+<polygon fill="#33465a" stroke="#33465a" stroke-width="1.4" points="491.92,-285.09 500.2,-283.25 492.58,-279.53 491.92,-285.09" />
+<text xml:space="preserve" text-anchor="middle" x="447.1" y="-283.1" font-family="Arial" font-size="11.00">«include»</text>
+</g>
+</g>
+</svg>

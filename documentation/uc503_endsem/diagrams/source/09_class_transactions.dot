@@ -1,0 +1,15 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ node [shape=record,fontsize=12];
+ t [label="{Transaction\n«abstract»|# id: Long\l# userId: Long\l# categoryId: Long\l# amount: BigDecimal\l# date: LocalDate\l|+ getType(): TransactionType\l+ getSignedAmount(): BigDecimal\l}"];
+ i [label="{Income||+ getType()\l+ getSignedAmount()\l}"];e [label="{Expense||+ getType()\l+ getSignedAmount()\l}"];
+ s [label="{TransactionService|- transactionDao: TransactionDao\l- categoryDao: CategoryDao\l|+ addIncome(...)\l+ addExpense(...)\l+ updateTransaction(t)\l+ findFiltered(...)\l}"];
+ d [label="{«interface» TransactionDao||+ save(t): Transaction (inherited)\l+ findFiltered(...): List\l+ getTotalExpenseInMonth(...)\l}"];
+ j [label="{JdbcTransactionDao||+ save(t)\l+ update(t)\l- mapRowToTransaction(rs)\l}"];
+ c [label="{Category|- id: Long\l- userId: Long\l- name: String\l- type: TransactionType\l|+ getName()\l}"];
+ i->t [arrowhead=empty];e->t [arrowhead=empty];j->d [arrowhead=empty,style=dashed];s->d [label="uses",style=dashed];s->t [label="creates / validates",style=dashed];t->c [label="categoryId reference",headlabel="1",taillabel="0..*",dir=none];j->t [label="maps",style=dashed];
+
+}

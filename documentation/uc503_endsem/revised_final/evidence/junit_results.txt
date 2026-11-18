@@ -1,0 +1,119 @@
+C:\Users\marus\AppData\Local\Temp\finance-report-revision\tests\ExistingSuite.java:12: warning: [deprecation] size() in ConfigurationParameters has been deprecated
+  var config=new ConfigurationParameters(){public Optional<String> get(String k){return Optional.empty();}public Optional<Boolean> getBoolean(String k){return Optional.empty();}public int size(){return 0;}public Set<String> keySet(){return Set.of();}};
+                                                                                                                                                                                            ^
+1 warning
+Nov 16, 2026 4:20:48 PM com.financeanalyzer.util.ConfigLoader loadProperties
+INFO: Application configuration loaded successfully from /app.properties
+ISOLATED_DATABASE|jdbc:sqlite:C:/Users/marus/AppData/Local/Temp/finance-report-revision/tests/isolated-ff24b252019c440aa801944657d53616.db
+CASE|SUCCESSFUL|com.financeanalyzer.util.MoneyUtilTest#testGenericSumAmountsMethod|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.util.MoneyUtilTest#testPaiseConversion|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.util.MoneyUtilTest#testFormatCurrency|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.util.ValidatorsTest#testUsernameValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.util.ValidatorsTest#testExpenseDateValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.util.ValidatorsTest#testAmountValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.util.ValidatorsTest#testPasswordValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#highCategorySpendSkipsFixedCategoryAndUsesFlexibleDenominator|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#testRule1HighCategorySpend|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#highCategorySpendDoesNotRecommendWhenAllSpendingIsFixed|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#testRule4LowSavingsRate|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#testRecommendationsMutedWhenDisabled|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#testRule2HighExpenseToIncome|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#testRule3CategorySpike|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#highCategorySpendWithNoFixedCategoriesBehavesAsBefore|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#categorySpikeWithoutFixedCategoriesBehavesAsBefore|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#categorySpikeSkipsFixedCategory|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.HeuristicEngineTest#testRule5FrequentMicroTransactions|Assertions completed
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+CASE|SUCCESSFUL|com.financeanalyzer.service.TransactionServiceTest#testAddIncomeAndExpensePolymorphism|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.TransactionServiceTest#testCustomCategoryCreationAndDuplicateRejection|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.TransactionServiceTest#testFutureExpenseDateValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.TransactionServiceTest#testInvalidAmountValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.BudgetServiceTest#testSetAndRetrieveBudget|Assertions completed
+2026-11-16 16:20:49.535 [WARNING] [main] com.financeanalyzer.service.BudgetService - BUDGET WARNING! User 3, Category Food & Dining: spend reached 85% of limit (?10,000.00)
+2026-11-16 16:20:49.541 [WARNING] [main] com.financeanalyzer.service.BudgetService - BUDGET EXCEEDED! User 3, Category Food & Dining: limit=?10,000.00, projected total=?10,500.00
+CASE|SUCCESSFUL|com.financeanalyzer.service.BudgetServiceTest#testAlertThresholdLevels|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.RatioAllocationServiceTest#testRatioCapValidation|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.service.RatioAllocationServiceTest#testAtomicDepositAllocation|Assertions completed
+2026-11-16 16:20:49.593 [SEVERE] [main] com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDao - Error replacing fixed categories for userId=5
+org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY] A foreign key constraint failed (FOREIGN KEY constraint failed)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.DB.executeBatch(DB.java:951)
+	at org.sqlite.core.DB.lambda$executeBatch$0(DB.java:916)
+	at org.sqlite.core.SafeStmtPtr.safeRun(SafeStmtPtr.java:128)
+	at org.sqlite.core.DB.executeBatch(DB.java:916)
+	at org.sqlite.core.CorePreparedStatement.lambda$executeLargeBatch$1(CorePreparedStatement.java:76)
+	at org.sqlite.jdbc3.JDBC3Statement.withConnectionTimeout(JDBC3Statement.java:454)
+	at org.sqlite.core.CorePreparedStatement.executeLargeBatch(CorePreparedStatement.java:72)
+	at org.sqlite.core.CorePreparedStatement.executeBatch(CorePreparedStatement.java:58)
+	at com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDao.replaceAll(JdbcUserFixedCategoryDao.java:94)
+	at com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDaoTest.lambda$replaceAllRollsBackEntireUpdateWhenAnyCategoryIsInvalid$0(JdbcUserFixedCategoryDaoTest.java:41)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+	at com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDaoTest.replaceAllRollsBackEntireUpdateWhenAnyCategoryIsInvalid(JdbcUserFixedCategoryDaoTest.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at ExistingSuite.main(ExistingSuite.java:18)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at jdk.compiler/com.sun.tools.javac.launcher.Main.execute(Main.java:484)
+	at jdk.compiler/com.sun.tools.javac.launcher.Main.run(Main.java:208)
+	at jdk.compiler/com.sun.tools.javac.launcher.Main.main(Main.java:135)
+CASE|SUCCESSFUL|com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDaoTest#replaceAllRollsBackEntireUpdateWhenAnyCategoryIsInvalid|Assertions completed
+CASE|SUCCESSFUL|com.financeanalyzer.dao.jdbc.JdbcUserFixedCategoryDaoTest#fixedCategoryListsAreIsolatedPerUser|Assertions completed
+TOTAL|28|0|0
+RUNNER_EXIT=0

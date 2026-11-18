@@ -15,11 +15,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
@@ -358,13 +360,39 @@ public class GoalsController {
                 new Label("Goal Title:"), titleField,
                 new Label("Target Amount (\u20B9):"), targetField,
                 new Label("Target Deadline:"), deadlinePicker,
-                new Label("Allocation Ratio (0% - 100%):"), ratioSpinner, currentPoolLabel,
-                btnBox
+                new Label("Allocation Ratio (0% - 100%):"), ratioSpinner, currentPoolLabel
         );
 
-        Scene scene = new Scene(form, 380, 360);
+        form.setMinHeight(Region.USE_PREF_SIZE);
+        ScrollPane scrollPane = new ScrollPane(form);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefViewportWidth(380);
+
+        btnBox.setPadding(new Insets(12, 20, 20, 20));
+        btnBox.setMinHeight(Region.USE_PREF_SIZE);
+        BorderPane root = new BorderPane(scrollPane);
+        root.getStyleClass().add("card");
+        root.setBottom(btnBox);
+
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         dialog.setScene(scene);
+        root.applyCss();
+        scrollPane.setPrefViewportHeight(form.prefHeight(380));
+        dialog.sizeToScene();
+
+        // JavaFX screen bounds use logical units, including Windows display scaling.
+        List<Screen> screens = Screen.getScreensForRectangle(primaryStage.getX(), primaryStage.getY(),
+                primaryStage.getWidth(), primaryStage.getHeight());
+        Rectangle2D bounds = (screens.isEmpty() ? Screen.getPrimary() : screens.get(0)).getVisualBounds();
+        dialog.setOnShown(event -> {
+            // Clamp after showing so the dimensions include the native window decorations.
+            dialog.setMaxHeight(bounds.getHeight() - 40);
+            dialog.setHeight(Math.min(dialog.getHeight(), dialog.getMaxHeight()));
+            dialog.setWidth(Math.min(dialog.getWidth(), bounds.getWidth() - 40));
+            dialog.setX(bounds.getMinX() + (bounds.getWidth() - dialog.getWidth()) / 2);
+            dialog.setY(bounds.getMinY() + (bounds.getHeight() - dialog.getHeight()) / 2);
+        });
         dialog.showAndWait();
     }
 

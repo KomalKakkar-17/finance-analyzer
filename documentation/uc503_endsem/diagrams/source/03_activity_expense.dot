@@ -1,0 +1,9 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ start [shape=circle,label="",width=.18,fillcolor="#344655"];open [label="Open New Transaction"];input [label="Enter expense details"];preview [label="Calculate current-month preview\n(no write)"];check [shape=diamond,label="Valid input?"];error [label="Display validation error"];save [label="addExpense(): insert and commit"];dbok [shape=diamond,label="SQL succeeds?"];rollback [label="Rollback and display error"];done [label="Refresh transaction table"];end [shape=doublecircle,label="",width=.2];
+ start->open->input->preview->check;check->error [label="no"];error->input;check->save [label="yes"];save->dbok;dbok->rollback [label="no"];rollback->input;dbok->done [label="yes"];done->end;
+
+}

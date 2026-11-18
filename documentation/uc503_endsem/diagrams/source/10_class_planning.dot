@@ -1,0 +1,16 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ node [shape=record,fontsize=12];
+ b [label="{{Budget|- userId: Long\l- categoryId: Long\l- yearMonth: YearMonth\l- limit: BigDecimal\l|+ getLimit()\l}}"];
+ bs [label="{{BudgetService||+ setBudget(...)\l+ calculateUtilisation(...)\l+ checkBudgetAlert(...)\l}}"];
+ bd [label="{{«interface» BudgetDao||+ save(b) (inherited)\l+ findByCategoryAndMonth(...)\l}}"];
+ g [label="{{SavingsGoal|- userId: Long\l- targetAmount: BigDecimal\l- savedAmount: BigDecimal\l- allocationRatio: int\l- active: boolean\l|+ getProgressPercentage(): double\l}}"];
+ gs [label="{{GoalService||+ createGoal(...)\l+ updateGoal(g)\l+ toggleGoalActive(...)\l}}"];
+ gd [label="{{«interface» SavingsGoalDao||+ save(g) (inherited)\l+ findActiveGoals(userId)\l+ updateActiveStatus(...)\l}}"];
+ ra [label="{{RatioAllocationService||+ allocateDeposit(...)\l}}"];
+ bs->bd [style=dashed,label="uses"];bs->b [style=dashed,label="creates"];gs->gd [style=dashed,label="uses"];gs->g [style=dashed,label="creates"];ra->gd [style=dashed,label="reads active goals"];ra->g [style=dashed,label="calculates shares"];
+
+}

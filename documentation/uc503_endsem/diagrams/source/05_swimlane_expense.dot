@@ -1,0 +1,12 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ subgraph cluster_user {label="User"; u1 [label="Enter details"];u2 [label="Select Save"];u3 [label="Read result"]}
+ subgraph cluster_ui {label="JavaFX controller";c1 [label="handleSave()\nParse and validate fields"];c2 [label="Close dialog on success\nrefreshTable()"]}
+ subgraph cluster_service {label="Business logic";s1 [label="addExpense()\nValidate category / amount / date"];s2 [label="recordActivity()"]}
+ subgraph cluster_db {label="JDBC persistence";d1 [label="findById(categoryId)"];d2 [label="INSERT transactions\ncommit / rollback"]}
+ u1->u2->c1->s1->d1->d2->s2->c2->u3;
+
+}

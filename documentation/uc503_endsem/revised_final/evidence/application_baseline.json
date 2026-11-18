@@ -1,0 +1,394 @@
+[
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\app\\Launcher.java",
+    "sha256": "F105B8D55AE9C5E0864759C953BC7F15CC10F30F199D7365347ECB3D8105339D"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\app\\MainApp.java",
+    "sha256": "A54D35ECABA7F8594E5F71459FEC9A617127D9A1055541B5D3F96013680937D5"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\AuditLogDao.java",
+    "sha256": "F5D4711D3ED9B8FB9E21E05043CFCC9A56C81134B41FD4BE97245BF47B345435"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\BudgetDao.java",
+    "sha256": "B0D9D4C190311DAC69769EE2440FFC42D5755C0E286EE15D5FB2FF69260906D1"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\CategoryDao.java",
+    "sha256": "4FEE394D71CF3A991043EC4D247028AAE25A54AC72A4CA2F379F4823D84C1DE7"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\Dao.java",
+    "sha256": "215DA65BE2D3C2004280D0B549A376B608C4D6AFDFC152314871D51837FFAD46"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\FixedCategoryDao.java",
+    "sha256": "83E55508415586DAB1F70EE0DA52473DC82DCF05E5A3862987744BBB97BD0718"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\RecurringTransactionDao.java",
+    "sha256": "79D61B14B364580B313CF31EE9ACA3A1D3B4F72A1BA6F3438E05C6E490A18BF5"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\SavingsGoalDao.java",
+    "sha256": "7D0DE65944667FF9E7596A116452E1973E35A32917EE3B09C8A536EDE9F7DB05"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\TransactionDao.java",
+    "sha256": "81F355DB2B6038E94CEC42872573EA83705E8FAA2128F7A568DBB2B31087806A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\UserDao.java",
+    "sha256": "9A57EE4D033D2D772EF2671AD15074BBB196400446D5E1C193337365357187CA"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\UserFixedCategoryDao.java",
+    "sha256": "5CFA0F6470BD7777478441A3F28098BD6B195A34C84BB14E0F92533A248B7F3F"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\DatabaseManager.java",
+    "sha256": "CED1D110B153F0862E9058A0404109880008438004E489951A5C7C671ABB79C2"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcAuditLogDao.java",
+    "sha256": "95161A5670D93E47FB46361807676AE8C623E9E0D983177550828757061DEE07"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcBudgetDao.java",
+    "sha256": "C567AD2A9113911537FB99525CA235FF0844751D26993A09EF394E1FAA52348C"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcCategoryDao.java",
+    "sha256": "C119BAB9A4FC9077E3E020512127CA3E0F470F5D9F5C51F3FFF120C271DA322D"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcFixedCategoryDao.java",
+    "sha256": "A01B41AF787AE629728536DC6BEDBC3FB7CF807FFA46344D1876C93AAD1869B1"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcRecurringTransactionDao.java",
+    "sha256": "6D76ACE18A1FB4146FD46169C46C893EF0A8E28493343CF99C21A260F54BF98B"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcSavingsGoalDao.java",
+    "sha256": "2DBF3F54BFCA3239A491848ED5D53F1919AA2FA4B744927EE075284A03CFB3F6"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcTransactionDao.java",
+    "sha256": "1E3EF05736E680F19E263858BF612B139AA309F75D6C76DD8B911DADDD8E61E2"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcUserDao.java",
+    "sha256": "CEE9FBF756B3694E6E271F53DFA9D1B870E53006AB669C7A9C72B8D24C678F99"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcUserFixedCategoryDao.java",
+    "sha256": "133FDCDE080F397C5C17FC994821C15D83192BAC842CD22A433363B4A5CD935A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\AllocationRatioException.java",
+    "sha256": "38260DD021CE10129308860F14F4BB3BE01FD7DFEA7CCEDC5615D20D543B427F"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\AppException.java",
+    "sha256": "4B2A444E5187C3EB7502E6C4DAFE1B9099B81BE74EC9D5FD66AF539EE04B6E5D"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\AuthenticationException.java",
+    "sha256": "DC7C439B9B7C52B0A40D1EC22BE5274E2F3B669DF464C2EF574954A63044EE49"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\BudgetExceededException.java",
+    "sha256": "57D7F9A173433BD8761202333D6A91317B1D59395FFBAE2EDD58BB03126286B1"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\DataAccessException.java",
+    "sha256": "57991F333229A0D0AF46ACC90E4091F7425F11150FE20F2A774E3346CD39F548"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\InsufficientDataException.java",
+    "sha256": "B70F6D94FC3AE16767E34AFA58905C6EC9DD89111B39A000A49240EF954750BB"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\InvalidFixedCategoryException.java",
+    "sha256": "3CB4FA19C9497CE5312F99AB428A3179010EFB1FCCE55DDBD6995D67EC5F94EF"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\exception\\InvalidTransactionException.java",
+    "sha256": "0744BB336B54D7215397CAA9446DA2B7513C25B33BAF93FD3C5C9E0E3694552C"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\io\\BackupManager.java",
+    "sha256": "A306E14A8FF03810E8F1A4EC6E612EBF97A7B0AF752FE378840595A3EB65C97E"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\io\\CsvExporter.java",
+    "sha256": "88F846ACBC3CA54766D5AB45E301CB8AF7096DF6801E05DB1D2098CDF603C88C"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\io\\CsvImporter.java",
+    "sha256": "0550749C8244D43B4C47A425E051BAD33064EE16E1CCB01518C57F08E5903C34"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\io\\ReportWriter.java",
+    "sha256": "645DABF32C933D0090214BE23D7414F957A2B6105881D021272CB117221115F2"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\io\\UserDataSnapshot.java",
+    "sha256": "FCA5B23E7A8A8298CD4DA78152E14D2B849D3954D1415042094BDEECC1135298"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\AnalyticsDTO.java",
+    "sha256": "199E578A758736870D12EBABF7CF70657EEDAFD5E4877CB74DE3A492E6A0BD05"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\AuditLog.java",
+    "sha256": "BD8A295C2262D7A07DD907C8C28865C875411BEF802BE4BE40A22057A3813ABF"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\Budget.java",
+    "sha256": "6B1CBEBA103FFD90BCAD0FC06CE36DFDC52F6ECCABDB10311912497E617B12C2"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\Category.java",
+    "sha256": "84F0310480B08806BD46805D419DFCC041B556563015F9EE6B30474BE5D362DC"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\Expense.java",
+    "sha256": "F876BF5D0CF557145C8D2FA4E343B9869005336E83167FDCD89AE84E5088468F"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\Income.java",
+    "sha256": "73EB29650840A868E94E448456776F298C40D632A24301187F270224957A082B"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\RecurringTransaction.java",
+    "sha256": "D5872D07A65F1FCD894D3B8EC096D05302510F5C223439B15394903806A00BDE"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\SavingsGoal.java",
+    "sha256": "F2C380CF7A26E6CE6DEC9372E204229E59D81ECE91D80971B529B25C11336377"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\Transaction.java",
+    "sha256": "7BD1B736D17541B156BF46F4FD48F404F67091B320E30B805AD0B49A30BABBE6"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\User.java",
+    "sha256": "4CE247477CB6839867B028E7AA5F8E8692854F96121226C01CDF94352DAF2432"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\enums\\AlertLevel.java",
+    "sha256": "FCC5E388D493338D0CA3A4FCF52B174A9F85A1B5F4CF5E61B43CF8E4167AB4F7"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\enums\\Frequency.java",
+    "sha256": "C4D0AA3E39A30A82FEBB627200238A0E1E3733A831A9604CBFDC9339407D78C1"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\enums\\RuleStatus.java",
+    "sha256": "527EE020BDE2E2B9ACEBDB1297C367B227204AC88012BBC7F761885E11D4255E"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\model\\enums\\TransactionType.java",
+    "sha256": "EDF51F3B0936C6DE51169C2937B7B13A6EF97565A4EE6C1586DB58F2F3694079"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\AnalysisContext.java",
+    "sha256": "B3F3398B68C1A506446A40A4F48EB6869370FC5D74E5BC0D9A7314B77198246A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\CategorySpikeRule.java",
+    "sha256": "634370B6AAFF8A3D332A7E35068309CF97A874D6771FCA3690D859218B275897"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\FrequentMicroTransactionsRule.java",
+    "sha256": "9DC48C0603CD44FFF17612A1674E2E2FE5FF881A609D55FA2D4430CE755D00BD"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\HighCategorySpendRule.java",
+    "sha256": "35F7DAA5EE2BD012FE44435607171F150D29DFC1ACDD8C1A39B792C75E3D181F"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\HighExpenseToIncomeRule.java",
+    "sha256": "7A57F4B4BCA05BFECCE46A07287353CB4859550F270565D147A14707D800ABC1"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\LowSavingsRateRule.java",
+    "sha256": "314B19C7E3E2705EF7E74B13278A3FA53A6A36D01B355724B96C0FA8E3E68041"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\rules\\Recommendation.java",
+    "sha256": "65A23A316906B60ED3C64F3DF1C8A9014C6C69C6FF4F2526444F19F71211962B"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\AuthService.java",
+    "sha256": "66AFF586F847D1D77DDFE00139F6EB85B83013AC51717C86191D546D51EC8588"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\BudgetService.java",
+    "sha256": "E31A1A1AF7B85427A3223CE4B9D386C4BFF01B05601F383D9CDE9F1B2EB0F08B"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\CategoryService.java",
+    "sha256": "E75B17C3198D0AE14C668B77E5F5CF02BF4D41BBC61BB917FAD41E699C535C2A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\DefaultInModalAnalyticsService.java",
+    "sha256": "122EB319544B3545FF29E9CD3BE1F2042B6E6052161D8CEB914AAC88F01B7E4E"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\GoalService.java",
+    "sha256": "70F358FCB3D1FFE5C0692E063EC6CFE59D0F47576AF30F47DD28B58DBD35AB7D"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\HeuristicEngine.java",
+    "sha256": "7E083E2CD01C930F0621EFFF4F4F8D123235136BFAFEC44525362C3E8034BD7E"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\InModalAnalyticsService.java",
+    "sha256": "A6C7AA7C8055A307BB8362CB6B64F4FFBEBFA88FB85AA0EB37A579550FF9B259"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\RatioAllocationService.java",
+    "sha256": "788819A4860A9847A9ECE4DA17A8B46FDDD34B26E0DB8A64F21ABF4B2293DA36"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\RecurringScheduler.java",
+    "sha256": "120623AEEBE9A960BA409CA50171A43C45E8A463472CD65D053A77B72756345C"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\ReportService.java",
+    "sha256": "83719A72C19D396959E95E8E40626E900E1E98A1C587BADE6E8AC314580CB970"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\service\\TransactionService.java",
+    "sha256": "4846E43D11002387D261EA9CD453F63E5D37D0DEB48C90E6A3ED63D8D6147495"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\AlertHelper.java",
+    "sha256": "832F1D28DC20BE57EC7B843F1FDEDBD3A49B759BA15132D0CB8CF341CB8EA7B3"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\components\\SpendPreviewCard.java",
+    "sha256": "31F7622C66AF40C5D9188322742653B3FD3E3A7A8A8BF3F7392A23D8F5C589C6"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\BudgetsController.java",
+    "sha256": "6D244C5AA37E38B374FF8063740B4C3B29C1AE11492EC35DCCA0125B98714078"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\DashboardController.java",
+    "sha256": "52BB9A5188F412A3937F7E88D30F8CF36948F0869629AE3D61152AFF69E17E73"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\GoalsController.java",
+    "sha256": "ED5AB4DD6713ECEF9AC6806A8391F2F1666D650715A3175D00F84FBD89C4BA60"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\LoginController.java",
+    "sha256": "20A5B2DE461A52DEAB66FBFD152AD7C56FFDD007BF3333EC0135CEF22B0A4F7A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\MainShellController.java",
+    "sha256": "B5AEDC4B02249694E7F88F73FA545BFB953ED53E69B95DFF52B91194DAFE70D5"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\RecurringController.java",
+    "sha256": "3DD5BB8592DF7087CE690DFB34F8EBE56F639FDFD63B77D4E515B89E036D798A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\ReportsSettingsController.java",
+    "sha256": "4F0F5F293E0C356255C795B2AF342905B7E5C5E5EC8902A2B7875151AD2A672A"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\TransactionDialogController.java",
+    "sha256": "D4B9B29D012F193AAA84B80684BBE6EAA9204D90DAE2D91720003B284EEF6C59"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\ui\\controllers\\TransactionsController.java",
+    "sha256": "6D78610A467AC627DB0F5594FDF57D95324377D476574906C35CCD180CF7EB6C"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\AppLogger.java",
+    "sha256": "59E33DBD82401A1023DB0CA36C6541D1141D64A6CBA6D616535E2402E1B7F8FE"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\ConfigLoader.java",
+    "sha256": "EE1A5F1BCDD028F1F6C56A44126FBAD17C0C8D659FA55530B1C1E1A050CFAA12"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\DateUtil.java",
+    "sha256": "6F03C7CECC218B5280D296D5E1FC11BAD3E58A4FD0790B43F83E04D1979B3483"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\MoneyUtil.java",
+    "sha256": "DE1B2287DCCFF34B0FC30E4AC06551EAFB6C05AD563D9DE511AEA60E56A02191"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\Pair.java",
+    "sha256": "69CEA71478215591A3039FE24B0C4FAC95DA98C00C92D509440D0EAE37D17F52"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\Result.java",
+    "sha256": "AAD777B67F623BE6ADD0C9B67D30DC8ADE0161BDDA0AF66F5F0F65C2BAF5A189"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\java\\com\\financeanalyzer\\util\\Validators.java",
+    "sha256": "069DEC39252FB351BF010ECE3CB36FFF17C81A365C7A60B391518C7A90ACFD64"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\resources\\app.properties",
+    "sha256": "BFA2B8046B5F3A4A880652E3080D1090DB94EC2A43BA87E372869A979C84671F"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\main\\resources\\style.css",
+    "sha256": "E056D7A3D6877710B5B77B5BC415F573E0F4CAACCA7F844EADB28658DC92D31F"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\CheckDemoUser.java",
+    "sha256": "77B5DFE58992FC182986781C908DC52985C905BB62CA6560E4786B8062176348"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\dao\\jdbc\\JdbcUserFixedCategoryDaoTest.java",
+    "sha256": "623C58DA085ADD1C4ED411B8C213A5A30F7744FB972F75517321210197F2A1E2"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\service\\BudgetServiceTest.java",
+    "sha256": "DC26FC64488E04E25848A67343D3E2792D0226994F91ECCA549A621D75DE79A5"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\service\\HeuristicEngineTest.java",
+    "sha256": "1E8052CDA03816B238C933CECD495DBCD0AF99B4C3ECC2C9EA95ABF406C8022D"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\service\\RatioAllocationServiceTest.java",
+    "sha256": "0C3F00F6975BAB11C94BFBA968749A1ECA6861EDFEA7D1B8CB9325E220F4738E"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\service\\TransactionServiceTest.java",
+    "sha256": "9BE582BAA11F785DCE366CD0140C060E972B594C37D96938087F4C8A4735CFAC"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\util\\MoneyUtilTest.java",
+    "sha256": "3663FC1ACCDF9116A054A5B891E2BC705B60CB81FB225307E76C217EA381C086"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\java\\com\\financeanalyzer\\util\\ValidatorsTest.java",
+    "sha256": "4EF47C445B3C92E70E0F5D8B41CB735144EA69F45E2329127C6FF0D86FBE19B1"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\src\\test\\resources\\app.properties",
+    "sha256": "99BF1E12AB2A386AC335C37FB29F87DB55823A9DCA1258DA3EE5C6AAA0DA1ADB"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\pom.xml",
+    "sha256": "6AEFE8E9F70A46EE6EAD1146617904F4357BB39C96375B7B9D3FA0D987996CB0"
+  },
+  {
+    "path": "C:\\Users\\marus\\finance-analyzer\\data\\finance.db",
+    "sha256": "9BDF811A92434D6749A43CC1400FD1347B2A7D5A2D1EEE75DD74BAE149D879B8"
+  }
+]

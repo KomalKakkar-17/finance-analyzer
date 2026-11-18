@@ -1,0 +1,33 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam sequence {
+ArrowColor #33465A
+LifeLineBorderColor #8A9BAB
+ParticipantFontColor #203346
+}
+hide footbox
+participant "GoalsController" as p0 #E5F0FC
+participant "GoalService" as p1 #E7F3E8
+participant "JdbcSavingsGoalDao" as p2 #FFF0DE
+participant "JDBC / SQLite" as p3 #FFF0DE
+p0 -> p1: createGoal(...)
+activate p1
+p1 -> p1: Validators.validateSavingsGoal(...)
+p1 -> p1: getTotalActiveRatio()
+p1 -> p2: findActiveGoals(userId)
+activate p2
+p2 --> p1: List<SavingsGoal>
+deactivate p2
+p1 -> p2: save(new SavingsGoal(...))
+activate p2
+p2 -> p3: INSERT savings_goals
+activate p3
+p3 --> p2: generated id
+deactivate p3
+p2 --> p1: saved goal
+deactivate p2
+p1 --> p0: SavingsGoal
+deactivate p1
+note over p0,p3: Input and active-ratio cap are checked before save.
+@enduml

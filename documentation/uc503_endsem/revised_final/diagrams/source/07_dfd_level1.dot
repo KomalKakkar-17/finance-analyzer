@@ -1,0 +1,19 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad="0.3", penwidth=1.4, nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#33465A", style="filled", fillcolor="#E7F3E8", margin="0.18,0.12", penwidth=1.4];
+edge [fontname="Arial", fontsize=11, color="#33465A", arrowsize=0.8, penwidth=1.4];
+
+ graph [nodesep="0.25",ranksep="0.4"];
+ node [shape=box,fillcolor="#DDF3F0",color="#247B75"];u1 [label="Account holder\n(repeated)"];u2 [label="Account holder\n(repeated)"];u3 [label="Account holder\n(repeated)"];u4 [label="Account holder\n(repeated)"];u5 [label="Account holder\n(repeated)"];f [label="User-selected files"];
+ node [fillcolor="#E7F3E8",color="#387445",shape=circle,width=1.3];p1 [label="1.0\nAuthenticate"];p2 [label="2.0\nTrack records"];p3 [label="3.0\nPlan finances"];p4 [label="4.0\nAnalyze / report"];p5 [label="5.0\nTransfer files"];
+ node [fillcolor="#FFF0DE",color="#A36A26",shape=plain];d1 [label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD BORDER="1" SIDES="TB" BGCOLOR="#FFF0DE" CELLPADDING="8">D1 Accounts / preferences</TD></TR></TABLE>>];d2 [label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD BORDER="1" SIDES="TB" BGCOLOR="#FFF0DE" CELLPADDING="8">D2 Tracking records</TD></TR></TABLE>>];d3 [label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD BORDER="1" SIDES="TB" BGCOLOR="#FFF0DE" CELLPADDING="8">D3 Budgets / goals</TD></TR></TABLE>>];d4 [label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD BORDER="1" SIDES="TB" BGCOLOR="#FFF0DE" CELLPADDING="8">D1, D1, D2, D3<BR/>(repeated stores)</TD></TR></TABLE>>];d5 [label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD BORDER="1" SIDES="TB" BGCOLOR="#FFF0DE" CELLPADDING="8">D1, D2, D3<BR/>(repeated stores)</TD></TR></TABLE>>];
+ u1->p1 [label="Credentials"];p1->u1 [label="Authentication result",constraint=false];p1->d1 [label="Account data"];d1->p1 [label="Stored account",constraint=false];
+ u2->p2 [label="Entry / category / rule\ndetails; queries"];p2->u2 [label="Results; records",constraint=false];p2->d2 [label="Record changes"];d2->p2 [label="Stored records",constraint=false];
+ u3->p3 [label="Budget / goal settings"];p3->u3 [label="Results; records",constraint=false];p3->d3 [label="Plan changes"];d3->p3 [label="Stored plans",constraint=false];d2->p3 [label="Spending totals",constraint=false];
+ u4->p4 [label="Queries / preferences"];p4->u4 [label="Previews; charts;\nadvice; reports",constraint=false];p4->d4 [label="Preference changes"];d4->p4 [label="Preferences; records; plans",constraint=false];
+ u5->p5 [label="File operation query"];p5->u5 [label="Operation results",constraint=false];f->p5 [label="CSV / snapshot data"];p5->f [label="CSV / TXT / snapshot",constraint=false];p5->d5 [label="Imported / restored data"];d5->p5 [label="Export / snapshot data",constraint=false];p4->p5 [label="Report text",constraint=false];
+ {rank=same;u1;u2;u3;u4;u5;f;} {rank=same;p1;p2;p3;p4;p5;} {rank=same;d1;d2;d3;d4;d5;}
+
+
+f [fillcolor="#DDF3F0",color="#247B75"];
+}

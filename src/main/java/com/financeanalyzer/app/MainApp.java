@@ -266,6 +266,7 @@ public class MainApp extends Application {
         });
 
         shellController.setViews(dashView, txnView, budgetsView, goalsView, recView, reportsView);
+        shellController.setFinancialRefreshHandlers(dashController::refreshView, budgetsController::refreshView);
 
         Parent shellRoot = shellController.getView();
         mainScene = new Scene(shellRoot, 1080, 720);

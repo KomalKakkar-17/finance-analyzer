@@ -1,0 +1,13 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.35", ranksep="0.55", fontname="Arial", fontsize=16];
+node [shape=box, fontname="Arial", fontsize=14, color="#344655", style="filled", fillcolor="#f5f7fa", margin="0.15,0.10"];
+edge [fontname="Arial", fontsize=11, color="#344655", arrowsize=0.8];
+
+ node [shape=box];u [label="Account holder"];
+ node [shape=circle,width=1.2];a [label="2.1\nValidate entry"];b [label="2.2\nPersist entry"];c [label="2.3\nFind records"];d [label="2.4\nManage categories\nand recurring rules"];
+ store [shape=plain,label=<<TABLE BORDER="0" CELLBORDER="0"><TR><TD BORDER="1" SIDES="TB">D2 Categories / transactions / rules</TD></TR></TABLE>>];
+ u->a [label="Transaction details"];a->b [label="Validated transaction"];a->u [label="Validation result"];store->a [label="Stored category"];b->store [label="Record changes"];b->u [label="Operation result"];
+ u->c [label="Queries"];store->c [label="Stored records"];c->u [label="Records"];
+ u->d [label="Category details; rule settings"];store->d [label="Stored records"];d->store [label="Record changes"];d->u [label="Operation results; records"];
+
+}

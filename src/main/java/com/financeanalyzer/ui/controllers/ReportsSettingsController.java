@@ -121,8 +121,12 @@ public class ReportsSettingsController {
         recsCheckBox.setSelected(currentUser.isRecommendationsEnabled());
         recsCheckBox.setStyle("-fx-font-weight: 600; -fx-font-size: 13px;");
         recsCheckBox.selectedProperty().addListener((obs, oldVal, newVal) -> {
-            authService.updateRecommendationsPreference(newVal);
-            AlertHelper.showToast(primaryStage, newVal ? "Smart recommendations enabled." : "Smart recommendations disabled.");
+            if (authService.updateRecommendationsPreference(newVal)) {
+                if (refreshDashboardInsights != null) {
+                    refreshDashboardInsights.run();
+                }
+                AlertHelper.showToast(primaryStage, newVal ? "Smart recommendations enabled." : "Smart recommendations disabled.");
+            }
         });
 
         Label recsHelp = new Label("Analyzes category spikes, expense-to-income burn rate, savings rate, and micro-transactions.");
